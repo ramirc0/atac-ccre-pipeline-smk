@@ -4,11 +4,6 @@ channels:
   - bioconda
 dependencies:
   - python=3.12
-  - snakemake>=9
+  - snakemake=9
   - snakemake-executor-plugin-slurm
-  - bedtools
-  - polars
-  - pandas
-  - numpy
-  - bioframe
-  - requests
+  - polars=1.44
