@@ -1,0 +1,333 @@
+"""Build ATAC cCREs from cell-type fragment pseudobulks and/or bulk tracks.
+
+This is a separate entry point from the original Snakefile.  Fragment inputs are
+converted to the narrowPeak and fold-enrichment BigWig interface used by the
+existing downstream workflow; bulk inputs already provide those two files.
+"""
+
+import csv
+import os
+import re
+from pathlib import Path
+
+import pandas as pd
+
+
+WORK_DIR = config.get("work_dir", os.getcwd())
+RESULTS_DIR = config.get("output_dir", config.get("ouput_dir"))
+if not RESULTS_DIR:
+    raise ValueError("Set output_dir in the config")
+
+# Existing included rules use the historical misspelling.
+config["ouput_dir"] = RESULTS_DIR
+
+LOG_DIR = os.path.join(WORK_DIR, config.get("log_dir", "logs-mixed"))
+TMP_DIR = config.get("tmp_dir", "/tmp")
+TOOLKIT = config["TOOLKIT"]
+GENOME = config.get("genome", "hg38")
+PREFIX = config.get("prefix", "MIXED")
+
+Path(RESULTS_DIR).mkdir(parents=True, exist_ok=True)
+Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
+
+manifest_path = config["sample_manifest"]
+required_columns = {"sample", "input_type", "fragments", "fragment_format", "narrowpeak", "bigwig"}
+
+with open(manifest_path, newline="") as handle:
+    reader = csv.DictReader(handle, delimiter="\t")
+    if reader.fieldnames is None:
+        raise ValueError(f"Empty sample manifest: {manifest_path}")
+    missing_columns = required_columns.difference(reader.fieldnames)
+    if missing_columns:
+        raise ValueError(
+            f"Sample manifest is missing columns: {', '.join(sorted(missing_columns))}"
+        )
+    sample_rows = list(reader)
+
+if not sample_rows:
+    raise ValueError(f"No samples found in {manifest_path}")
+
+samples = {}
+for row in sample_rows:
+    sample = row["sample"].strip()
+    input_type = row["input_type"].strip().lower()
+    if not re.fullmatch(r"[A-Za-z0-9._-]+", sample):
+        raise ValueError(
+            f"Invalid sample name {sample!r}; use only letters, numbers, '.', '_' and '-'"
+        )
+    if sample in samples:
+        raise ValueError(f"Duplicate sample name in manifest: {sample}")
+    if input_type not in {"fragment", "bulk"}:
+        raise ValueError(f"{sample}: input_type must be 'fragment' or 'bulk'")
+
+    row = {key: (value or "").strip() for key, value in row.items()}
+    row["input_type"] = input_type
+    if input_type == "fragment":
+        if not row["fragments"]:
+            raise ValueError(f"{sample}: fragments is required for fragment input")
+        row["fragment_format"] = (row["fragment_format"] or "FRAG").upper()
+        if row["fragment_format"] not in {"FRAG", "BEDPE"}:
+            raise ValueError(f"{sample}: fragment_format must be FRAG or BEDPE")
+        row["narrowpeak"] = f"{RESULTS_DIR}/fragment_preprocess/{sample}/{sample}_peaks.narrowPeak"
+        row["bigwig"] = f"{RESULTS_DIR}/fragment_preprocess/{sample}/{sample}_FE.bw"
+    else:
+        if not row["narrowpeak"] or not row["bigwig"]:
+            raise ValueError(f"{sample}: bulk input requires narrowpeak and bigwig")
+    samples[sample] = row
+
+sample_names = list(samples)
+fragment_samples = [s for s in sample_names if samples[s]["input_type"] == "fragment"]
+peak_files = [samples[s]["narrowpeak"] for s in sample_names]
+bigwig_files = {s: samples[s]["bigwig"] for s in sample_names}
+
+intermediate_bw_files = [
+    f"{RESULTS_DIR}/bw_zscoring/mixed-{sample}.txt" for sample in sample_names
+]
+
+# Keep the current ENCODE DNase scoring branch available for parity with the
+# original workflow. It can be omitted from final targets with include_dnase.
+intermediate_DNase_files = []
+if config.get("include_dnase", True):
+    encode_dnase = pd.read_csv(
+        config["encode_DNase_list"],
+        sep="\t",
+        header=None,
+        usecols=[0, 1],
+        names=["experiment", "file"],
+    )
+    for _, row in encode_dnase.iterrows():
+        intermediate_DNase_files.append(
+            f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{row['experiment']}_{row['file']}.txt"
+        )
+
+
+final_outputs = [
+    f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
+    f"{RESULTS_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ.txt",
+    f"{RESULTS_DIR}/{PREFIX}_{GENOME}-cCREs.bed",
+]
+if config.get("include_dnase", True):
+    final_outputs.append(f"{RESULTS_DIR}/{PREFIX}_{GENOME}-DNase-maxZ.txt")
+
+
+rule all:
+    input:
+        final_outputs
+
+
+rule fragment_call_peaks:
+    input:
+        fragments=lambda wc: samples[wc.sample]["fragments"]
+    output:
+        narrowpeak=f"{RESULTS_DIR}/fragment_preprocess/{{sample}}/{{sample}}_peaks.narrowPeak",
+        pileup=f"{RESULTS_DIR}/fragment_preprocess/{{sample}}/{{sample}}_treat_pileup.bdg",
+        lambda_bdg=f"{RESULTS_DIR}/fragment_preprocess/{{sample}}/{{sample}}_control_lambda.bdg",
+    params:
+        fmt=lambda wc: samples[wc.sample]["fragment_format"],
+        macs3=config.get("macs3", "macs3"),
+        genome_size=config.get("macs3_genome_size", "hs"),
+        qvalue=config.get("macs3_qvalue", 0.01),
+        max_count=config.get("macs3_max_count", "all"),
+        extra=config.get("macs3_extra", ""),
+        outdir=lambda wc: f"{RESULTS_DIR}/fragment_preprocess/{wc.sample}",
+    log:
+        f"{LOG_DIR}/fragment_call_peaks/{{sample}}.log"
+    threads: 4
+    resources:
+        mem_mb=32000,
+        runtime=120,
+        slurm_partition="4hours"
+    wildcard_constraints:
+        sample="|".join(re.escape(s) for s in fragment_samples) if fragment_samples else r"(?!)"
+    shell:
+        r"""
+        set -euo pipefail
+        mkdir -p "{params.outdir}" "$(dirname {log})"
+
+        max_count_arg=""
+        if [[ "{params.fmt}" == "FRAG" && "{params.max_count}" != "all" ]]; then
+            max_count_arg="--max-count {params.max_count}"
+        fi
+
+        {params.macs3} callpeak \
+            -t "{input.fragments}" \
+            -f "{params.fmt}" \
+            -g "{params.genome_size}" \
+            -n "{wildcards.sample}" \
+            --outdir "{params.outdir}" \
+            -q "{params.qvalue}" \
+            -B --SPMR \
+            $max_count_arg \
+            {params.extra} \
+            > "{log}" 2>&1
+        """
+
+
+rule fragment_make_bigwig:
+    input:
+        pileup=f"{RESULTS_DIR}/fragment_preprocess/{{sample}}/{{sample}}_treat_pileup.bdg",
+        lambda_bdg=f"{RESULTS_DIR}/fragment_preprocess/{{sample}}/{{sample}}_control_lambda.bdg",
+        chrom_sizes=config["chrom_sizes"],
+    output:
+        bigwig=f"{RESULTS_DIR}/fragment_preprocess/{{sample}}/{{sample}}_FE.bw"
+    params:
+        macs3=config.get("macs3", "macs3"),
+        bedgraph_to_bigwig=config.get("bedGraphToBigWig", "bedGraphToBigWig"),
+    log:
+        f"{LOG_DIR}/fragment_make_bigwig/{{sample}}.log"
+    threads: 2
+    resources:
+        mem_mb=16000,
+        runtime=60,
+        slurm_partition="4hours"
+    wildcard_constraints:
+        sample="|".join(re.escape(s) for s in fragment_samples) if fragment_samples else r"(?!)"
+    shell:
+        r"""
+        set -euo pipefail
+        mkdir -p "$(dirname {output.bigwig})" "$(dirname {log})"
+        workdir=$(mktemp -d "{TMP_DIR}/fragment_bigwig_{wildcards.sample}.XXXXXX")
+        trap 'rm -rf "$workdir"' EXIT
+
+        {params.macs3} bdgcmp \
+            -t "{input.pileup}" \
+            -c "{input.lambda_bdg}" \
+            -m FE \
+            -o "$workdir/FE.unsorted.bdg" \
+            > "{log}" 2>&1
+
+        awk 'BEGIN {{OFS="\t"}} NR==FNR {{size[$1]=$2; next}} \
+             ($1 in size) && $2 >= 0 && $2 < size[$1] && $3 > $2 {{ \
+                 end=($3 > size[$1] ? size[$1] : $3); \
+                 if (end > $2) print $1,$2,end,$4 \
+             }}' "{input.chrom_sizes}" "$workdir/FE.unsorted.bdg" \
+            | LC_ALL=C sort -k1,1 -k2,2n > "$workdir/FE.bdg"
+
+        {params.bedgraph_to_bigwig} \
+            "$workdir/FE.bdg" "{input.chrom_sizes}" "{output.bigwig}" \
+            >> "{log}" 2>&1
+        """
+
+
+rule mixed_prepare_peaks:
+    input:
+        peak_files
+    output:
+        tmp_bed=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-ATAC-tmp.bed",
+        sorted_bed=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-ATAC-tmp.sorted.bed",
+    log:
+        f"{LOG_DIR}/mixed_prepare_peaks.log"
+    benchmark:
+        f"{RESULTS_DIR}/benchmarks/mixed_prepare_peaks.tsv"
+    run:
+        import polars as pl
+        import subprocess
+
+        schema = {
+            "chrom": pl.Utf8,
+            "start": pl.Int64,
+            "end": pl.Int64,
+            "name": pl.Utf8,
+            "score": pl.Float64,
+            "strand": pl.Utf8,
+            "signalValue": pl.Float64,
+            "pValue": pl.Float64,
+            "qValue": pl.Float64,
+            "peak": pl.Int64,
+        }
+
+        Path(output.tmp_bed).parent.mkdir(parents=True, exist_ok=True)
+        with open(output.tmp_bed, "w") as out_handle:
+            for sample in sample_names:
+                frame = pl.read_csv(
+                    samples[sample]["narrowpeak"],
+                    separator="\t",
+                    has_header=False,
+                    new_columns=list(schema),
+                    schema_overrides=schema,
+                    comment_prefix="track",
+                )
+                width = pl.col("end") - pl.col("start")
+                summit = pl.col("start") + pl.col("peak")
+                frame = (
+                    frame.with_row_index("row_nr", offset=1)
+                    .filter(pl.col("chrom").str.contains(r"^chr([1-9]|1[0-9]|2[0-2]|X|Y)$"))
+                    .with_columns([
+                        pl.when(width < 150).then(summit - 75)
+                        .when(width > 350).then(summit - 175)
+                        .otherwise(pl.col("start")).clip(lower_bound=0).alias("start"),
+                        pl.when(width < 150).then(summit + 75)
+                        .when(width > 350).then(summit + 175)
+                        .otherwise(pl.col("end")).alias("end"),
+                        pl.lit(sample).alias("exp"),
+                        pl.lit("ATAC").alias("target"),
+                        pl.lit(sample).alias("biosample"),
+                        (pl.lit(f"{sample}-") + pl.col("row_nr").cast(pl.Utf8)).alias("unique_id"),
+                    ])
+                    .drop("row_nr")
+                    .filter(pl.col("start") < pl.col("end"))
+                )
+                frame.write_csv(out_handle, separator="\t", include_header=False)
+
+        with open(log[0], "w") as log_handle:
+            subprocess.run(
+                ["sort", "-k1,1V", "-k2,2n", output.tmp_bed],
+                stdout=open(output.sorted_bed, "w"),
+                stderr=log_handle,
+                check=True,
+            )
+
+
+rule mixed_zscore_across_bw:
+    input:
+        anchors=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed"
+    output:
+        zscore=f"{RESULTS_DIR}/bw_zscoring/mixed-{{sample}}.txt"
+    params:
+        bigwig_average=config.get(
+            "bigWigAverageOverBed",
+            "/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
+        ),
+        zscore_script=f"{TOOLKIT}/log-zscore-AF-MC.py",
+        bw=lambda wc: bigwig_files[wc.sample],
+    log:
+        f"{LOG_DIR}/bw_zscoring/mixed-{{sample}}.log"
+    threads: 2
+    resources:
+        mem_mb=8000,
+        runtime=30,
+        slurm_partition="30mins"
+    wildcard_constraints:
+        sample="|".join(re.escape(s) for s in sample_names)
+    shell:
+        r"""
+        set -euo pipefail
+        mkdir -p "$(dirname {output.zscore})" "$(dirname {log})"
+        workdir=$(mktemp -d "{TMP_DIR}/mixed_bw_zscore_{wildcards.sample}.XXXXXX")
+        trap 'rm -rf "$workdir"' EXIT
+
+        awk 'BEGIN {{FS=OFS="\t"}} {{print $1,$2,$3,$4}}' "{input.anchors}" \
+            | sort -u > "$workdir/anchors.bed"
+
+        {params.bigwig_average} \
+            -bedOut="$workdir/anchor_signal.bed" \
+            "{params.bw}" "$workdir/anchors.bed" "$workdir/anchor_signal.tab" \
+            > "{log}" 2>&1
+
+        python "{params.zscore_script}" "$workdir/anchor_signal.tab" \
+            | sort -k2,2rg \
+            | awk 'BEGIN {{FS=OFS="\t"; rank=0; before=""; running=1}} \
+                   {{if ($2 != before) rank=running; print $1,$2,$3,rank; before=$2; running++}}' \
+            | sort -k1,1 > "{output.zscore}"
+        """
+
+
+include: "workflow/ATAC_cluster_rPeaks.smk"
+include: "workflow/ATAC_filter_rPeaks_no_rdhs_mappable.smk"
+include: "workflow/ATAC_make_summary_and_accession.smk"
+include: "workflow/add_new_anchors.smk"
+include: "workflow/call_maxZ.smk"
+include: "workflow/call_ATAC_cCREs.smk"
+
+if config.get("include_dnase", True):
+    include: "workflow/ENCODE_Zscore_across_DNase.smk"

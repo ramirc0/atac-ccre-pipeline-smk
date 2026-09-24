@@ -1,0 +1,4 @@
+sample	input_type	fragments	fragment_format	narrowpeak	bigwig
+beta_cells	fragment	/path/to/beta.fragments.tsv.gz	FRAG		
+alpha_cells	fragment	/path/to/alpha.fragments.tsv.gz	FRAG		
+bulk_sample_01	bulk			/path/to/bulk_sample_01_peaks.narrowPeak	/path/to/bulk_sample_01_FE.bw
