@@ -1,7 +1,7 @@
 """Per-anchor maximum z-score across z-score files.
 
-Every file must list the same anchors in the same order. Unparseable z-scores
-count as missing; an anchor missing in every file gets an empty max.
+Every file must list the same anchors in the same order. Missing (NaN)
+z-scores never win; an anchor missing in every file gets an empty max.
 """
 
 import argparse
@@ -13,26 +13,14 @@ import polars as pl
 def build_parser():
     """Return the argument parser for max_z.py."""
     p = argparse.ArgumentParser(description="Per-anchor max z-score across files.")
-    p.add_argument("-i", "--inputs", nargs="+", required=True, help="Z-score files.")
+    p.add_argument("-i", "--inputs", nargs="+", required=True, help="zscore.py parquet files.")
     p.add_argument("-o", "--output", required=True, help="anchor/max_zscore TSV to write.")
     return p
 
 
 def read_zscores(path):
-    """Read anchor and z-score columns from a headerless, space-padded TSV."""
-    return pl.read_csv(
-        path,
-        separator="\t",
-        has_header=False,
-        columns=[0, 1],
-        new_columns=["anchor", "zscore"],
-        schema_overrides={"anchor": pl.Utf8, "zscore": pl.Utf8},
-        ignore_errors=True,
-        truncate_ragged_lines=True,
-    ).with_columns(
-        pl.col("anchor").str.strip_chars(),
-        pl.col("zscore").str.strip_chars().cast(pl.Float64, strict=False),
-    )
+    """Read the anchor and zscore columns of a zscore.py parquet file."""
+    return pl.read_parquet(path, columns=["anchor", "zscore"])
 
 
 def main(argv=None):

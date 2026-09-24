@@ -33,7 +33,7 @@ rule CUSTOM_Zscore_across_bw:
     input:
         regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
     output:
-        zscore=f"{RESULTS_DIR}/bw_zscoring/custom-{{sample}}.txt",
+        zscore=f"{RESULTS_DIR}/bw_zscoring/custom-{{sample}}.parquet",
     params:
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
         bw=lambda wc: (
@@ -72,7 +72,6 @@ rule CUSTOM_Zscore_across_bw:
             --input "$workdir/out2" \
             --output {output.zscore:q}
 
-        head {output.zscore} >> {log}
         """
 
 
@@ -80,7 +79,7 @@ rule ENCODE_Zscore_across_bw:
     input:
         regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
     output:
-        zscore=f"{RESULTS_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.txt",
+        zscore=f"{RESULTS_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.parquet",
     params:
         dataDir="/zata/data/zlab/projects/encode/data",
         toolkit=config['TOOLKIT'],
@@ -127,7 +126,7 @@ rule ENCODE_Zscore_across_DNase:
     input:
         regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
     output:
-        zscore=f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.txt",
+        zscore=f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.parquet",
     params:
         dataDir="/zata/data/zlab/projects/encode/data",
         toolkit=config['TOOLKIT'],

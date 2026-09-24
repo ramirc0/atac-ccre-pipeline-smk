@@ -43,7 +43,7 @@ if bool(ENCODE_INCLUDED):
 
     for _, row in encode_atac.iterrows():
         intermediate_bw_files.append(
-            f"{RESULTS_DIR}/bw_zscoring/encode-{row['experiment']}_{row['file']}.txt"
+            f"{RESULTS_DIR}/bw_zscoring/encode-{row['experiment']}_{row['file']}.parquet"
         )
 
 if bool(CUSTOM_INCLUDED):
@@ -56,7 +56,7 @@ if bool(CUSTOM_INCLUDED):
 
     for sample in custom_bw[0]:
         intermediate_bw_files.append(
-            f"{RESULTS_DIR}/bw_zscoring/custom-{sample}.txt"
+            f"{RESULTS_DIR}/bw_zscoring/custom-{sample}.parquet"
         )
 
 # sample -> narrowPeak path, in list order.
@@ -80,6 +80,6 @@ encode_dnase = pd.read_csv(
 
 for _, row in encode_dnase.iterrows():
     intermediate_DNase_files.append(
-        f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{row['experiment']}_{row['file']}.txt"
+        f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{row['experiment']}_{row['file']}.parquet"
     )
 

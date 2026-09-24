@@ -19,7 +19,7 @@ def build_parser():
     """Return the argument parser for zscore.py."""
     p = argparse.ArgumentParser(description="Z-score log10 bigWig signal per anchor.")
     p.add_argument("-i", "--input", required=True, help="bigWigAverageOverBed tab output.")
-    p.add_argument("-o", "--output", required=True, help="Z-score TSV to write.")
+    p.add_argument("-o", "--output", required=True, help="Z-score parquet to write.")
     return p
 
 
@@ -50,7 +50,7 @@ def main(argv=None):
         pl.DataFrame({"anchor": df["anchor"], "zscore": z, "signal": np.where(nonzero, signal, 0.0)})
         .with_columns(rank=pl.col("zscore").rank("min", descending=True))
         .sort("anchor")
-        .write_csv(args.output, separator="\t", include_header=False)
+        .write_parquet(args.output)
     )
 
 
