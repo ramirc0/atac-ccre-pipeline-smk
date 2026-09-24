@@ -81,7 +81,7 @@ peak_files = [samples[s]["narrowpeak"] for s in sample_names]
 bigwig_files = {s: samples[s]["bigwig"] for s in sample_names}
 
 intermediate_bw_files = [
-    f"{RESULTS_DIR}/bw_zscoring/mixed-{sample}.txt" for sample in sample_names
+    f"{RESULTS_DIR}/bw_zscoring/mixed-{sample}.parquet" for sample in sample_names
 ]
 
 # Keep the current ENCODE DNase scoring branch available for parity with the
@@ -97,7 +97,7 @@ if config.get("include_dnase", True):
     )
     for _, row in encode_dnase.iterrows():
         intermediate_DNase_files.append(
-            f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{row['experiment']}_{row['file']}.txt"
+            f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{row['experiment']}_{row['file']}.parquet"
         )
 
 
@@ -280,15 +280,14 @@ rule mixed_prepare_peaks:
 
 rule mixed_zscore_across_bw:
     input:
-        anchors=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed"
+        regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed"
     output:
-        zscore=f"{RESULTS_DIR}/bw_zscoring/mixed-{{sample}}.txt"
+        zscore=f"{RESULTS_DIR}/bw_zscoring/mixed-{{sample}}.parquet"
     params:
         bigwig_average=config.get(
             "bigWigAverageOverBed",
             "/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
         ),
-        zscore_script=f"{TOOLKIT}/log-zscore-AF-MC.py",
         bw=lambda wc: bigwig_files[wc.sample],
     log:
         f"{LOG_DIR}/bw_zscoring/mixed-{{sample}}.log"
@@ -306,19 +305,13 @@ rule mixed_zscore_across_bw:
         workdir=$(mktemp -d "{TMP_DIR}/mixed_bw_zscore_{wildcards.sample}.XXXXXX")
         trap 'rm -rf "$workdir"' EXIT
 
-        awk 'BEGIN {{FS=OFS="\t"}} {{print $1,$2,$3,$4}}' "{input.anchors}" \
-            | sort -u > "$workdir/anchors.bed"
-
         {params.bigwig_average} \
-            -bedOut="$workdir/anchor_signal.bed" \
-            "{params.bw}" "$workdir/anchors.bed" "$workdir/anchor_signal.tab" \
+            "{params.bw}" {input.regions:q} "$workdir/anchor_signal.tab" \
             > "{log}" 2>&1
 
-        python "{params.zscore_script}" "$workdir/anchor_signal.tab" \
-            | sort -k2,2rg \
-            | awk 'BEGIN {{FS=OFS="\t"; rank=0; before=""; running=1}} \
-                   {{if ($2 != before) rank=running; print $1,$2,$3,rank; before=$2; running++}}' \
-            | sort -k1,1 > "{output.zscore}"
+        python workflow/scripts/zscore.py \
+            --input "$workdir/anchor_signal.tab" \
+            --output {output.zscore:q}
         """
 
 
