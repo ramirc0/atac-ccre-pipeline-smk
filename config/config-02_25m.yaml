@@ -29,5 +29,3 @@ tmp_dir: "/tmp"
 TOOLKIT: "workflow/scripts"
 
 
-plot_top_and_bottom_n: True
-plot_n: 10

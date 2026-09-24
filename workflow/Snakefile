@@ -93,14 +93,6 @@ include: "rules/call_maxZ.smk"
 include: "rules/call_ATAC_cCREs.smk"
 
 
-include: "rules/call_maxZ_ATAC_extended_data.smk"
-include: "rules/plot_extended_data.smk"
-
-
-# plots=[]
-#if config['plot_top_and_bottom_n']: 
-    
-
 rule all:
     input:
         f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
@@ -109,4 +101,3 @@ rule all:
         f"{RESULTS_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ.txt",
         f"{RESULTS_DIR}/{PREFIX}_{GENOME}-DNase-maxZ.txt",
         f"{RESULTS_DIR}/{PREFIX}_{GENOME}-cCREs.bed",
-        #f"{RESULTS_DIR}/plots/plot_extended_data.done"
