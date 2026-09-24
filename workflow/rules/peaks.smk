@@ -70,8 +70,6 @@ rule ATAC_filter_rPeaks:
         summits=f"{config['ouput_dir']}/{{prefix}}_{config['genome']}-ATAC-tmp.summits",
         filter_script=f"{config['TOOLKIT']}/filter-tf-rpeaks.py",
         rdhs=config["rdhs_path"],
-        mappable=config["mappable"],
-        multimap="/data/projects/encode/Registry/V4/GRCh38/GRCh38-MultiMap-cCREs.bed",
         blacklist="/data/zusers/ramirezc/static/ENCFF356LFX.bed",
     output:
         intersection=f"{config['ouput_dir']}/{{prefix}}_{config['genome']}-ATAC-tmp.intersection",
@@ -107,7 +105,7 @@ rule ATAC_filter_rPeaks:
             -b {input.blacklist} \
             > {output.no_rdhs_mappable}
 
-        echo "Final no rDHS + mappable + no MultiMap + no blacklist:" >> {log}
+        echo "Final no rDHS + no blacklist:" >> {log}
         wc -l {output.no_rdhs_mappable} >> {log}
         """
 
