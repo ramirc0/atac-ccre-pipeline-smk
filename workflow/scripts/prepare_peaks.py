@@ -1,7 +1,7 @@
 """Standardize narrowPeak files into one unsorted peak BED.
 
 Keeps chr1-22, X, Y. Peaks narrower than 150 bp or wider than 350 bp are
-re-centered on the summit (+/-75 or +/-175). Appends exp, target, biosample and
+re-centered on the summit (+/-75 or +/-175), starts clipped at 0. Appends exp, target, biosample and
 a per-sample unique id `<sample>-<row>`, row numbered before filtering.
 """
 
@@ -54,6 +54,7 @@ def standardize(path, sample, biosample, target):
             .when(width > 350)
             .then(summit - 175)
             .otherwise(pl.col("start"))
+            .clip(lower_bound=0)
             .alias("start"),
             pl.when(width < 150)
             .then(summit + 75)
