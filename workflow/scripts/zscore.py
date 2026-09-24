@@ -39,7 +39,8 @@ def main(argv=None):
         args.input,
         separator="\t",
         has_header=False,
-        new_columns=["anchor", "size", "covered", "sum", "mean0", "mean"],
+        columns=[0, 2, 4],
+        new_columns=["anchor", "covered", "mean0"],
         schema_overrides={"anchor": pl.Utf8, "covered": pl.Float64, "mean0": pl.Float64},
     )
     signal = df["mean0"].to_numpy()
