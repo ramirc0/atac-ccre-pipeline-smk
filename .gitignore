@@ -12,3 +12,8 @@ scratch/
 .conda/
 benchmarks/
 *_parity/
+logs
+results
+config/*.tsv
+!config/samples.example.tsv
+config/config.yaml

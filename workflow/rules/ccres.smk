@@ -1,15 +1,15 @@
 # Max z-scores and cCRE calls.
 
 
-rule call_maxZ_ATAC:
+rule max_z:
     input:
-        files=intermediate_bw_files,
+        lambda w: expand(f"{OUTDIR}/zscore/{w.assay}/{{id}}.parquet", id=BIGWIGS[w.assay]),
     output:
-        maxZ=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ.txt",
+        f"{OUTDIR}/{{assay}}-maxZ.txt",
     log:
-        f"{LOG_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ-ATAC.log"
+        f"{LOGDIR}/max_z/{{assay}}.txt",
     benchmark:
-        f"{RESULTS_DIR}/benchmarks/call_max-ATAC.tsv"
+        f"{BENCHDIR}/max_z/{{assay}}.tsv"
     conda:
         CONDA_ENV
     shell:
@@ -17,45 +17,24 @@ rule call_maxZ_ATAC:
         exec &> >(tee {log:q})
 
         python workflow/scripts/max_z.py \
-            --inputs {input.files:q} \
-            --output {output.maxZ:q}
+            --inputs {input:q} \
+            --output {output:q}
         """
 
 
-rule call_maxZ_DNase:
+rule call_ccres:
     input:
-        files=intermediate_DNase_files,
+        max_z=f"{OUTDIR}/ATAC-maxZ.txt",
+        anchors=f"{OUTDIR}/Anchors-ATAC.bed",
+        ccres=REFS["ccres"],
     output:
-        maxZ=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-DNase-maxZ.txt",
-    log:
-        f"{LOG_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ-DNase.log"
-    benchmark:
-        f"{RESULTS_DIR}/benchmarks/call_maxZ-DNASE.tsv"
-    conda:
-        CONDA_ENV
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        python workflow/scripts/max_z.py \
-            --inputs {input.files:q} \
-            --output {output.maxZ:q}
-        """
-
-
-rule call_ATAC_cCREs:
-    input:
-        ATAC_maxZ=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ.txt",
-        ANCHORS=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
-        cCRES=config["ccre_path"],
-    output:
-        cCRES=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-cCREs.bed",
+        f"{OUTDIR}/cCREs.bed",
     params:
         genome=GENOME,
     log:
-        f"{LOG_DIR}/{PREFIX}_{GENOME}-cCREs.log",
+        f"{LOGDIR}/call_ccres.txt",
     benchmark:
-        f"{RESULTS_DIR}/benchmarks/call_cCREs_with_ATAC.tsv",
+        f"{BENCHDIR}/call_ccres.tsv"
     conda:
         CONDA_ENV
     shell:
@@ -63,9 +42,9 @@ rule call_ATAC_cCREs:
         exec &> >(tee {log:q})
 
         python workflow/scripts/call_ccres.py \
-            --max-z {input.ATAC_maxZ:q} \
-            --anchors {input.ANCHORS:q} \
-            --ccres {input.cCRES:q} \
+            --max-z {input.max_z:q} \
+            --anchors {input.anchors:q} \
+            --ccres {input.ccres:q} \
             --genome {params.genome:q} \
-            --output {output.cCRES:q}
+            --output {output:q}
         """

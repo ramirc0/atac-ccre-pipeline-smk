@@ -1,5 +1,4 @@
 include: "rules/common.smk"
-include: "rules/sources.smk"
 include: "rules/peaks.smk"
 include: "rules/zscore.smk"
 include: "rules/ccres.smk"
@@ -7,9 +6,7 @@ include: "rules/ccres.smk"
 
 rule all:
     input:
-        f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
-        # intermediate_bw_files,
-        # intermediate_DNase_files,
-        f"{RESULTS_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ.txt",
-        f"{RESULTS_DIR}/{PREFIX}_{GENOME}-DNase-maxZ.txt",
-        f"{RESULTS_DIR}/{PREFIX}_{GENOME}-cCREs.bed",
+        f"{OUTDIR}/Anchors-ATAC.bed",
+        f"{OUTDIR}/ATAC-maxZ.txt",
+        f"{OUTDIR}/cCREs.bed",
+        [f"{OUTDIR}/DNase-maxZ.txt"] if DNASE_BIGWIG_OF else [],

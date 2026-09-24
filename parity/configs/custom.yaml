@@ -1,0 +1,14 @@
+samples: [config/samples-custom-2026-08-25.tsv]
+outdir: results
+run_id: parity-custom
+conda_env: workflow/envs/env.yaml
+genome: hg38                 # accession prefix: hg19, hg38 or mm10
+
+references:
+  ccres: resources/GRCh38-cCREs.bed
+  rdhs: resources/GRCh38-Anchors.bed
+  blacklist: /data/zusers/ramirezc/static/ENCFF356LFX.bed
+
+dnase:                       # null skips DNase max-Z
+  list: resources/ENCODE-DNase-List.txt
+  data_dir: /zata/data/zlab/projects/encode/data

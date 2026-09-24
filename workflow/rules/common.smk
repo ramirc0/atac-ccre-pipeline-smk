@@ -1,113 +1,80 @@
-# Config, sample lists, and shared path constants.
+# Config, sample sheet, and shared path constants.
 
-import os
-import pandas as pd
-import polars as pl
 from pathlib import Path
 
-WORK_DIR = config["work_dir"]
-RESULTS_DIR = config["ouput_dir"]   # keep if your config uses "ouput_dir"
-LOG_DIR = os.path.normpath(os.path.join(WORK_DIR, config["log_dir"]))
-TMP_DIR = config["tmp_dir"]
-TOOLKIT = config["TOOLKIT"]
+import polars as pl
+from snakemake.exceptions import WorkflowError
+
+
+configfile: "config/config.yaml"
+
+
+RUN_ID = config.get("run_id", "default")
+OUTDIR = f"{config['outdir']}/{RUN_ID}"
+LOGDIR = f"logs/{RUN_ID}"
+BENCHDIR = f"benchmarks/{RUN_ID}"
+GENOME = config["genome"]
+REFS = config["references"]
 
 # Absolute so conda: resolves the same from any rule file.
-CONDA_ENV = str(Path(workflow.basedir) / "envs" / "env.yaml")
+CONDA_ENV = str((Path(workflow.basedir).parent / config["conda_env"]).resolve())
 
-Path(RESULTS_DIR).mkdir(parents=True, exist_ok=True)
-Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
 
-GENOME = config["genome"]
-FILTER_FRIP = config["filter_FRIP"]
-
-ENCODE_INCLUDED = config.get("ENCODE_data_included", False)
-CUSTOM_INCLUDED = config.get("CUSTOM_data_included", False)
-
-if ENCODE_INCLUDED and CUSTOM_INCLUDED:
-    PREFIX = "MERGED"
-elif ENCODE_INCLUDED:
-    PREFIX = "ENCODE"
-elif CUSTOM_INCLUDED:
-    PREFIX = "CUSTOM"
-else:
-    raise ValueError("At least one of ENCODE_data_included or CUSTOM_data_included must be True")
-
-# mini script to add the generation of the zscore bws 
-intermediate_bw_files = []
-
-if bool(ENCODE_INCLUDED):
-    encode_atac = pd.read_csv(
-        config["encode_atac_list"],
-        sep="\t",
-        header=None,
-        usecols=[0, 2],
-        names=["experiment", "file"]
+def _read_sheets(paths):
+    """Concatenate one or more sample sheets; all cells read as strings."""
+    paths = [paths] if isinstance(paths, str) else paths
+    for p in paths:
+        if not Path(p).exists():
+            raise WorkflowError(
+                f"Sample sheet not found: {p}\n"
+                "Columns: sample_id, narrowpeak, bigwig, [biosample]; "
+                "see config/samples.example.tsv."
+            )
+    return pl.concat(
+        [pl.read_csv(p, separator="\t", infer_schema_length=0, comment_prefix="#") for p in paths],
+        how="diagonal",
     )
 
-    for _, row in encode_atac.iterrows():
-        intermediate_bw_files.append(
-            f"{RESULTS_DIR}/bw_zscoring/encode-{row['experiment']}_{row['file']}.parquet"
+
+_manifest = _read_sheets(config["samples"])
+if _manifest.is_empty():
+    raise WorkflowError(f"Sample sheets {config['samples']} have no rows.")
+if _manifest["sample_id"].is_duplicated().any():
+    raise WorkflowError(f"Duplicate sample_id in {config['samples']}.")
+
+
+def _column(name):
+    """sample_id -> value for `name`, empty string treated as None."""
+    if name not in _manifest.columns:
+        return {}
+    return {
+        row["sample_id"]: (row[name] or None)
+        for row in _manifest.iter_rows(named=True)
+    }
+
+
+SAMPLES = _manifest["sample_id"].to_list()
+NARROWPEAK_OF = _column("narrowpeak")
+BIGWIG_OF = _column("bigwig")
+_biosample = _column("biosample")
+BIOSAMPLE_OF = {s: _biosample.get(s) or s for s in SAMPLES}
+
+# DNase experiment -> bigWig; empty when `dnase` is null.
+DNASE_BIGWIG_OF = {}
+if config.get("dnase"):
+    DNASE_BIGWIG_OF = {
+        experiment: f"{config['dnase']['data_dir']}/{experiment}/{file}.bigWig"
+        for experiment, file in pl.read_csv(
+            config["dnase"]["list"], separator="\t", has_header=False, infer_schema_length=0
         )
-
-if bool(CUSTOM_INCLUDED):
-    custom_bw = pd.read_csv(
-        config["CUSTOM_data_bw_info"],
-        sep="\t",
-        header=None,
-        usecols=[0]
-    )
-
-    for sample in custom_bw[0]:
-        intermediate_bw_files.append(
-            f"{RESULTS_DIR}/bw_zscoring/custom-{sample}.parquet"
-        )
-
-# sample -> narrowPeak path, in list order.
-CUSTOM_PEAKS = {}
-if CUSTOM_INCLUDED:
-    CUSTOM_PEAKS = dict(
-        pl.read_csv(config["CUSTOM_data_macs_info"], separator="\t", infer_schema_length=0)
-        .select("sample", "path")
+        .select(pl.nth(0, 1))
         .iter_rows()
-    )
+    }
 
-# sample -> bigWig path.
-CUSTOM_BIGWIGS = {}
-if CUSTOM_INCLUDED:
-    CUSTOM_BIGWIGS = dict(
-        pl.read_csv(
-            config["CUSTOM_data_bw_info"], separator="\t", has_header=False, infer_schema_length=0
-        )
-        .select(pl.nth(0), pl.nth(1))
-        .iter_rows()
-    )
+# assay -> id -> bigWig, for the z-score rule.
+BIGWIGS = {"ATAC": BIGWIG_OF, "DNase": DNASE_BIGWIG_OF}
 
-ENCODE_DATA_DIR = "/zata/data/zlab/projects/encode/data"
-ENCODE_PEAK_DIR = "/data/projects/encode/data"
 
-# ENCODE ATAC list (experiment, peak, bigWig, biosample), in list order.
-ENCODE_ATAC = []
-if ENCODE_INCLUDED:
-    ENCODE_ATAC = list(
-        pl.read_csv(
-            config["encode_atac_list"], separator="\t", has_header=False, infer_schema_length=0
-        )
-        .select(pl.nth(0, 1, 3))
-        .iter_rows()
-    )
-
-intermediate_DNase_files = []
-
-encode_dnase = pd.read_csv(
-    config["encode_DNase_list"],
-    sep="\t",
-    header=None,
-    usecols=[0, 1],
-    names=["experiment", "file"]
-)
-
-for _, row in encode_dnase.iterrows():
-    intermediate_DNase_files.append(
-        f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{row['experiment']}_{row['file']}.parquet"
-    )
-
+wildcard_constraints:
+    assay="ATAC|DNase",
+    id=r"[A-Za-z0-9][A-Za-z0-9_.+-]*",

@@ -4,15 +4,15 @@
 # Anchor regions scored by every bigWig: deduplicated, widened by `width`.
 rule anchor_regions:
     input:
-        f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
+        f"{OUTDIR}/Anchors-ATAC.bed",
     output:
-        f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
+        f"{OUTDIR}/zscore/anchor-regions.bed",
     params:
         width=0,
     log:
-        f"{LOG_DIR}/{PREFIX}_anchor_regions.log",
+        f"{LOGDIR}/anchor_regions.txt",
     benchmark:
-        f"{RESULTS_DIR}/benchmarks/{PREFIX}_anchor_regions.tsv",
+        f"{BENCHDIR}/anchor_regions.tsv"
     conda:
         CONDA_ENV
     shell:
@@ -31,16 +31,17 @@ rule anchor_regions:
         """
 
 
-rule CUSTOM_Zscore_across_bw:
+# One job per bigWig: ATAC samples and DNase experiments alike.
+rule zscore:
     input:
-        regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
-        bigwig=lambda wc: CUSTOM_BIGWIGS[wc.sample],
+        regions=f"{OUTDIR}/zscore/anchor-regions.bed",
+        bigwig=lambda w: BIGWIGS[w.assay][w.id],
     output:
-        zscore=f"{RESULTS_DIR}/bw_zscoring/custom-{{sample}}.parquet",
+        f"{OUTDIR}/zscore/{{assay}}/{{id}}.parquet",
     log:
-        f"{LOG_DIR}/bw_zscoring/custom-{{sample}}.log"
+        f"{LOGDIR}/zscore/{{assay}}/{{id}}.txt",
     benchmark:
-        f"{RESULTS_DIR}/benchmarks/bw_zscoring/custom-{{sample}}.tsv"
+        f"{BENCHDIR}/zscore/{{assay}}/{{id}}.tsv"
     conda:
         CONDA_ENV
     shell:
@@ -57,65 +58,5 @@ rule CUSTOM_Zscore_across_bw:
 
         python workflow/scripts/zscore.py \
             --input "$workdir/signal.tab" \
-            --output {output.zscore:q}
-        """
-
-
-rule ENCODE_Zscore_across_bw:
-    input:
-        regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
-        bigwig=f"{ENCODE_DATA_DIR}/{{experiment}}/{{file}}.bigWig",
-    output:
-        zscore=f"{RESULTS_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.parquet",
-    log:
-        f"{LOG_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.log"
-    benchmark:
-        f"{RESULTS_DIR}/benchmarks/bw_zscoring/encode-{{experiment}}_{{file}}.tsv"
-    conda:
-        CONDA_ENV
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        workdir=$(mktemp -d)
-        trap 'rm -rf "$workdir"' EXIT
-
-        bigWigAverageOverBed \
-            {input.bigwig:q} \
-            {input.regions:q} \
-            "$workdir/signal.tab"
-
-        python workflow/scripts/zscore.py \
-            --input "$workdir/signal.tab" \
-            --output {output.zscore:q}
-        """
-
-
-rule ENCODE_Zscore_across_DNase:
-    input:
-        regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
-        bigwig=f"{ENCODE_DATA_DIR}/{{experiment}}/{{file}}.bigWig",
-    output:
-        zscore=f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.parquet",
-    log:
-        f"{LOG_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.log"
-    benchmark:
-        f"{RESULTS_DIR}/benchmarks/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.tsv"
-    conda:
-        CONDA_ENV
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        workdir=$(mktemp -d)
-        trap 'rm -rf "$workdir"' EXIT
-
-        bigWigAverageOverBed \
-            {input.bigwig:q} \
-            {input.regions:q} \
-            "$workdir/signal.tab"
-
-        python workflow/scripts/zscore.py \
-            --input "$workdir/signal.tab" \
-            --output {output.zscore:q}
+            --output {output:q}
         """
