@@ -37,8 +37,6 @@ rule CUSTOM_Zscore_across_bw:
         bigwig=lambda wc: CUSTOM_BIGWIGS[wc.sample],
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring/custom-{{sample}}.parquet",
-    params:
-        bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
     log:
         f"{LOG_DIR}/bw_zscoring/custom-{{sample}}.log"
     benchmark:
@@ -52,7 +50,7 @@ rule CUSTOM_Zscore_across_bw:
         workdir=$(mktemp -d)
         trap 'rm -rf "$workdir"' EXIT
 
-        {params.bigwigAverageOverBed} \
+        bigWigAverageOverBed \
             {input.bigwig:q} \
             {input.regions:q} \
             "$workdir/signal.tab"
@@ -69,8 +67,6 @@ rule ENCODE_Zscore_across_bw:
         bigwig=f"{ENCODE_DATA_DIR}/{{experiment}}/{{file}}.bigWig",
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.parquet",
-    params:
-        bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
     log:
         f"{LOG_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.log"
     benchmark:
@@ -84,7 +80,7 @@ rule ENCODE_Zscore_across_bw:
         workdir=$(mktemp -d)
         trap 'rm -rf "$workdir"' EXIT
 
-        {params.bigwigAverageOverBed} \
+        bigWigAverageOverBed \
             {input.bigwig:q} \
             {input.regions:q} \
             "$workdir/signal.tab"
@@ -101,8 +97,6 @@ rule ENCODE_Zscore_across_DNase:
         bigwig=f"{ENCODE_DATA_DIR}/{{experiment}}/{{file}}.bigWig",
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.parquet",
-    params:
-        bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
     log:
         f"{LOG_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.log"
     benchmark:
@@ -116,7 +110,7 @@ rule ENCODE_Zscore_across_DNase:
         workdir=$(mktemp -d)
         trap 'rm -rf "$workdir"' EXIT
 
-        {params.bigwigAverageOverBed} \
+        bigWigAverageOverBed \
             {input.bigwig:q} \
             {input.regions:q} \
             "$workdir/signal.tab"
