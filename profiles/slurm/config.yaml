@@ -16,6 +16,12 @@ default-resources:
   mem_mb: 2000
   # slurm_extra: "--exclude=node1,node2"   # e.g. nodes missing a shared mount
 
+set-threads:                # also caps polars: rules export POLARS_MAX_THREADS={threads}
+  prepare_peaks: 4
+  filter_rpeaks: 4
+  max_z: 8
+  call_ccres: 4
+
 set-resources:              # from benchmarks/; ENCODE-scale peak sets need ~3x
   prepare_peaks:
     mem_mb: 16000 * attempt

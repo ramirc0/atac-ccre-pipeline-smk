@@ -15,6 +15,7 @@ rule max_z:
     shell:
         r"""
         exec &> >(tee {log:q})
+        export POLARS_MAX_THREADS={threads}
 
         python workflow/scripts/max_z.py \
             --inputs {input:q} \
@@ -40,6 +41,7 @@ rule call_ccres:
     shell:
         r"""
         exec &> >(tee {log:q})
+        export POLARS_MAX_THREADS={threads}
 
         python workflow/scripts/call_ccres.py \
             --max-z {input.max_z:q} \

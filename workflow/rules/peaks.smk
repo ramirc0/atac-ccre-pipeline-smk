@@ -19,6 +19,7 @@ rule prepare_peaks:
     shell:
         r"""
         exec &> >(tee {log:q})
+        export POLARS_MAX_THREADS={threads}
 
         python workflow/scripts/prepare_peaks.py \
             --peaks {input:q} \
@@ -46,6 +47,7 @@ rule cluster_rpeaks:
     shell:
         r"""
         exec &> >(tee {log:q})
+        export POLARS_MAX_THREADS={threads}
 
         workdir=$(mktemp -d)
         trap 'rm -rf "$workdir"' EXIT
@@ -116,6 +118,7 @@ rule filter_rpeaks:
     shell:
         r"""
         exec &> >(tee {log:q})
+        export POLARS_MAX_THREADS={threads}
 
         bedtools intersect -wo \
             -a {input.rpeaks:q} \
@@ -160,6 +163,7 @@ rule accession_rpeaks:
     shell:
         r"""
         exec &> >(tee {log:q})
+        export POLARS_MAX_THREADS={threads}
 
         python workflow/scripts/accession_regions.py {input:q} \
             --genome {params.genome:q} \

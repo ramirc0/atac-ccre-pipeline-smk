@@ -47,6 +47,7 @@ rule zscore:
     shell:
         r"""
         exec &> >(tee {log:q})
+        export POLARS_MAX_THREADS={threads}
 
         workdir=$(mktemp -d)
         trap 'rm -rf "$workdir"' EXIT
