@@ -9,3 +9,11 @@ resources/CUSTOM_ATAC_List_*.txt
 __pycache__/
 scratch/
 .worktrees/
+.conda/
+benchmarks/
+*_parity/
+logs
+results
+config/*.tsv
+!config/samples.example.tsv
+config/config.yaml

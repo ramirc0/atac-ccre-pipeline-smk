@@ -1,4 +1,4 @@
-// Simplified data flow of Snakefile with config-02_25m.yaml.
+// Simplified data flow of workflow/Snakefile.
 // Render: dot -Tpdf docs/pipeline-dag.dot -o docs/pipeline-dag.pdf
 //         dot -Tsvg docs/pipeline-dag.dot -o docs/pipeline-dag.svg
 //         dot -Tpng -Gdpi=300 docs/pipeline-dag.dot -o docs/pipeline-dag.png
@@ -11,35 +11,33 @@ digraph pipeline {
 
     // Inputs
     node [shape=cylinder, style=filled, fillcolor="#dbe9f6"];
-    custom_np  [label="CUSTOM ATAC narrowPeaks\nCUSTOM_data_macs_info\n(122 samples)"];
-    custom_bw  [label="CUSTOM bigWigs\nCUSTOM_data_bw_info"];
-    encode_atac [label="ENCODE ATAC list\nencode_atac_list", style="filled,dashed"];
-    dnase      [label="ENCODE DNase bigWigs\nencode_DNase_list\n(1325 experiments)"];
+    custom_np  [label="ATAC narrowPeaks\nsample sheet: narrowpeak\n(122 custom samples)"];
+    custom_bw  [label="ATAC bigWigs\nsample sheet: bigwig"];
+    encode_atac [label="ENCODE ATAC sheet\nencode-atac.2026-09-23.tsv", style="filled,dashed"];
+    dnase      [label="ENCODE DNase bigWigs\ndnase.list\n(1325 experiments)"];
     rdhs       [label="V4 anchors (fixed)\nrDHSs + TF rClusters\nGRCh38-Anchors.bed\n2,950,228 anchors"];
     blacklist  [label="ENCODE blacklist\nENCFF356LFX.bed"];
     ccres      [label="V4 Registry cCREs (fixed)\ncell type-agnostic\nGRCh38-cCREs.bed\n2,348,854 cCREs"];
 
     // Steps
     node [shape=box, style="rounded,filled", fillcolor="#f2f2f2"];
-    enc_prep   [label="ENCODE_prepare_ATAC_peaks\nresize peaks to 150-350 bp", style="rounded,filled,dashed"];
-    prep       [label="CUSTOM_prepare_peaks\nresize peaks to 150-350 bp\naround summit"];
-    merge      [label="merge_preped_peaks\nENCODE + CUSTOM", style="rounded,filled,dashed"];
+    prep       [label="prepare_peaks\nresize peaks to 150-350 bp\naround summit"];
     subgraph cluster_encode {
-        label="Optional: ENCODE ATAC for QC and benchmarking\n(ENCODE_data_included: True)";
+        label="Optional: ENCODE ATAC for QC and benchmarking\n(add the ENCODE sheet to samples)";
         labelloc=t; labeljust=r; style="dashed,rounded"; color="grey50"; fontsize=11;
-        encode_atac; enc_prep; merge;
+        encode_atac;
     }
     subgraph cluster_rapeaks {
         label="ATAC rOCR calling\n(same method as rDHSs and TF rClusters)";
         labelloc=b; labeljust=l; style=dashed; color="grey50"; fontsize=11;
         prep; cluster; filter;
     }
-    cluster    [label="ATAC_cluster_rPeaks\niteratively merge overlaps,\nkeep strongest peak = rOCRs"];
-    filter     [label="ATAC_filter_rPeaks\nkeep rOCRs in >= 5 experiments,\ndrop anchor and blacklist overlaps\n= rAPeaks"];
-    accession  [label="ATAC_make_summary_and_accession\nrAPeaks become new ATAC anchors\n(EH38A IDs)"];
-    anchors    [label="add_new_anchors\nV4 anchors + new ATAC anchors"];
-    maxz       [label="call max-Z per anchor\n(z-score of log10 signal)\nacross ATAC samples and DNase experiments"];
-    call       [label="call_ATAC_cCREs\nnew ATAC anchors with ATAC max-Z > 1.64\nbecome ATAC cCREs,\nadded to the V4 Registry"];
+    cluster    [label="cluster_rpeaks\niteratively merge overlaps,\nkeep strongest peak = rOCRs"];
+    filter     [label="filter_rpeaks\nkeep rOCRs in >= 5 experiments,\ndrop anchor and blacklist overlaps\n= rAPeaks"];
+    accession  [label="accession_rpeaks\nrAPeaks become new ATAC anchors\n(EH38A IDs)"];
+    anchors    [label="anchors\nV4 anchors + new ATAC anchors"];
+    maxz       [label="zscore, max_z\n(z-score of log10 signal)\nacross ATAC samples and DNase experiments"];
+    call       [label="call_ccres\nnew ATAC anchors with ATAC max-Z > 1.64\nbecome ATAC cCREs,\nadded to the V4 Registry"];
 
     // Final outputs
     subgraph outputs {
@@ -51,10 +49,9 @@ digraph pipeline {
         { rank=same; out_anchors; out_amax; out_dmax; out_ccres; }
     }
 
-    encode_atac -> enc_prep -> merge [style=dashed];
+    encode_atac -> prep [style=dashed];
+    encode_atac -> maxz [style=dashed];
     custom_np -> prep;
-    prep -> merge [style=dashed];
-    merge -> cluster [style=dashed];
     prep -> cluster;
     cluster -> filter;
     rdhs -> filter;

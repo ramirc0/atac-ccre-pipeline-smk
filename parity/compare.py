@@ -1,12 +1,15 @@
 """Compare pipeline outputs against a golden run.
 
-A manifest TSV lists `golden_path  new_path  mode`, relative to the two run
-directories. A `{}` placeholder in both paths expands to every golden match, so
-one line covers a directory of per-sample files; missing new files are counted,
-not failed, so partially built runs can be checked.
+A manifest TSV lists `golden_path  new_path  mode  [key_regex]`, relative to the
+two run directories. `{prefix}` in golden paths is replaced by --prefix. A `{}`
+placeholder expands to every golden match, so one line covers a directory of
+per-sample files; key_regex, if given, maps the golden key to the new one
+(first capture group). Missing new files are counted, not failed, so partially
+built runs can be checked.
 
 Modes:
   exact   byte-identical; if not, reports whether only row order differs.
+  rows    same lines in any order.
   sets    as exact, after sorting the items of every ';'-joined column.
   zscore  headerless anchor/zscore/... table; same anchors, |dz| <= --tol.
   maxz    anchor/max_zscore table with header; same anchors, |dz| <= --tol.
@@ -28,6 +31,7 @@ def build_parser():
     p.add_argument("golden", type=Path, help="Golden run directory.")
     p.add_argument("new", type=Path, help="New run directory.")
     p.add_argument("-m", "--manifest", type=Path, required=True, help="Manifest TSV.")
+    p.add_argument("--prefix", default="CUSTOM", help="Golden file prefix (CUSTOM, ENCODE, MERGED).")
     p.add_argument("--only", default=None, help="Regex; check matching manifest lines only.")
     p.add_argument("--tol", type=float, default=1e-12, help="Absolute z-score tolerance.")
     return p
@@ -120,6 +124,9 @@ def compare(a, b, mode, tol):
     """Dispatch on mode; returns (ok, message)."""
     if mode == "exact":
         return compare_exact(a, b)
+    if mode == "rows":
+        ok, msg = compare_exact(a, b)
+        return ok or msg == "same rows, different order", msg
     if mode == "sets":
         return compare_sets(a, b)
     if mode == "zscore":
@@ -129,7 +136,7 @@ def compare(a, b, mode, tol):
     raise ValueError(f"Unknown mode: {mode}")
 
 
-def expand(golden, new, g_rel, n_rel):
+def expand(golden, new, g_rel, n_rel, key_regex=None):
     """Yield (name, golden_file, new_file) pairs; `{}` expands over golden matches."""
     if "{}" not in g_rel:
         yield g_rel, golden / g_rel, new / n_rel
@@ -138,7 +145,8 @@ def expand(golden, new, g_rel, n_rel):
     for g in sorted(golden.glob(g_rel.replace("{}", "*"))):
         rel = str(g.relative_to(golden))
         key = rel[len(head):len(rel) - len(tail)]
-        yield g_rel.replace("{}", key), g, new / n_rel.replace("{}", key)
+        new_key = re.match(key_regex, key).group(1) if key_regex else key
+        yield g_rel.replace("{}", key), g, new / n_rel.replace("{}", new_key)
 
 
 def main(argv=None):
@@ -149,11 +157,12 @@ def main(argv=None):
         if l.strip() and not l.startswith("#")
     ]
     failed = 0
-    for g_rel, n_rel, mode in lines:
+    for g_rel, n_rel, mode, *key_regex in lines:
+        g_rel = g_rel.replace("{prefix}", args.prefix)
         if args.only and not re.search(args.only, g_rel):
             continue
         n_ok = n_missing = n_bad = 0
-        for name, g, n in expand(args.golden, args.new, g_rel, n_rel):
+        for name, g, n in expand(args.golden, args.new, g_rel, n_rel, *key_regex):
             if not n.exists():
                 n_missing += 1
                 continue

@@ -1,0 +1,2 @@
+sample_id	narrowpeak	bigwig	biosample
+sample_a	/path/to/sample_a_peaks.narrowPeak	/path/to/sample_a_FE.bw	

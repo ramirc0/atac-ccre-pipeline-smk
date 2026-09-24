@@ -18,14 +18,14 @@ Paper code: https://github.com/weng-lab/ENCODE-cCREs, `Version-4/cCRE-Pipeline/`
 | DHS (DNase hypersensitive site) | none | DNase peak. ATAC counterpart: OCR. |
 | rDHS (representative DHS) | none | Anchor with an `EH38D` accession. ATAC counterpart: rOCR. |
 | **OCR** (open chromatin region) | none | Not a term in the paper. ATAC counterpart of a DHS. Not used for the input narrowPeaks. |
-| **rOCR** (representative OCR) | `ATAC_cluster_rPeaks` output (`{prefix}_tmp.rPeaks`) | Not a term in the paper. Built with the same iterative merge as rDHSs and TF rClusters (`pick-best-peak.py`, identical to `P/Toolkit`). |
-| rPeaks | `{prefix}_tmp.rPeaks` | Generic "representative peaks" from the iterative merge. Used for both rDHSs and TF rClusters in `P/`. |
-| TF rClusters | none | TF ChIP-seq rPeaks supported by >= 5 experiments (`filter-tf-rpeaks.py`). Anchors with an `EH38F` accession. Our ATAC path copies this method. |
-| rAPeaks | `ATAC_filter_rPeaks` output (`*-ATAC-tmp.no-overlap-mappable`) | Term from the lab slides: rOCRs with >= 5 experiments that don't overlap an anchor. |
-| anchors | `rdhs_path`, `add_new_anchors` output (`*-Anchors-ATAC.bed`) | Paper: rDHSs + TF rClusters. The pipeline adds new ATAC anchors (`EH38A`). |
-| multi-mapping cCREs | `GRCh38-MultiMap-cCREs.bed` (declared in `ATAC_filter_rPeaks`, unused) | `EH38M` accessions. See "Located files". |
+| **rOCR** (representative OCR) | `cluster_rpeaks` output (`rpeaks/rpeaks.bed`) | Not a term in the paper. Built with the same iterative merge as rDHSs and TF rClusters (`pick_best_peak.py`, a port of `P/Toolkit/pick-best-peak.py`). |
+| rPeaks | `rpeaks/rpeaks.bed` | Generic "representative peaks" from the iterative merge. Used for both rDHSs and TF rClusters in `P/`. |
+| TF rClusters | none | TF ChIP-seq rPeaks supported by >= 5 experiments (`filter-tf-rpeaks.py`; here `filter_rpeaks.py`). Anchors with an `EH38F` accession. Our ATAC path copies this method. |
+| rAPeaks | `filter_rpeaks` output (`rpeaks/no-rdhs-blacklist.tsv`) | Term from the lab slides: rOCRs with >= 5 experiments that don't overlap an anchor. |
+| anchors | `references.rdhs`, `anchors` output (`Anchors-ATAC.bed`) | Paper: rDHSs + TF rClusters. The pipeline adds new ATAC anchors (`EH38A`). |
+| multi-mapping cCREs | `GRCh38-MultiMap-cCREs.bed` (declared but unused in the original `ATAC_filter_rPeaks`; removed) | `EH38M` accessions. See "Located files". |
 
-## Accessions (`make-region-accession.py`)
+## Accessions (`make-region-accession.py`; here `accession_regions.py`)
 
 `EH38` + type + 7 digits. `D` rDHS, `F` TF rCluster, `E` cCRE, `M` multi-map (all in the paper's pipeline). This repo adds `A` (ATAC anchor) and `B` (BETA). Accessions are reused only when coordinates are identical.
 
@@ -33,10 +33,10 @@ Paper code: https://github.com/weng-lab/ENCODE-cCREs, `Version-4/cCRE-Pipeline/`
 
 | Paper term | This pipeline | Notes |
 |---|---|---|
-| Z-score of the log-transformed signal | `log-zscore-AF-MC.py` | Same logic as `P/Toolkit/log-zscore-normalization.py`, with comments added. log10 of `bigWigAverageOverBed` mean. Zero-signal anchors are excluded from the mean and SD and get z = -10. |
-| max-Z | `call_maxZ_ATAC`, `call_maxZ_DNase` → `*-ATAC-maxZ.txt`, `*-DNase-maxZ.txt` | Max z-score per anchor across all experiments. Keyed on the anchor ID, not the cCRE ID. |
+| Z-score of the log-transformed signal | `zscore.py` (was `log-zscore-AF-MC.py`) | Same logic as `P/Toolkit/log-zscore-normalization.py`, vectorized; values are bit-identical. log10 of `bigWigAverageOverBed` mean. Zero-signal anchors are excluded from the mean and SD and get z = -10. |
+| max-Z | `max_z` → `ATAC-maxZ.txt`, `DNase-maxZ.txt` | Max z-score per anchor across all experiments. Keyed on the anchor ID, not the cCRE ID. |
 | high signal | `max_zscore > 1.64` | The only threshold used in both codebases. |
-| ">= 5 experiments" | `filter-tf-rpeaks.py`, `len(experiments) >= 5` | Counts distinct experiments. For CUSTOM data, experiment = sample. |
+| ">= 5 experiments" | `filter_rpeaks.py --min-experiments 5` | Counts distinct experiments. For CUSTOM data, experiment = sample. |
 
 ## Classes
 

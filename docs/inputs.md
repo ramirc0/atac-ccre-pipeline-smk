@@ -1,27 +1,24 @@
 # Pipeline inputs
 
-Applies to `Snakefile` with `config-02_25m.yaml`. The data flow diagram is `pipeline-dag.pdf`.
+Keys are from `config/config.yaml.template`. The data flow diagram is `pipeline-dag.pdf`.
 
 ## Sample data
 
 | Config key | File | Contents | Used by |
 |---|---|---|---|
-| `CUSTOM_data_macs_info` | `resources/CUSTOM_ATAC_List_narrowpeaks_*.txt` | Tab-separated, with a header: `sample`, `path` to a MACS3 narrowPeak. 122 samples. | `CUSTOM_prepare_peaks` |
-| `CUSTOM_data_bw_info` | `resources/CUSTOM_ATAC_List_bw_*.txt` | Tab-separated, no header: sample, path to a fold-enrichment bigWig. Same 122 samples. | `CUSTOM_Zscore_across_bw` |
-| `encode_DNase_list` | `resources/ENCODE-DNase-List.txt` | Tab-separated, no header: experiment, bigWig file accession, biosample. 1325 rows. Each bigWig is read from `/zata/data/zlab/projects/encode/data/{experiment}/{file}.bigWig`, or downloaded if it is missing. | `ENCODE_Zscore_across_DNase` |
-| `encode_atac_list` | Only used when `ENCODE_data_included: True`. | ENCODE ATAC experiments, peaks and bigWigs. | `ENCODE_prepare_ATAC_peaks`, `ENCODE_Zscore_across_bw` |
+| `samples` | one TSV or a list, e.g. `config/samples-custom-2026-08-25.tsv`, `resources/encode-atac.2026-09-23.tsv` | One row per ATAC sample: `sample_id`, `narrowpeak`, `bigwig`, optional `biosample`. Fragment rows give `fragments` (and `fragment_format`) in place of narrowpeak and bigwig. | `prepare_peaks`, `zscore`, `fragment_call_peaks` |
+| `dnase.list` | `resources/ENCODE-DNase-List.txt` | Tab-separated, no header: experiment, bigWig file accession, biosample. 1325 rows. Each bigWig is read from `{dnase.data_dir}/{experiment}/{file}.bigWig`. | `zscore` |
 
-The narrowPeak list has a header and the bigWig list does not.
+The custom and ENCODE sheets come from the preflight steps in the README.
 
 ## Reference files
 
 | Config key | File | Role |
 |---|---|---|
-| `rdhs_path` | `resources/GRCh38-Anchors.bed` | Existing rDHS anchors. New ATAC peaks that overlap them are dropped. The rest are added to them. |
-| `ccre_path` | `resources/GRCh38-cCREs.bed` | Existing Registry cCREs. Carried into the output with their accessions unchanged. |
-| `mappable` | `resources/k100.Unique.Mappability.bed` | Declared as an input of `ATAC_filter_rPeaks` but not used by its shell command. |
-| hard-coded | `/data/zusers/ramirezc/static/ENCFF356LFX.bed` | ENCODE hg38 blacklist. Used by `ATAC_filter_rPeaks`. |
-| hard-coded | `/data/projects/encode/Registry/V4/GRCh38/GRCh38-MultiMap-cCREs.bed` | Declared as an input of `ATAC_filter_rPeaks` but not used by its shell command. |
+| `references.rdhs` | `resources/GRCh38-Anchors.bed` | Existing rDHS anchors. New ATAC rPeaks that overlap them are dropped. The rest are added to them. |
+| `references.ccres` | `resources/GRCh38-cCREs.bed` | Existing Registry cCREs. Carried into the output with their accessions unchanged. |
+| `references.blacklist` | `/data/zusers/ramirezc/static/ENCFF356LFX.bed` | ENCODE hg38 blacklist. Used by `filter_rpeaks`. |
+| `references.chrom_sizes` | `/zata/data/zlab/common/genome/hg38.minimal.chrom.sizes` | Fragment rows only. Clips the MACS3 fold-enrichment bedGraph. |
 
 Sources and checksums are in the README.
 
@@ -29,13 +26,14 @@ Sources and checksums are in the README.
 
 | Key | Effect |
 |---|---|
-| `ENCODE_data_included`, `CUSTOM_data_included` | Choose the ATAC peak sources. The output prefix is `ENCODE`, `CUSTOM` or `MERGED`. |
-| `filter_FRIP`, `filter_min_reads` | Filter the ENCODE ATAC list. They don't affect CUSTOM samples, which are filtered before the list is made. |
-| `ouput_dir`, `log_dir`, `tmp_dir` | Output, log and scratch locations. `ouput_dir` is misspelled in the code too. |
+| `run_id` | Output directory name under `outdir`, logs and benchmarks. |
+| `genome` | Accession prefix (`EH38` for hg38). |
+| `dnase` | `null` skips DNase z-scores and `DNase-maxZ.txt`. |
+| `macs3` | `callpeak` options for fragment rows. |
 
 ## Outputs
 
-All outputs are in `ouput_dir`, prefixed `{PREFIX}_hg38-`:
+All outputs are in `results/<run_id>/`:
 
 - `Anchors-ATAC.bed`: rDHS anchors plus new ATAC anchors (`EH38A…`).
 - `ATAC-maxZ.txt`, `DNase-maxZ.txt`: the maximum signal z-score of each anchor across all samples.

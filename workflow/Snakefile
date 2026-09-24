@@ -1,0 +1,13 @@
+include: "rules/common.smk"
+include: "rules/fragments.smk"
+include: "rules/peaks.smk"
+include: "rules/zscore.smk"
+include: "rules/ccres.smk"
+
+
+rule all:
+    input:
+        f"{OUTDIR}/Anchors-ATAC.bed",
+        f"{OUTDIR}/ATAC-maxZ.txt",
+        f"{OUTDIR}/cCREs.bed",
+        [f"{OUTDIR}/DNase-maxZ.txt"] if DNASE_BIGWIG_OF else [],

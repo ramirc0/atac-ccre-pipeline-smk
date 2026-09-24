@@ -1,0 +1,8 @@
+sample_id	narrowpeak	bigwig	fragments	fragment_format
+ENCSR481YWC			/zata/data/zlab/zusers/campbellm/scATAC_pancreas/encode_frags/ENCSR481YWC_fragments.tsv.gz	FRAG
+ENCSR275TWX			/zata/data/zlab/zusers/campbellm/scATAC_pancreas/encode_frags/ENCSR275TWX_fragments.tsv.gz	FRAG
+HPAP-001_alpha	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results/macs3_callpeak/0.01/HPAP-001_alpha-GRCH38_peaks.narrowPeak	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results/hpap_lane_merged/HPAP-001_alpha-GRCH38_FE.bw		
+HPAP-004_alpha	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results/macs3_signal/HPAP-004_alpha-GRCH38_peaks.narrowPeak	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results/macs3_fold_change_signal/HPAP-004_alpha-GRCH38_FE.bw		
+HPAP-017_alpha	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results-techrep/macs3_signal/HPAP-017_alpha-GRCH38_peaks.narrowPeak	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results-techrep/macs3_fold_change_signal/HPAP-017_alpha-GRCH38_FE.bw		
+HPAP-018_alpha	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results-techrep/macs3_signal/HPAP-018_alpha-GRCH38_peaks.narrowPeak	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results-techrep/macs3_fold_change_signal/HPAP-018_alpha-GRCH38_FE.bw		
+HPAP-018_beta	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results-techrep/macs3_signal/HPAP-018_beta-GRCH38_peaks.narrowPeak	/zata/data/zlab/zusers/campbellm/t1d/mohd-atac/results-techrep/macs3_fold_change_signal/HPAP-018_beta-GRCH38_FE.bw		
