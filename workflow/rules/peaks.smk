@@ -122,7 +122,7 @@ rule filter_rpeaks:
             -b {input.summits:q} \
             > {output.intersection:q}
 
-        python workflow/scripts/filter-tf-rpeaks.py {output.intersection:q} \
+        python workflow/scripts/filter_rpeaks.py {output.intersection:q} \
             > {output.filtered:q}
 
         bedtools intersect -v \
