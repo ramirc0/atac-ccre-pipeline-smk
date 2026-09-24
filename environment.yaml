@@ -1,4 +1,4 @@
-name: ccre-pipeline
+name: atac-ccre-pipeline
 channels:
   - conda-forge
   - bioconda

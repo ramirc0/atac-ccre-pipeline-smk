@@ -1,4 +1,4 @@
-# ccre-pipeline-smk
+# atac-ccre-pipeline-smk
 
 Snakemake pipeline that calls ATAC cCREs. It clusters ATAC narrowPeaks into rPeaks, keeps the ones
 that aren't already registry rDHSs, adds them to the rDHS anchors, and z-scores every anchor in
@@ -15,7 +15,7 @@ through `--use-conda`, which the profiles set.
 
 ```sh
 mamba env create -f environment.yaml
-mamba activate ccre-pipeline
+mamba activate atac-ccre-pipeline
 cp config/config.yaml.template config/config.yaml  # then edit
 cp config/samples.example.tsv config/samples.tsv   # then edit
 snakemake -n -p --profile profiles/local           # dry run
