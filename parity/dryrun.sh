@@ -6,6 +6,7 @@ err=$(mktemp)
 trap 'rm -f "$err"' EXIT
 if ! out=$(snakemake -n -p -F --quiet progress "$@" 2>"$err"); then
     cat "$err" >&2
+    printf "%s\n" "$out" | tail -20 >&2
     exit 1
 fi
 awk '/^Reasons:/ {skip = 1} !skip' <<< "$out" \
