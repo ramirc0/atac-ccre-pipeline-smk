@@ -2,6 +2,7 @@
 
 import os
 import pandas as pd
+import polars as pl
 from pathlib import Path
 
 WORK_DIR = config["work_dir"]
@@ -57,6 +58,15 @@ if bool(CUSTOM_INCLUDED):
         intermediate_bw_files.append(
             f"{RESULTS_DIR}/bw_zscoring/custom-{sample}.txt"
         )
+
+# sample -> narrowPeak path, in list order.
+CUSTOM_PEAKS = {}
+if CUSTOM_INCLUDED:
+    CUSTOM_PEAKS = dict(
+        pl.read_csv(config["CUSTOM_data_macs_info"], separator="\t", infer_schema_length=0)
+        .select("sample", "path")
+        .iter_rows()
+    )
 
 intermediate_DNase_files = []
 
