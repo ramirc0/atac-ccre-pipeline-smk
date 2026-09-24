@@ -22,11 +22,11 @@ filter_FRIP: 0.2 # zero point 2
 filter_min_reads: 25 # 25 mill 
 
 # 
-work_dir: "/zata/zippy/campbellm/snakemake_atac_ccres"
+work_dir: "."
 ouput_dir: "BETA_islet_CUSTOM_ATAC_List_bw_2026-08-25" 
 log_dir: "logs" 
 tmp_dir: "/tmp"
-TOOLKIT : "/zata/zippy/campbellm/snakemake_atac_ccres/Toolkit"
+TOOLKIT : "Toolkit"
 
 
 plot_top_and_bottom_n: True

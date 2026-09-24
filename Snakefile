@@ -6,7 +6,7 @@ from pathlib import Path
 
 WORK_DIR = config["work_dir"]
 RESULTS_DIR = config["ouput_dir"]   # keep if your config uses "ouput_dir"
-LOG_DIR = os.path.join(WORK_DIR, config["log_dir"])
+LOG_DIR = os.path.normpath(os.path.join(WORK_DIR, config["log_dir"]))
 TMP_DIR = config["tmp_dir"]
 TOOLKIT = config["TOOLKIT"]
 

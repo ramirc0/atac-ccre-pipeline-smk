@@ -21,7 +21,7 @@ if not RESULTS_DIR:
 # Existing included rules use the historical misspelling.
 config["ouput_dir"] = RESULTS_DIR
 
-LOG_DIR = os.path.join(WORK_DIR, config.get("log_dir", "logs-mixed"))
+LOG_DIR = os.path.normpath(os.path.join(WORK_DIR, config.get("log_dir", "logs-mixed")))
 TMP_DIR = config.get("tmp_dir", "/tmp")
 TOOLKIT = config["TOOLKIT"]
 GENOME = config.get("genome", "hg38")

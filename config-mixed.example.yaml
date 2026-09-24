@@ -2,7 +2,7 @@
 
 sample_manifest: "resources/mixed-inputs.example.tsv"
 
-work_dir: "/zata/zippy/campbellm/snakemake_atac_ccres"
+work_dir: "."
 output_dir: "MIXED_fragment_and_bulk"
 log_dir: "logs-mixed"
 tmp_dir: "/tmp"
@@ -23,7 +23,7 @@ macs3: "macs3"
 bedGraphToBigWig: "bedGraphToBigWig"
 bigWigAverageOverBed: "/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed"
 
-TOOLKIT: "/zata/zippy/campbellm/snakemake_atac_ccres/Toolkit"
+TOOLKIT: "Toolkit"
 ccre_path: "resources/GRCh38-cCREs.bed"
 rdhs_path: "resources/GRCh38-Anchors.bed"
 mappable: "resources/k100.Unique.Mappability.bed"

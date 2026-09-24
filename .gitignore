@@ -1,0 +1,11 @@
+.snakemake/
+logs*/
+BETA_islet_*/
+MIXED_fragment_and_bulk/
+test.txt
+resources/*.bed
+resources/CUSTOM_ATAC_List_*.txt
+.ipynb_checkpoints/
+__pycache__/
+scratch/
+.worktrees/

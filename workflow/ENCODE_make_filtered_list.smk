@@ -9,7 +9,7 @@ rule ENCODE_make_filtered_ATAC_list:
         TOOLKIT=config["TOOLKIT"],
         filter_min_reads=config["filter_min_reads"],
     log:
-        f"{config['work_dir']}/{config['log_dir']}/ENCODE_make_filtered_list.log"
+        f"{LOG_DIR}/ENCODE_make_filtered_list.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/ENCODE_make_filtered_ATAC_list.tsv"
 
