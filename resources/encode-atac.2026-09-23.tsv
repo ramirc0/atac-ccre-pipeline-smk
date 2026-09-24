@@ -1,0 +1,274 @@
+sample_id	narrowpeak	bigwig	biosample
+ENCSR000RBT	/data/projects/encode/data/ENCSR000RBT/ENCFF430IAA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR000RBT/ENCFF739XMW.bigWig	Homo sapiens HG03571
+ENCSR011NJP	/data/projects/encode/data/ENCSR011NJP/ENCFF824HVH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR011NJP/ENCFF636KMV.bigWig	Homo sapiens GM18858
+ENCSR024WOD	/data/projects/encode/data/ENCSR024WOD/ENCFF482YHK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR024WOD/ENCFF298GXE.bigWig	Homo sapiens GM21390
+ENCSR025MEO	/data/projects/encode/data/ENCSR025MEO/ENCFF429JRQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR025MEO/ENCFF727GJN.bigWig	Homo sapiens HG03354
+ENCSR032RGS	/data/projects/encode/data/ENCSR032RGS/ENCFF899OMR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR032RGS/ENCFF872SDF.bigWig	Homo sapiens A549
+ENCSR038WVV	/data/projects/encode/data/ENCSR038WVV/ENCFF505XMS.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR038WVV/ENCFF518WFH.bigWig	Homo sapiens HG02973
+ENCSR040DJK	/data/projects/encode/data/ENCSR040DJK/ENCFF425LSL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR040DJK/ENCFF490PBK.bigWig	Homo sapiens psoas muscle tissue female adult (59 years)
+ENCSR040PBN	/data/projects/encode/data/ENCSR040PBN/ENCFF359CMH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR040PBN/ENCFF427UQD.bigWig	Homo sapiens HG03066
+ENCSR042AWH	/data/projects/encode/data/ENCSR042AWH/ENCFF913MQB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR042AWH/ENCFF664EJT.bigWig	Homo sapiens HepG2
+ENCSR044ATC	/data/projects/encode/data/ENCSR044ATC/ENCFF063YVQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR044ATC/ENCFF496GXT.bigWig	Homo sapiens natural killer cell female adult (41 years)
+ENCSR053SGP	/data/projects/encode/data/ENCSR053SGP/ENCFF343RCO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR053SGP/ENCFF288BEC.bigWig	Homo sapiens heart right ventricle tissue male adult (54 years)
+ENCSR059IHA	/data/projects/encode/data/ENCSR059IHA/ENCFF958KJD.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR059IHA/ENCFF257LMZ.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 30 minutes
+ENCSR063UNG	/data/projects/encode/data/ENCSR063UNG/ENCFF757TJE.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR063UNG/ENCFF059MRU.bigWig	Homo sapiens HG03196
+ENCSR065CER	/data/projects/encode/data/ENCSR065CER/ENCFF974XTQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR065CER/ENCFF450FBH.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR072UYN	/data/projects/encode/data/ENCSR072UYN/ENCFF436AWP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR072UYN/ENCFF737OOY.bigWig	Homo sapiens sciatic nerve tissue female child (16 years)
+ENCSR074WMH	/data/projects/encode/data/ENCSR074WMH/ENCFF712BJW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR074WMH/ENCFF104OXF.bigWig	Homo sapiens Right ventricle myocardium superior tissue male adult (60 years)
+ENCSR080SNF	/data/projects/encode/data/ENCSR080SNF/ENCFF729MMJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR080SNF/ENCFF047EBV.bigWig	Homo sapiens RWPE2
+ENCSR084FHK	/data/projects/encode/data/ENCSR084FHK/ENCFF376BWJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR084FHK/ENCFF934MOB.bigWig	Homo sapiens GM18505
+ENCSR092SRS	/data/projects/encode/data/ENCSR092SRS/ENCFF570EVR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR092SRS/ENCFF438AFY.bigWig	Homo sapiens activated T-cell male adult (42 years) treated with 50 U/mL Interleukin-2 for 4 hours, anti-CD3 and anti-CD28 coated beads for 4 hours
+ENCSR094QFZ	/data/projects/encode/data/ENCSR094QFZ/ENCFF267DDX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR094QFZ/ENCFF881SZZ.bigWig	Homo sapiens activated CD4-positive, CD25-positive, alpha-beta regulatory T cell male adult (38 years) treated with anti-CD3 and anti-CD28 coated beads for 24 hours, 50 U/mL Interleukin-2 for 24 hours
+ENCSR095QNB	/data/projects/encode/data/ENCSR095QNB/ENCFF470YYO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR095QNB/ENCFF487LOB.bigWig	Homo sapiens GM12878
+ENCSR096VEO	/data/projects/encode/data/ENCSR096VEO/ENCFF208TTV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR096VEO/ENCFF293YLU.bigWig	Homo sapiens HG03135
+ENCSR102RXG	/data/projects/encode/data/ENCSR102RXG/ENCFF058UYY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR102RXG/ENCFF845DQD.bigWig	Homo sapiens T-cell female adult (33 years)
+ENCSR105SCQ	/data/projects/encode/data/ENCSR105SCQ/ENCFF091ELX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR105SCQ/ENCFF200SFT.bigWig	Homo sapiens GM21360
+ENCSR113MBR	/data/projects/encode/data/ENCSR113MBR/ENCFF010JOP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR113MBR/ENCFF469CYE.bigWig	Homo sapiens adrenal gland tissue male adult (54 years)
+ENCSR115OIV	/data/projects/encode/data/ENCSR115OIV/ENCFF123QHV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR115OIV/ENCFF141ATK.bigWig	Homo sapiens activated T-helper 17 cell male adult (50 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR120MOY	/data/projects/encode/data/ENCSR120MOY/ENCFF830CUE.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR120MOY/ENCFF726GTH.bigWig	Homo sapiens sciatic nerve tissue male adult (26 years)
+ENCSR122NDR	/data/projects/encode/data/ENCSR122NDR/ENCFF338XWC.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR122NDR/ENCFF621VGP.bigWig	Homo sapiens GM21576
+ENCSR123WME	/data/projects/encode/data/ENCSR123WME/ENCFF304OUP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR123WME/ENCFF485EKM.bigWig	Homo sapiens HG02943
+ENCSR131CHJ	/data/projects/encode/data/ENCSR131CHJ/ENCFF827NNA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR131CHJ/ENCFF583FYE.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 2 hours
+ENCSR131HOY	/data/projects/encode/data/ENCSR131HOY/ENCFF497ACM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR131HOY/ENCFF632QIA.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR133CMC	/data/projects/encode/data/ENCSR133CMC/ENCFF442JHH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR133CMC/ENCFF190EVO.bigWig	Homo sapiens heart right ventricle tissue male adult (69 years)
+ENCSR133WJY	/data/projects/encode/data/ENCSR133WJY/ENCFF985WPD.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR133WJY/ENCFF225VDO.bigWig	Homo sapiens left ventricle myocardium superior tissue male adult (60 years)
+ENCSR134OSR	/data/projects/encode/data/ENCSR134OSR/ENCFF104JSS.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR134OSR/ENCFF946NPR.bigWig	Homo sapiens GM19438
+ENCSR144ZXR	/data/projects/encode/data/ENCSR144ZXR/ENCFF553NML.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR144ZXR/ENCFF880QAL.bigWig	Homo sapiens HG02759
+ENCSR153IUB	/data/projects/encode/data/ENCSR153IUB/ENCFF173XEU.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR153IUB/ENCFF617ESX.bigWig	Homo sapiens mucosa of urinary bladder tissue male adult (26 years)
+ENCSR154UWN	/data/projects/encode/data/ENCSR154UWN/ENCFF616OVJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR154UWN/ENCFF718EPV.bigWig	Homo sapiens psoas muscle tissue female child (16 years)
+ENCSR157OSO	/data/projects/encode/data/ENCSR157OSO/ENCFF535VTB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR157OSO/ENCFF460UKZ.bigWig	Homo sapiens heart right ventricle tissue female adult (47 years)
+ENCSR159GFS	/data/projects/encode/data/ENCSR159GFS/ENCFF364QVY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR159GFS/ENCFF426GUD.bigWig	Homo sapiens CD4-positive, CD25-positive, alpha-beta regulatory T cell male adult (42 years)
+ENCSR163KRG	/data/projects/encode/data/ENCSR163KRG/ENCFF187ZKG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR163KRG/ENCFF536RCF.bigWig	Homo sapiens HG03469
+ENCSR165FYY	/data/projects/encode/data/ENCSR165FYY/ENCFF662SIF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR165FYY/ENCFF544UFE.bigWig	Homo sapiens central memory CD8-positive, alpha-beta T cell male adult (36 years)
+ENCSR174SUM	/data/projects/encode/data/ENCSR174SUM/ENCFF049DNM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR174SUM/ENCFF343VRK.bigWig	Homo sapiens activated naive CD4-positive, alpha-beta T cell male adult (48 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR177JWR	/data/projects/encode/data/ENCSR177JWR/ENCFF626RXO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR177JWR/ENCFF905HWA.bigWig	Homo sapiens right cardiac atrium tissue female adult (59 years)
+ENCSR180HEL	/data/projects/encode/data/ENCSR180HEL/ENCFF872XXD.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR180HEL/ENCFF809SRH.bigWig	Homo sapiens HG02678
+ENCSR189VFC	/data/projects/encode/data/ENCSR189VFC/ENCFF561VYC.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR189VFC/ENCFF612JSH.bigWig	Homo sapiens HG02588
+ENCSR200OML	/data/projects/encode/data/ENCSR200OML/ENCFF243NTP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR200OML/ENCFF282RNO.bigWig	Homo sapiens IMR-90 nuclear fraction and unspecified fraction
+ENCSR201FIW	/data/projects/encode/data/ENCSR201FIW/ENCFF911HZG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR201FIW/ENCFF747TGQ.bigWig	Homo sapiens thyroid gland tissue female adult (51 years)
+ENCSR204FCV	/data/projects/encode/data/ENCSR204FCV/ENCFF388PAR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR204FCV/ENCFF270TJX.bigWig	Homo sapiens dendritic cell treated with lipopolysaccharide
+ENCSR204SMO	/data/projects/encode/data/ENCSR204SMO/ENCFF344CDB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR204SMO/ENCFF573VRY.bigWig	Homo sapiens heart right ventricle tissue male adult (46 years)
+ENCSR208HAP	/data/projects/encode/data/ENCSR208HAP/ENCFF663YRQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR208HAP/ENCFF401VCL.bigWig	Homo sapiens HG02981
+ENCSR208NBF	/data/projects/encode/data/ENCSR208NBF/ENCFF492DSN.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR208NBF/ENCFF620DOA.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 2 hours
+ENCSR212LAZ	/data/projects/encode/data/ENCSR212LAZ/ENCFF164WOV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR212LAZ/ENCFF307QJX.bigWig	Homo sapiens fallopian tube tissue female adult (59 years)
+ENCSR212LYK	/data/projects/encode/data/ENCSR212LYK/ENCFF738ZVY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR212LYK/ENCFF490QPE.bigWig	Homo sapiens heart right ventricle tissue female adult (46 years)
+ENCSR213YPO	/data/projects/encode/data/ENCSR213YPO/ENCFF442AAP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR213YPO/ENCFF150IPQ.bigWig	Homo sapiens right cardiac atrium tissue male adult (60 years)
+ENCSR214EIV	/data/projects/encode/data/ENCSR214EIV/ENCFF715UOV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR214EIV/ENCFF524PBI.bigWig	Homo sapiens GM21619
+ENCSR220ASC	/data/projects/encode/data/ENCSR220ASC/ENCFF735UWS.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR220ASC/ENCFF128MWE.bigWig	Homo sapiens A549
+ENCSR227FVE	/data/projects/encode/data/ENCSR227FVE/ENCFF497SGQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR227FVE/ENCFF912UZC.bigWig	Homo sapiens ovary tissue female adult (59 years)
+ENCSR231BZU	/data/projects/encode/data/ENCSR231BZU/ENCFF568ADF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR231BZU/ENCFF023VMB.bigWig	Homo sapiens GM19351
+ENCSR233HSC	/data/projects/encode/data/ENCSR233HSC/ENCFF693CDG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR233HSC/ENCFF353OEE.bigWig	Homo sapiens GM21723
+ENCSR238VHV	/data/projects/encode/data/ENCSR238VHV/ENCFF677EWJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR238VHV/ENCFF440RDV.bigWig	Homo sapiens fallopian tube tissue female adult (46 years)
+ENCSR241OBO	/data/projects/encode/data/ENCSR241OBO/ENCFF541GYF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR241OBO/ENCFF404IAG.bigWig	Homo sapiens adrenal gland tissue female adult (59 years)
+ENCSR241VGH	/data/projects/encode/data/ENCSR241VGH/ENCFF453GXR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR241VGH/ENCFF241EBE.bigWig	Homo sapiens GM18502
+ENCSR249FXU	/data/projects/encode/data/ENCSR249FXU/ENCFF935BZV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR249FXU/ENCFF519OXO.bigWig	Homo sapiens HG03045
+ENCSR251POP	/data/projects/encode/data/ENCSR251POP/ENCFF678PAI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR251POP/ENCFF863PLK.bigWig	Homo sapiens pancreas tissue female adult (61 years)
+ENCSR253QLW	/data/projects/encode/data/ENCSR253QLW/ENCFF313BZQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR253QLW/ENCFF990WXU.bigWig	Homo sapiens GM18511
+ENCSR258JCL	/data/projects/encode/data/ENCSR258JCL/ENCFF080IAR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR258JCL/ENCFF703MFP.bigWig	Homo sapiens gastrocnemius medialis tissue male adult (37 years)
+ENCSR258RSH	/data/projects/encode/data/ENCSR258RSH/ENCFF788BUI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR258RSH/ENCFF677BPI.bigWig	Homo sapiens T-cell male adult (38 years)
+ENCSR260LAN	/data/projects/encode/data/ENCSR260LAN/ENCFF705AZV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR260LAN/ENCFF778DJR.bigWig	Homo sapiens naive thymus-derived CD4-positive, alpha-beta T cell male adult (48 years)
+ENCSR261PWP	/data/projects/encode/data/ENCSR261PWP/ENCFF456OPK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR261PWP/ENCFF546IOZ.bigWig	Homo sapiens activated CD4-positive, CD25-positive, alpha-beta regulatory T cell male adult (42 years) treated with anti-CD3 and anti-CD28 coated beads for 24 hours, 50 U/mL Interleukin-2 for 24 hours
+ENCSR275LCF	/data/projects/encode/data/ENCSR275LCF/ENCFF890KJS.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR275LCF/ENCFF472UIU.bigWig	Homo sapiens GM21786
+ENCSR278JWM	/data/projects/encode/data/ENCSR278JWM/ENCFF861UUN.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR278JWM/ENCFF890LTR.bigWig	Homo sapiens HG03558
+ENCSR283LPH	/data/projects/encode/data/ENCSR283LPH/ENCFF349KLY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR283LPH/ENCFF995WDO.bigWig	Homo sapiens naive thymus-derived CD8-positive, alpha-beta T cell nuclear fraction male adult (30 years)
+ENCSR286STX	/data/projects/encode/data/ENCSR286STX/ENCFF135EYC.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR286STX/ENCFF169GLM.bigWig	Homo sapiens heart left ventricle tissue male adult (66 years)
+ENCSR291GJU	/data/projects/encode/data/ENCSR291GJU/ENCFF439EIO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR291GJU/ENCFF645OHB.bigWig	Homo sapiens HepG2
+ENCSR299LSN	/data/projects/encode/data/ENCSR299LSN/ENCFF867TMP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR299LSN/ENCFF364GFY.bigWig	Homo sapiens T-cell male adult (42 years)
+ENCSR302PTB	/data/projects/encode/data/ENCSR302PTB/ENCFF178DTJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR302PTB/ENCFF216VWI.bigWig	Homo sapiens stimulated activated memory B cell male adult (40 years) treated with 10 μg/mL anti-IgM for 72 hours, 1 μg/mL anti-CD40 for 72 hours, 100 ng/mL Interleukin-4 for 72 hours
+ENCSR303PWB	/data/projects/encode/data/ENCSR303PWB/ENCFF068ISD.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR303PWB/ENCFF477VDG.bigWig	Homo sapiens esophagus mucosa tissue female adult (47 years)
+ENCSR305QTE	/data/projects/encode/data/ENCSR305QTE/ENCFF040SJW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR305QTE/ENCFF194EMK.bigWig	Homo sapiens natural killer cell male adult (47 years)
+ENCSR305XRF	/data/projects/encode/data/ENCSR305XRF/ENCFF914TAP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR305XRF/ENCFF101BDO.bigWig	Homo sapiens HG03175
+ENCSR308HPZ	/data/projects/encode/data/ENCSR308HPZ/ENCFF849FQV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR308HPZ/ENCFF163JWV.bigWig	Homo sapiens gastrocnemius medialis tissue male adult (54 years)
+ENCSR310RJN	/data/projects/encode/data/ENCSR310RJN/ENCFF568NPG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR310RJN/ENCFF875SZE.bigWig	Homo sapiens heart left ventricle tissue male adult (43 years)
+ENCSR310UDW	/data/projects/encode/data/ENCSR310UDW/ENCFF241UNR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR310UDW/ENCFF618FTE.bigWig	Homo sapiens left cardiac atrium tissue male adult (40 years)
+ENCSR315QWI	/data/projects/encode/data/ENCSR315QWI/ENCFF529WCI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR315QWI/ENCFF261VHL.bigWig	Homo sapiens GM21737
+ENCSR322SBN	/data/projects/encode/data/ENCSR322SBN/ENCFF717APJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR322SBN/ENCFF477DEN.bigWig	Homo sapiens HG03457
+ENCSR326ESM	/data/projects/encode/data/ENCSR326ESM/ENCFF354VIQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR326ESM/ENCFF021KYU.bigWig	Homo sapiens stimulated activated naive CD8-positive, alpha-beta T cell male adult (42 years) treated with anti-CD3 and anti-CD28 coated beads for 24 hours, 50 U/mL Interleukin-2 for 24 hours, 100 ng/mL Interleukin-15 for 24 hours
+ENCSR329XFZ	/data/projects/encode/data/ENCSR329XFZ/ENCFF350PMA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR329XFZ/ENCFF369AAJ.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 30 minutes
+ENCSR330WUK	/data/projects/encode/data/ENCSR330WUK/ENCFF851UZI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR330WUK/ENCFF172SJH.bigWig	Homo sapiens left cardiac atrium tissue male adult (60 years)
+ENCSR335JVB	/data/projects/encode/data/ENCSR335JVB/ENCFF546KKI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR335JVB/ENCFF840DXB.bigWig	Homo sapiens GM19372
+ENCSR335LHS	/data/projects/encode/data/ENCSR335LHS/ENCFF547LIL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR335LHS/ENCFF670PIL.bigWig	Homo sapiens stimulated activated effector memory CD8-positive, alpha-beta T cell male adult (33 years) treated with 100 ng/mL Interleukin-12 subunit alpha for 72 hours, 100 ng/mL Interleukin-12 subunit beta for 72 hours, anti-CD3 and anti-CD28 coated beads for 72 hours
+ENCSR335XRZ	/data/projects/encode/data/ENCSR335XRZ/ENCFF211AMR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR335XRZ/ENCFF471TZT.bigWig	Homo sapiens stimulated activated effector memory CD8-positive, alpha-beta T cell male adult (36 years) treated with 100 ng/mL Interleukin-12 subunit alpha for 72 hours, 100 ng/mL Interleukin-12 subunit beta for 72 hours, anti-CD3 and anti-CD28 coated beads for 72 hours
+ENCSR337UIU	/data/projects/encode/data/ENCSR337UIU/ENCFF880EHI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR337UIU/ENCFF868ZCL.bigWig	Homo sapiens stomach tissue female adult (53 years)
+ENCSR345NVR	/data/projects/encode/data/ENCSR345NVR/ENCFF178ZJR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR345NVR/ENCFF413WLZ.bigWig	Homo sapiens HG03460
+ENCSR356KRQ	/data/projects/encode/data/ENCSR356KRQ/ENCFF551GBG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR356KRQ/ENCFF653FDR.bigWig	Homo sapiens foreskin keratinocyte male newborn (2-4 days)
+ENCSR357WQH	/data/projects/encode/data/ENCSR357WQH/ENCFF761RSD.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR357WQH/ENCFF879GGI.bigWig	Homo sapiens GM18508
+ENCSR359HFH	/data/projects/encode/data/ENCSR359HFH/ENCFF099GAL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR359HFH/ENCFF966MMP.bigWig	Homo sapiens HG03095
+ENCSR368FYV	/data/projects/encode/data/ENCSR368FYV/ENCFF594ZAI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR368FYV/ENCFF893KEJ.bigWig	Homo sapiens HG02852
+ENCSR372IGW	/data/projects/encode/data/ENCSR372IGW/ENCFF518QUX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR372IGW/ENCFF060JKX.bigWig	Homo sapiens GM19395
+ENCSR373GMM	/data/projects/encode/data/ENCSR373GMM/ENCFF751CLW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR373GMM/ENCFF466HAO.bigWig	Homo sapiens natural killer cell male adult (33 years)
+ENCSR373NFA	/data/projects/encode/data/ENCSR373NFA/ENCFF792YKT.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR373NFA/ENCFF093FUQ.bigWig	Homo sapiens activated naive CD4-positive, alpha-beta T cell male adult (50 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR374ZRW	/data/projects/encode/data/ENCSR374ZRW/ENCFF790ZOM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR374ZRW/ENCFF275CPB.bigWig	Homo sapiens heart right ventricle tissue female adult (56 years)
+ENCSR376YMU	/data/projects/encode/data/ENCSR376YMU/ENCFF612NLR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR376YMU/ENCFF120TUR.bigWig	Homo sapiens HG03439
+ENCSR379NMT	/data/projects/encode/data/ENCSR379NMT/ENCFF587QZR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR379NMT/ENCFF934HGD.bigWig	Homo sapiens stimulated activated naive B cell male adult (40 years) treated with 1 μg/mL anti-CD40 for 72 hours, 10 μg/mL anti-IgM for 72 hours, 100 ng/mL Interleukin-4 for 72 hours
+ENCSR381LJX	/data/projects/encode/data/ENCSR381LJX/ENCFF299PGG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR381LJX/ENCFF690ERQ.bigWig	Homo sapiens HG03039
+ENCSR382LBS	/data/projects/encode/data/ENCSR382LBS/ENCFF060HHC.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR382LBS/ENCFF573SLV.bigWig	Homo sapiens NCI-H929
+ENCSR383RDZ	/data/projects/encode/data/ENCSR383RDZ/ENCFF683FRF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR383RDZ/ENCFF580WZB.bigWig	Homo sapiens GM19328
+ENCSR390SLL	/data/projects/encode/data/ENCSR390SLL/ENCFF803AAK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR390SLL/ENCFF834ZKF.bigWig	Homo sapiens left cardiac atrium tissue female adult (42 years)
+ENCSR392UJM	/data/projects/encode/data/ENCSR392UJM/ENCFF985FDY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR392UJM/ENCFF187FSZ.bigWig	Homo sapiens ovary tissue female adult (61 years)
+ENCSR392YGP	/data/projects/encode/data/ENCSR392YGP/ENCFF541PYT.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR392YGP/ENCFF428KAK.bigWig	Homo sapiens effector memory CD8-positive, alpha-beta T cell male adult (33 years)
+ENCSR399OSE	/data/projects/encode/data/ENCSR399OSE/ENCFF056KYH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR399OSE/ENCFF016KCE.bigWig	Homo sapiens heart left ventricle tissue female adult (47 years)
+ENCSR400ISH	/data/projects/encode/data/ENCSR400ISH/ENCFF781HFK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR400ISH/ENCFF008HZU.bigWig	Homo sapiens HG02571
+ENCSR404LLJ	/data/projects/encode/data/ENCSR404LLJ/ENCFF563UYM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR404LLJ/ENCFF033RPN.bigWig	Homo sapiens transverse colon tissue female adult (53 years)
+ENCSR404OEO	/data/projects/encode/data/ENCSR404OEO/ENCFF780FGU.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR404OEO/ENCFF997MUT.bigWig	Homo sapiens HG02763
+ENCSR409YCK	/data/projects/encode/data/ENCSR409YCK/ENCFF589OTG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR409YCK/ENCFF575ZRJ.bigWig	Homo sapiens GM19043
+ENCSR410DWV	/data/projects/encode/data/ENCSR410DWV/ENCFF610SOB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR410DWV/ENCFF345PTN.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR411NFB	/data/projects/encode/data/ENCSR411NFB/ENCFF845NWD.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR411NFB/ENCFF728DLQ.bigWig	Homo sapiens activated T-cell female adult (33 years) treated with 50 U/mL Interleukin-2 for 4 hours, anti-CD3 and anti-CD28 coated beads for 4 hours
+ENCSR419UYY	/data/projects/encode/data/ENCSR419UYY/ENCFF915OAM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR419UYY/ENCFF475KJF.bigWig	Homo sapiens GM19025
+ENCSR420RVW	/data/projects/encode/data/ENCSR420RVW/ENCFF730TRQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR420RVW/ENCFF684SCN.bigWig	Homo sapiens HG02870
+ENCSR422RPD	/data/projects/encode/data/ENCSR422RPD/ENCFF387RGN.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR422RPD/ENCFF146GHP.bigWig	Homo sapiens GM21717
+ENCSR422SUG	/data/projects/encode/data/ENCSR422SUG/ENCFF821OEF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR422SUG/ENCFF782BVX.bigWig	Homo sapiens MCF-7
+ENCSR424KQH	/data/projects/encode/data/ENCSR424KQH/ENCFF718JVL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR424KQH/ENCFF616HTW.bigWig	Homo sapiens GM21447
+ENCSR437OOJ	/data/projects/encode/data/ENCSR437OOJ/ENCFF320CXX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR437OOJ/ENCFF355NHX.bigWig	Homo sapiens heart right ventricle tissue female adult (59 years)
+ENCSR439TZT	/data/projects/encode/data/ENCSR439TZT/ENCFF078RSS.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR439TZT/ENCFF808EZU.bigWig	Homo sapiens heart right ventricle tissue male adult (66 years)
+ENCSR442OAV	/data/projects/encode/data/ENCSR442OAV/ENCFF481DKV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR442OAV/ENCFF549PEF.bigWig	Homo sapiens GM18517
+ENCSR452COS	/data/projects/encode/data/ENCSR452COS/ENCFF685MCV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR452COS/ENCFF567YWL.bigWig	Homo sapiens naive thymus-derived CD4-positive, alpha-beta T cell male adult (50 years)
+ENCSR454UTH	/data/projects/encode/data/ENCSR454UTH/ENCFF582GKW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR454UTH/ENCFF095KQF.bigWig	Homo sapiens GM19452
+ENCSR459AYS	/data/projects/encode/data/ENCSR459AYS/ENCFF640USO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR459AYS/ENCFF290XFJ.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 2 hours
+ENCSR459PVP	/data/projects/encode/data/ENCSR459PVP/ENCFF951DOQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR459PVP/ENCFF839JKY.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR470ZNM	/data/projects/encode/data/ENCSR470ZNM/ENCFF295IRG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR470ZNM/ENCFF337DQV.bigWig	Homo sapiens HG03060
+ENCSR474XFV	/data/projects/encode/data/ENCSR474XFV/ENCFF682VUY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR474XFV/ENCFF974RPS.bigWig	Homo sapiens thyroid gland tissue male adult (54 years)
+ENCSR476VJY	/data/projects/encode/data/ENCSR476VJY/ENCFF035XXI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR476VJY/ENCFF308HXP.bigWig	Homo sapiens CD8-positive, alpha-beta T cell male adult (21 years)
+ENCSR476WNA	/data/projects/encode/data/ENCSR476WNA/ENCFF871DTB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR476WNA/ENCFF567XSR.bigWig	Homo sapiens ovary tissue female adult (47 years)
+ENCSR477YSU	/data/projects/encode/data/ENCSR477YSU/ENCFF026XCY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR477YSU/ENCFF610LQJ.bigWig	Homo sapiens activated naive CD8-positive, alpha-beta T cell male adult (42 years) treated with anti-CD3 and anti-CD28 coated beads for 24 hours, 50 U/mL Interleukin-2 for 24 hours
+ENCSR483RKN	/data/projects/encode/data/ENCSR483RKN/ENCFF558BLC.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR483RKN/ENCFF754EAC.bigWig	Homo sapiens K562
+ENCSR485TLP	/data/projects/encode/data/ENCSR485TLP/ENCFF567ZCX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR485TLP/ENCFF378ZGI.bigWig	Homo sapiens GM23338
+ENCSR487QSB	/data/projects/encode/data/ENCSR487QSB/ENCFF903NSQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR487QSB/ENCFF570XGF.bigWig	Homo sapiens GM18907
+ENCSR487SOP	/data/projects/encode/data/ENCSR487SOP/ENCFF378XZA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR487SOP/ENCFF321AMD.bigWig	Homo sapiens HG03064
+ENCSR491VXJ	/data/projects/encode/data/ENCSR491VXJ/ENCFF191ZOC.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR491VXJ/ENCFF808LOI.bigWig	Homo sapiens mucosa of descending colon tissue male adult (26 years)
+ENCSR492FJO	/data/projects/encode/data/ENCSR492FJO/ENCFF094CWB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR492FJO/ENCFF829IFA.bigWig	Homo sapiens GM18867
+ENCSR496PPU	/data/projects/encode/data/ENCSR496PPU/ENCFF721WEZ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR496PPU/ENCFF663HOS.bigWig	Homo sapiens mucosa of descending colon tissue female adult (61 years)
+ENCSR499ASS	/data/projects/encode/data/ENCSR499ASS/ENCFF811MOZ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR499ASS/ENCFF124ZQJ.bigWig	Homo sapiens PC-3
+ENCSR504OUW	/data/projects/encode/data/ENCSR504OUW/ENCFF754GUE.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR504OUW/ENCFF736UWT.bigWig	Homo sapiens CD4-positive, CD25-positive, alpha-beta regulatory T cell male adult (38 years)
+ENCSR509JPT	/data/projects/encode/data/ENCSR509JPT/ENCFF218UOX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR509JPT/ENCFF166IBK.bigWig	Homo sapiens GM21367
+ENCSR512FHU	/data/projects/encode/data/ENCSR512FHU/ENCFF283LXY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR512FHU/ENCFF816XRV.bigWig	Homo sapiens GM19023
+ENCSR512YXO	/data/projects/encode/data/ENCSR512YXO/ENCFF980BJM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR512YXO/ENCFF062JUV.bigWig	Homo sapiens GM21381
+ENCSR516CPW	/data/projects/encode/data/ENCSR516CPW/ENCFF318SNW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR516CPW/ENCFF831BRS.bigWig	Homo sapiens right lobe of liver tissue female adult (47 years)
+ENCSR516YAD	/data/projects/encode/data/ENCSR516YAD/ENCFF415HUA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR516YAD/ENCFF330ZVA.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR522FGI	/data/projects/encode/data/ENCSR522FGI/ENCFF169LSG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR522FGI/ENCFF442VFE.bigWig	Homo sapiens heart right ventricle tissue male adult (43 years)
+ENCSR524CPZ	/data/projects/encode/data/ENCSR524CPZ/ENCFF986ZDE.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR524CPZ/ENCFF234SOC.bigWig	Homo sapiens HG02798
+ENCSR528YDD	/data/projects/encode/data/ENCSR528YDD/ENCFF806ZOU.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR528YDD/ENCFF077IHT.bigWig	Homo sapiens HG03342
+ENCSR530XBF	/data/projects/encode/data/ENCSR530XBF/ENCFF029YUG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR530XBF/ENCFF140GLW.bigWig	Homo sapiens pancreas tissue female child (16 years)
+ENCSR541KFY	/data/projects/encode/data/ENCSR541KFY/ENCFF321VDH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR541KFY/ENCFF056MYW.bigWig	Homo sapiens WTC11
+ENCSR542RNG	/data/projects/encode/data/ENCSR542RNG/ENCFF802GII.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR542RNG/ENCFF413EZP.bigWig	Homo sapiens adrenal gland tissue male adult (26 years)
+ENCSR544YXV	/data/projects/encode/data/ENCSR544YXV/ENCFF769NLM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR544YXV/ENCFF682YDM.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 1 hour
+ENCSR545UJP	/data/projects/encode/data/ENCSR545UJP/ENCFF706APW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR545UJP/ENCFF116IVX.bigWig	Homo sapiens activated CD8-positive, alpha-beta T cell nuclear fraction male adult (21 years) treated with anti-CD3 and anti-CD28 coated beads for 7 days, 10 ng/mL Interleukin-2 for 5 days
+ENCSR548KIL	/data/projects/encode/data/ENCSR548KIL/ENCFF141QUY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR548KIL/ENCFF083NYF.bigWig	Homo sapiens adrenal gland tissue male adult (37 years)
+ENCSR551CSY	/data/projects/encode/data/ENCSR551CSY/ENCFF168WTX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR551CSY/ENCFF650BOQ.bigWig	Homo sapiens mesenteric fat pad tissue male adult (26 years)
+ENCSR552QUA	/data/projects/encode/data/ENCSR552QUA/ENCFF680JZM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR552QUA/ENCFF322GCT.bigWig	Homo sapiens posterior vena cava tissue female adult (47 years)
+ENCSR553LAZ	/data/projects/encode/data/ENCSR553LAZ/ENCFF994UIF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR553LAZ/ENCFF593JPB.bigWig	Homo sapiens adrenal gland tissue female child (16 years)
+ENCSR554WGQ	/data/projects/encode/data/ENCSR554WGQ/ENCFF817JLB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR554WGQ/ENCFF785KEG.bigWig	Homo sapiens HG03280
+ENCSR555ZDH	/data/projects/encode/data/ENCSR555ZDH/ENCFF899TQV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR555ZDH/ENCFF891GWZ.bigWig	Homo sapiens lower lobe of left lung tissue male adult (60 years)
+ENCSR558ZSN	/data/projects/encode/data/ENCSR558ZSN/ENCFF381CVI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR558ZSN/ENCFF347FGY.bigWig	Homo sapiens activated T-cell female adult (21 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR563ZNI	/data/projects/encode/data/ENCSR563ZNI/ENCFF012BKZ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR563ZNI/ENCFF342SSO.bigWig	Homo sapiens heart right ventricle tissue male adult (61 years)
+ENCSR580JBA	/data/projects/encode/data/ENCSR580JBA/ENCFF755FSW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR580JBA/ENCFF304QRZ.bigWig	Homo sapiens GM18868
+ENCSR587TRP	/data/projects/encode/data/ENCSR587TRP/ENCFF716JUM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR587TRP/ENCFF855TQX.bigWig	Homo sapiens SK-N-SH treated with 6 μM all-trans-retinoic acid for 48 hours
+ENCSR589ROM	/data/projects/encode/data/ENCSR589ROM/ENCFF033XTY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR589ROM/ENCFF972MSC.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 4 hours
+ENCSR591PIX	/data/projects/encode/data/ENCSR591PIX/ENCFF182SSP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR591PIX/ENCFF757YRZ.bigWig	Homo sapiens Panc1
+ENCSR593YFB	/data/projects/encode/data/ENCSR593YFB/ENCFF904QPU.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR593YFB/ENCFF649ZGT.bigWig	Homo sapiens heart left ventricle tissue female adult (42 years)
+ENCSR594TMY	/data/projects/encode/data/ENCSR594TMY/ENCFF735PGH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR594TMY/ENCFF435ZPU.bigWig	Homo sapiens HG03521
+ENCSR600ZHS	/data/projects/encode/data/ENCSR600ZHS/ENCFF009YES.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR600ZHS/ENCFF057BIJ.bigWig	Homo sapiens left colon tissue female adult (46 years)
+ENCSR603LVR	/data/projects/encode/data/ENCSR603LVR/ENCFF421XIL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR603LVR/ENCFF228BMJ.bigWig	Homo sapiens B cell male adult (22 years)
+ENCSR604YEQ	/data/projects/encode/data/ENCSR604YEQ/ENCFF354WTG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR604YEQ/ENCFF202SER.bigWig	Homo sapiens HG02884
+ENCSR605EGR	/data/projects/encode/data/ENCSR605EGR/ENCFF776QKF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR605EGR/ENCFF008XXR.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 30 minutes
+ENCSR607BTF	/data/projects/encode/data/ENCSR607BTF/ENCFF415YNL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR607BTF/ENCFF646EEM.bigWig	Homo sapiens right lobe of liver tissue male adult (45 years)
+ENCSR610AQP	/data/projects/encode/data/ENCSR610AQP/ENCFF888IRH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR610AQP/ENCFF509NWL.bigWig	Homo sapiens memory B cell male adult (40 years)
+ENCSR611BQR	/data/projects/encode/data/ENCSR611BQR/ENCFF721ZMU.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR611BQR/ENCFF121MUN.bigWig	Homo sapiens T-helper 17 cell male adult (50 years)
+ENCSR614JAG	/data/projects/encode/data/ENCSR614JAG/ENCFF555UEL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR614JAG/ENCFF483NBG.bigWig	Homo sapiens naive thymus-derived CD8-positive, alpha-beta T cell male adult (36 years)
+ENCSR615YIL	/data/projects/encode/data/ENCSR615YIL/ENCFF045HAH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR615YIL/ENCFF034VPU.bigWig	Homo sapiens HG03139
+ENCSR621JYI	/data/projects/encode/data/ENCSR621JYI/ENCFF061BAD.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR621JYI/ENCFF850URQ.bigWig	Homo sapiens HG02885
+ENCSR624CTU	/data/projects/encode/data/ENCSR624CTU/ENCFF797OZK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR624CTU/ENCFF052HOE.bigWig	Homo sapiens HG03520
+ENCSR624ODL	/data/projects/encode/data/ENCSR624ODL/ENCFF188RKV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR624ODL/ENCFF556YQA.bigWig	Homo sapiens left lobe of liver tissue female adult (61 years)
+ENCSR628PLS	/data/projects/encode/data/ENCSR628PLS/ENCFF439KAX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR628PLS/ENCFF169IGM.bigWig	Homo sapiens GM18861
+ENCSR630REB	/data/projects/encode/data/ENCSR630REB/ENCFF664YGN.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR630REB/ENCFF891TZE.bigWig	Homo sapiens tibial artery tissue male adult (54 years)
+ENCSR634WYX	/data/projects/encode/data/ENCSR634WYX/ENCFF305GXR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR634WYX/ENCFF043JFJ.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR635AIF	/data/projects/encode/data/ENCSR635AIF/ENCFF883YXV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR635AIF/ENCFF014EAL.bigWig	Homo sapiens GM19468
+ENCSR635CAC	/data/projects/encode/data/ENCSR635CAC/ENCFF837IEL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR635CAC/ENCFF606TIH.bigWig	Homo sapiens GM19467
+ENCSR637MUF	/data/projects/encode/data/ENCSR637MUF/ENCFF840HAH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR637MUF/ENCFF201ZLC.bigWig	Homo sapiens GM19035
+ENCSR637OPZ	/data/projects/encode/data/ENCSR637OPZ/ENCFF955PTL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR637OPZ/ENCFF881NFV.bigWig	Homo sapiens stimulated activated naive CD8-positive, alpha-beta T cell male adult (36 years) treated with 100 ng/mL Interleukin-15 for 72 hours, anti-CD3 and anti-CD28 coated beads for 72 hours
+ENCSR637XSC	/data/projects/encode/data/ENCSR637XSC/ENCFF748UZH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR637XSC/ENCFF603BJO.bigWig	Homo sapiens GM12878
+ENCSR641KNU	/data/projects/encode/data/ENCSR641KNU/ENCFF312JVA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR641KNU/ENCFF738JSK.bigWig	Homo sapiens GM21825
+ENCSR648JJT	/data/projects/encode/data/ENCSR648JJT/ENCFF544EIO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR648JJT/ENCFF597FGW.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 30 minutes
+ENCSR651SOJ	/data/projects/encode/data/ENCSR651SOJ/ENCFF065JHK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR651SOJ/ENCFF748LCE.bigWig	Homo sapiens adrenal gland tissue female adult (47 years)
+ENCSR653VSR	/data/projects/encode/data/ENCSR653VSR/ENCFF182JHG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR653VSR/ENCFF333YCC.bigWig	Homo sapiens stimulated activated naive B cell female adult (39 years) treated with 1 μg/mL anti-CD40 for 72 hours, 10 μg/mL anti-IgM for 72 hours, 100 ng/mL Interleukin-4 for 72 hours
+ENCSR659SFK	/data/projects/encode/data/ENCSR659SFK/ENCFF958SXF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR659SFK/ENCFF806WFB.bigWig	Homo sapiens activated B cell male adult (22 years) treated with 0.5 μM CpG ODN for 24 hours
+ENCSR660WSB	/data/projects/encode/data/ENCSR660WSB/ENCFF095ATB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR660WSB/ENCFF679DXT.bigWig	Homo sapiens DND-41
+ENCSR670REK	/data/projects/encode/data/ENCSR670REK/ENCFF007FAW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR670REK/ENCFF562MQW.bigWig	Homo sapiens gastroesophageal sphincter tissue female adult (53 years)
+ENCSR679NRJ	/data/projects/encode/data/ENCSR679NRJ/ENCFF985WZA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR679NRJ/ENCFF439WNC.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 1 hour
+ENCSR682ETE	/data/projects/encode/data/ENCSR682ETE/ENCFF052DWZ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR682ETE/ENCFF314RIZ.bigWig	Homo sapiens left lung tissue female child (16 years)
+ENCSR684KUG	/data/projects/encode/data/ENCSR684KUG/ENCFF937JGB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR684KUG/ENCFF946GAJ.bigWig	Homo sapiens GM18870
+ENCSR685OFR	/data/projects/encode/data/ENCSR685OFR/ENCFF424JEX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR685OFR/ENCFF577KRZ.bigWig	Homo sapiens naive B cell female adult (39 years)
+ENCSR685ZMP	/data/projects/encode/data/ENCSR685ZMP/ENCFF631JIS.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR685ZMP/ENCFF232QBB.bigWig	Homo sapiens right lobe of liver tissue female adult (41 years)
+ENCSR695FLC	/data/projects/encode/data/ENCSR695FLC/ENCFF580HLQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR695FLC/ENCFF840RIZ.bigWig	Homo sapiens mucosa of gallbladder tissue female child (16 years)
+ENCSR700HPA	/data/projects/encode/data/ENCSR700HPA/ENCFF647UDQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR700HPA/ENCFF227LPR.bigWig	Homo sapiens GM18499
+ENCSR704VZY	/data/projects/encode/data/ENCSR704VZY/ENCFF487GKW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR704VZY/ENCFF746MNC.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR705KEB	/data/projects/encode/data/ENCSR705KEB/ENCFF305BGH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR705KEB/ENCFF594OAL.bigWig	Homo sapiens pancreas tissue female adult (59 years)
+ENCSR706GDQ	/data/projects/encode/data/ENCSR706GDQ/ENCFF160DPC.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR706GDQ/ENCFF049TUN.bigWig	Homo sapiens GM19455
+ENCSR709QRD	/data/projects/encode/data/ENCSR709QRD/ENCFF010FOR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR709QRD/ENCFF729BQI.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR710SMN	/data/projects/encode/data/ENCSR710SMN/ENCFF252GCN.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR710SMN/ENCFF347YOH.bigWig	Homo sapiens heart right ventricle tissue female adult (58 years)
+ENCSR712ZRY	/data/projects/encode/data/ENCSR712ZRY/ENCFF693ODH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR712ZRY/ENCFF139KXZ.bigWig	Homo sapiens GM19463
+ENCSR718HWW	/data/projects/encode/data/ENCSR718HWW/ENCFF739WIV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR718HWW/ENCFF568OPL.bigWig	Homo sapiens activated CD8-positive, alpha-beta T cell male adult (21 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours
+ENCSR731ODJ	/data/projects/encode/data/ENCSR731ODJ/ENCFF515EVC.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR731ODJ/ENCFF330FOE.bigWig	Homo sapiens left cardiac atrium tissue female adult (58 years)
+ENCSR762YFD	/data/projects/encode/data/ENCSR762YFD/ENCFF690BFN.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR762YFD/ENCFF294PBK.bigWig	Homo sapiens GM18520
+ENCSR765MXG	/data/projects/encode/data/ENCSR765MXG/ENCFF379DHP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR765MXG/ENCFF799MDF.bigWig	Homo sapiens body of pancreas tissue male adult (54 years)
+ENCSR774NXA	/data/projects/encode/data/ENCSR774NXA/ENCFF252LJK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR774NXA/ENCFF962YQG.bigWig	Homo sapiens psoas muscle tissue female adult (61 years)
+ENCSR775KMA	/data/projects/encode/data/ENCSR775KMA/ENCFF089LSF.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR775KMA/ENCFF938UXR.bigWig	Homo sapiens activated T-cell male adult (38 years) treated with 50 U/mL Interleukin-2 for 4 hours, anti-CD3 and anti-CD28 coated beads for 4 hours
+ENCSR775SYU	/data/projects/encode/data/ENCSR775SYU/ENCFF824VXG.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR775SYU/ENCFF281ROQ.bigWig	Homo sapiens uterus tissue female adult (59 years)
+ENCSR808HWS	/data/projects/encode/data/ENCSR808HWS/ENCFF837LBW.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR808HWS/ENCFF918VRX.bigWig	Homo sapiens natural killer cell female adult (41 years) treated with 100 ng/mL Interleukin-18 for 72 hours, 100 ng/mL Interleukin-12 subunit beta for 72 hours, 100 ng/mL Interleukin-15 for 72 hours, 100 ng/mL Interleukin-12 subunit alpha for 72 hours
+ENCSR808ZMK	/data/projects/encode/data/ENCSR808ZMK/ENCFF480ITE.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR808ZMK/ENCFF512NCO.bigWig	Homo sapiens pancreas tissue female adult (41 years)
+ENCSR812ZKP	/data/projects/encode/data/ENCSR812ZKP/ENCFF594FVI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR812ZKP/ENCFF657SKW.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR821JHD	/data/projects/encode/data/ENCSR821JHD/ENCFF724WEK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR821JHD/ENCFF095RCU.bigWig	Homo sapiens HG02623
+ENCSR821QHC	/data/projects/encode/data/ENCSR821QHC/ENCFF731ZCZ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR821QHC/ENCFF624OOL.bigWig	Homo sapiens HG02642
+ENCSR824DUE	/data/projects/encode/data/ENCSR824DUE/ENCFF781JGR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR824DUE/ENCFF171LKM.bigWig	Homo sapiens HG03378
+ENCSR830ALP	/data/projects/encode/data/ENCSR830ALP/ENCFF350JTS.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR830ALP/ENCFF061KDF.bigWig	Homo sapiens activated T-cell male adult (43 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR833ACP	/data/projects/encode/data/ENCSR833ACP/ENCFF304LHI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR833ACP/ENCFF986NOL.bigWig	Homo sapiens HG03103
+ENCSR835WBW	/data/projects/encode/data/ENCSR835WBW/ENCFF557QED.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR835WBW/ENCFF245DIM.bigWig	Homo sapiens HG03565
+ENCSR836FIL	/data/projects/encode/data/ENCSR836FIL/ENCFF854ULK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR836FIL/ENCFF241ZLC.bigWig	Homo sapiens right lobe of liver tissue male adult (40 years)
+ENCSR839IAD	/data/projects/encode/data/ENCSR839IAD/ENCFF259FJX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR839IAD/ENCFF169PJA.bigWig	Homo sapiens GM19397
+ENCSR839UOB	/data/projects/encode/data/ENCSR839UOB/ENCFF831FGS.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR839UOB/ENCFF275WVZ.bigWig	Homo sapiens HG03432
+ENCSR841LHT	/data/projects/encode/data/ENCSR841LHT/ENCFF246KRE.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR841LHT/ENCFF681VRR.bigWig	Homo sapiens CD4-positive, alpha-beta T cell male adult (20 years)
+ENCSR846VLJ	/data/projects/encode/data/ENCSR846VLJ/ENCFF452WBJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR846VLJ/ENCFF784HME.bigWig	Homo sapiens sigmoid colon tissue female adult (53 years)
+ENCSR846VPV	/data/projects/encode/data/ENCSR846VPV/ENCFF085ASE.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR846VPV/ENCFF840TYL.bigWig	Homo sapiens heart left ventricle tissue female adult (66 years)
+ENCSR848TMJ	/data/projects/encode/data/ENCSR848TMJ/ENCFF067XXJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR848TMJ/ENCFF117WEV.bigWig	Homo sapiens heart left ventricle tissue male adult (69 years)
+ENCSR854TTM	/data/projects/encode/data/ENCSR854TTM/ENCFF986KHO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR854TTM/ENCFF971FBW.bigWig	Homo sapiens natural killer cell male adult (47 years) treated with 100 ng/mL Interleukin-12 subunit alpha for 72 hours, 100 ng/mL Interleukin-15 for 72 hours, 100 ng/mL Interleukin-12 subunit beta for 72 hours, 100 ng/mL Interleukin-18 for 72 hours
+ENCSR855BMI	/data/projects/encode/data/ENCSR855BMI/ENCFF119EAP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR855BMI/ENCFF684ZDU.bigWig	Homo sapiens Right ventricle myocardium inferior tissue male adult (60 years)
+ENCSR858GTE	/data/projects/encode/data/ENCSR858GTE/ENCFF474JMH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR858GTE/ENCFF556WEK.bigWig	Homo sapiens HG03442
+ENCSR859USB	/data/projects/encode/data/ENCSR859USB/ENCFF055NNT.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR859USB/ENCFF920FUW.bigWig	Homo sapiens K562
+ENCSR863TVR	/data/projects/encode/data/ENCSR863TVR/ENCFF754SOL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR863TVR/ENCFF964ISD.bigWig	Homo sapiens stimulated activated naive CD8-positive, alpha-beta T cell male adult (33 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 100 ng/mL Interleukin-15 for 72 hours
+ENCSR864ADD	/data/projects/encode/data/ENCSR864ADD/ENCFF590JRI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR864ADD/ENCFF854MVA.bigWig	Homo sapiens adrenal gland tissue female adult (41 years)
+ENCSR868FGK	/data/projects/encode/data/ENCSR868FGK/ENCFF333TAT.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR868FGK/ENCFF102ARJ.bigWig	Homo sapiens K562
+ENCSR872WGW	/data/projects/encode/data/ENCSR872WGW/ENCFF296ZZB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR872WGW/ENCFF259PSA.bigWig	Homo sapiens HCT116
+ENCSR886VCC	/data/projects/encode/data/ENCSR886VCC/ENCFF834CDO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR886VCC/ENCFF542SXR.bigWig	Homo sapiens psoas muscle tissue female adult (47 years)
+ENCSR890DWH	/data/projects/encode/data/ENCSR890DWH/ENCFF615ZFR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR890DWH/ENCFF458WHN.bigWig	Homo sapiens psoas muscle tissue female adult (41 years)
+ENCSR899YEP	/data/projects/encode/data/ENCSR899YEP/ENCFF308AVB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR899YEP/ENCFF676UJV.bigWig	Homo sapiens heart left ventricle tissue male adult (61 years)
+ENCSR901IEQ	/data/projects/encode/data/ENCSR901IEQ/ENCFF362ACP.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR901IEQ/ENCFF292DTL.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 4 hours
+ENCSR902CFR	/data/projects/encode/data/ENCSR902CFR/ENCFF637TQK.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR902CFR/ENCFF372XDM.bigWig	Homo sapiens GM21423
+ENCSR903WVU	/data/projects/encode/data/ENCSR903WVU/ENCFF839DEM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR903WVU/ENCFF527HBZ.bigWig	Homo sapiens naive B cell male adult (40 years)
+ENCSR904UKR	/data/projects/encode/data/ENCSR904UKR/ENCFF515SJI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR904UKR/ENCFF646ZGY.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 6 hours
+ENCSR905PWV	/data/projects/encode/data/ENCSR905PWV/ENCFF095HRI.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR905PWV/ENCFF171ZOI.bigWig	Homo sapiens HG02610
+ENCSR913OWV	/data/projects/encode/data/ENCSR913OWV/ENCFF201ZDJ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR913OWV/ENCFF347SHR.bigWig	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR915MTG	/data/projects/encode/data/ENCSR915MTG/ENCFF980APH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR915MTG/ENCFF566VPO.bigWig	Homo sapiens activated CD8-positive, alpha-beta memory T cell nuclear fraction male adult (30 years) treated with anti-CD3 and anti-CD28 coated beads for 7 days, 10 ng/mL Interleukin-2 for 5 days
+ENCSR917WJS	/data/projects/encode/data/ENCSR917WJS/ENCFF983UBQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR917WJS/ENCFF980AMP.bigWig	Homo sapiens GM18909
+ENCSR918TVE	/data/projects/encode/data/ENCSR918TVE/ENCFF707EUL.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR918TVE/ENCFF323APR.bigWig	Homo sapiens pancreas tissue female adult (47 years)
+ENCSR920FQJ	/data/projects/encode/data/ENCSR920FQJ/ENCFF388ZHA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR920FQJ/ENCFF221CEP.bigWig	Homo sapiens HG02938
+ENCSR923VTG	/data/projects/encode/data/ENCSR923VTG/ENCFF189LZA.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR923VTG/ENCFF538SJJ.bigWig	Homo sapiens lower lobe of right lung tissue male adult (60 years)
+ENCSR924SDV	/data/projects/encode/data/ENCSR924SDV/ENCFF717TCQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR924SDV/ENCFF178BCK.bigWig	Homo sapiens GM18498
+ENCSR925LGW	/data/projects/encode/data/ENCSR925LGW/ENCFF947DKR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR925LGW/ENCFF870BZD.bigWig	Homo sapiens heart left ventricle tissue female adult (59 years)
+ENCSR926GDT	/data/projects/encode/data/ENCSR926GDT/ENCFF729DET.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR926GDT/ENCFF943JEC.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 4 hours
+ENCSR926TFY	/data/projects/encode/data/ENCSR926TFY/ENCFF368UYH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR926TFY/ENCFF958OAB.bigWig	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 4 hours
+ENCSR934AWQ	/data/projects/encode/data/ENCSR934AWQ/ENCFF628SES.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR934AWQ/ENCFF146GWV.bigWig	Homo sapiens T-cell male adult (38 years)
+ENCSR940YDN	/data/projects/encode/data/ENCSR940YDN/ENCFF143WNQ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR940YDN/ENCFF766IFY.bigWig	Homo sapiens HG03159
+ENCSR946MAI	/data/projects/encode/data/ENCSR946MAI/ENCFF199BCX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR946MAI/ENCFF456PFX.bigWig	Homo sapiens left ventricle myocardium inferior tissue male adult (60 years)
+ENCSR948MQC	/data/projects/encode/data/ENCSR948MQC/ENCFF901RIY.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR948MQC/ENCFF634JAM.bigWig	Homo sapiens lower lobe of right lung tissue female adult (65 years)
+ENCSR952SPO	/data/projects/encode/data/ENCSR952SPO/ENCFF385DEZ.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR952SPO/ENCFF469MOB.bigWig	Homo sapiens right lobe of liver tissue female child (16 years)
+ENCSR954BDA	/data/projects/encode/data/ENCSR954BDA/ENCFF425ZPR.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR954BDA/ENCFF607UBE.bigWig	Homo sapiens GM21529
+ENCSR956DNB	/data/projects/encode/data/ENCSR956DNB/ENCFF842UZU.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR956DNB/ENCFF798GCW.bigWig	Homo sapiens K562
+ENCSR960KGO	/data/projects/encode/data/ENCSR960KGO/ENCFF610VJM.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR960KGO/ENCFF186BYJ.bigWig	Homo sapiens GM21515
+ENCSR962ITF	/data/projects/encode/data/ENCSR962ITF/ENCFF876EEH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR962ITF/ENCFF942LRJ.bigWig	Homo sapiens HG03108
+ENCSR970UNF	/data/projects/encode/data/ENCSR970UNF/ENCFF081FUV.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR970UNF/ENCFF641HAD.bigWig	Homo sapiens colonic mucosa tissue female adult (41 years)
+ENCSR977LVI	/data/projects/encode/data/ENCSR977LVI/ENCFF273DGN.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR977LVI/ENCFF814ZWG.bigWig	Homo sapiens T-cell female adult (21 years)
+ENCSR983HXF	/data/projects/encode/data/ENCSR983HXF/ENCFF792EFB.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR983HXF/ENCFF133HQE.bigWig	Homo sapiens activated naive CD8-positive, alpha-beta T cell nuclear fraction male adult (30 years) treated with anti-CD3 and anti-CD28 coated beads for 7 days, 10 ng/mL Interleukin-2 for 5 days
+ENCSR990NNX	/data/projects/encode/data/ENCSR990NNX/ENCFF906HOT.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR990NNX/ENCFF138FYP.bigWig	Homo sapiens upper lobe of right lung tissue male adult (60 years)
+ENCSR991PBP	/data/projects/encode/data/ENCSR991PBP/ENCFF418SHH.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR991PBP/ENCFF858UDC.bigWig	Homo sapiens activated CD4-positive, alpha-beta T cell male adult (20 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours
+ENCSR993XED	/data/projects/encode/data/ENCSR993XED/ENCFF025DBX.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR993XED/ENCFF396WBB.bigWig	Homo sapiens activated T-cell male adult (38 years) treated with 50 U/mL Interleukin-2 for 4 hours, anti-CD3 and anti-CD28 coated beads for 4 hours
+ENCSR996ZCR	/data/projects/encode/data/ENCSR996ZCR/ENCFF380AEO.bed.gz	/zata/data/zlab/projects/encode/data/ENCSR996ZCR/ENCFF830ZZA.bigWig	Homo sapiens ovary tissue female adult (46 years)
