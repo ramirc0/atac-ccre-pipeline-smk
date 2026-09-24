@@ -1,22 +1,8 @@
 include: "rules/common.smk"
-include: "rules/ENCODE_make_filtered_list.smk"
-include: "rules/ENCODE_prepare_peaks.smk"
-include: "rules/CUSTOM_prepare_peaks.smk"
-include: "rules/merge_preped_peaks.smk"
-
-include: "rules/ATAC_cluster_rPeaks.smk"
-include: "rules/ATAC_filter_rPeaks_no_rdhs_mappable.smk"
-include: "rules/ATAC_make_summary_and_accession.smk"
-include: "rules/add_new_anchors.smk"
-
-include: "rules/CUSTOM_Zscore_across_bw.smk"
-include: "rules/ENCODE_Zscore_across_bw.smk"
-include: "rules/ENCODE_Zscore_across_DNase.smk"
-
-include: "rules/call_maxZ.smk"
-
-
-include: "rules/call_ATAC_cCREs.smk"
+include: "rules/sources.smk"
+include: "rules/peaks.smk"
+include: "rules/zscore.smk"
+include: "rules/ccres.smk"
 
 
 rule all:

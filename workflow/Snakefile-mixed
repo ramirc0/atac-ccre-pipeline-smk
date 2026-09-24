@@ -322,12 +322,6 @@ rule mixed_zscore_across_bw:
         """
 
 
-include: "rules/ATAC_cluster_rPeaks.smk"
-include: "rules/ATAC_filter_rPeaks_no_rdhs_mappable.smk"
-include: "rules/ATAC_make_summary_and_accession.smk"
-include: "rules/add_new_anchors.smk"
-include: "rules/call_maxZ.smk"
-include: "rules/call_ATAC_cCREs.smk"
-
-if config.get("include_dnase", True):
-    include: "rules/ENCODE_Zscore_across_DNase.smk"
+include: "rules/peaks.smk"
+include: "rules/zscore.smk"
+include: "rules/ccres.smk"
