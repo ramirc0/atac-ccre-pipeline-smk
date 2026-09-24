@@ -161,10 +161,9 @@ rule accession_rpeaks:
         r"""
         exec &> >(tee {log:q})
 
-        python workflow/scripts/make-region-accession.py \
-            {input:q} \
-            {params.genome:q} \
-            ATAC \
+        python workflow/scripts/accession_regions.py {input:q} \
+            --genome {params.genome:q} \
+            --mode ATAC \
             > {output.summary:q}
 
         awk 'BEGIN{{OFS="\t"}} {{print $1, $2, $3, $NF}}' \
