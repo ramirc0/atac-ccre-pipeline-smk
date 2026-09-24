@@ -16,6 +16,8 @@ rule ENCODE_make_filtered_ATAC_list:
     benchmark:
         f"{RESULTS_DIR}/benchmarks/ENCODE_make_filtered_ATAC_list.tsv"
 
+    conda:
+        CONDA_ENV
     shell:
         r"""
         python -u {params.TOOLKIT}/pull-atac-experiments.py {params.genome} > {params.work_dir}/test.txt 2> {log}
@@ -167,6 +169,8 @@ rule CUSTOM_prepare_peaks:
         f"{config['log_dir']}/CUSTOM_prepare_peaks.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/CUSTOM_prepare_peaks.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -190,6 +194,8 @@ rule merge_preped_peaks:
         f"{config['log_dir']}/MERGED_preped_peaks.log",
     benchmark:
         f"{RESULTS_DIR}/benchmarks/merge_preped_peaks.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         set -euo pipefail

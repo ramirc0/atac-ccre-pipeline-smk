@@ -10,6 +10,8 @@ rule call_maxZ_ATAC:
         f"{LOG_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ-ATAC.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/call_max-ATAC.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -29,6 +31,8 @@ rule call_maxZ_DNase:
         f"{LOG_DIR}/{PREFIX}_{GENOME}-ATAC-maxZ-DNase.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/call_maxZ-DNASE.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -52,6 +56,8 @@ rule call_ATAC_cCREs:
         f"{LOG_DIR}/{PREFIX}_{GENOME}-cCREs.log",
     benchmark:
         f"{RESULTS_DIR}/benchmarks/call_cCREs_with_ATAC.tsv",
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})

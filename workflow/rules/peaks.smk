@@ -11,6 +11,8 @@ rule ATAC_cluster_rPeaks:
         f"{config['log_dir']}/{{prefix}}_atac_cluster_rPeaks.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/{{prefix}}_ATAC_cluster_rPeaks.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -78,6 +80,8 @@ rule ATAC_filter_rPeaks:
         f"{config['log_dir']}/{{prefix}}_atac_filter_rPeaks_no_rdhs_mappable.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/{{prefix}}_ATAC_filter_rPeaks_no_rdhs_mappable.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -120,6 +124,8 @@ rule ATAC_make_summary_and_accession:
         genome=GENOME,
     benchmark:
         f"{RESULTS_DIR}/benchmarks/{{prefix}}_ATAC_make_summary_and_accession.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -146,6 +152,8 @@ rule add_new_anchors:
         f"{LOG_DIR}/{{prefix}}_add_new_anchors.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/{{prefix}}_add_new_anchors.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})

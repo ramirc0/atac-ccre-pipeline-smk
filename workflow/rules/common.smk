@@ -11,6 +11,9 @@ LOG_DIR = os.path.normpath(os.path.join(WORK_DIR, config["log_dir"]))
 TMP_DIR = config["tmp_dir"]
 TOOLKIT = config["TOOLKIT"]
 
+# Absolute so conda: resolves the same from any rule file.
+CONDA_ENV = str(Path(workflow.basedir) / "envs" / "env.yaml")
+
 Path(RESULTS_DIR).mkdir(parents=True, exist_ok=True)
 Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
 

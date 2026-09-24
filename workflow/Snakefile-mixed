@@ -24,6 +24,7 @@ config["ouput_dir"] = RESULTS_DIR
 LOG_DIR = os.path.normpath(os.path.join(WORK_DIR, config.get("log_dir", "logs-mixed")))
 TMP_DIR = config.get("tmp_dir", "/tmp")
 ENCODE_DATA_DIR = "/zata/data/zlab/projects/encode/data"
+CONDA_ENV = str(Path(workflow.basedir) / "envs" / "env.yaml")
 TOOLKIT = config["TOOLKIT"]
 GENOME = config.get("genome", "hg38")
 PREFIX = config.get("prefix", "MIXED")

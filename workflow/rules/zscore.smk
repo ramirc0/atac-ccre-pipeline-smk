@@ -13,6 +13,8 @@ rule anchor_regions:
         f"{LOG_DIR}/{PREFIX}_anchor_regions.log",
     benchmark:
         f"{RESULTS_DIR}/benchmarks/{PREFIX}_anchor_regions.tsv",
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -41,6 +43,8 @@ rule CUSTOM_Zscore_across_bw:
         f"{LOG_DIR}/bw_zscoring/custom-{{sample}}.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/bw_zscoring/custom-{{sample}}.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -71,6 +75,8 @@ rule ENCODE_Zscore_across_bw:
         f"{LOG_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/bw_zscoring/encode-{{experiment}}_{{file}}.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -101,6 +107,8 @@ rule ENCODE_Zscore_across_DNase:
         f"{LOG_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.log"
     benchmark:
         f"{RESULTS_DIR}/benchmarks/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.tsv"
+    conda:
+        CONDA_ENV
     shell:
         r"""
         exec &> >(tee {log:q})

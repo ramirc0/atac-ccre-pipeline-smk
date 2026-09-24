@@ -9,3 +9,5 @@ resources/CUSTOM_ATAC_List_*.txt
 __pycache__/
 scratch/
 .worktrees/
+.conda/
+benchmarks/
