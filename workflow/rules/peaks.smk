@@ -66,7 +66,7 @@ rule cluster_rpeaks:
                 -o collapse,collapse \
                 > "$workdir/tmp.merge"
 
-            python workflow/scripts/pick-best-peak.py "$workdir/tmp.merge" > "$workdir/tmp.peak-list"
+            python workflow/scripts/pick_best_peak.py "$workdir/tmp.merge" > "$workdir/tmp.peak-list"
 
             awk -F "\t" \
                 'FNR==NR {{x[$1]; next}} ($14 in x)' \
