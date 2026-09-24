@@ -44,6 +44,36 @@ Not copied. Read in place.
 - CUSTOM ATAC narrowPeaks and bigWigs: `/zata/data/zlab/zusers/campbellm/t1d/`
 - ENCODE data: `/data/projects/encode/`. The DNase rules use `/zata/data/zlab/projects/encode/data`, the same directory.
 
+## Preflight scripts
+
+Run once, outside the pipeline. Their outputs are committed and read as pipeline inputs.
+
+### `workflow/scripts/encode_atac_samples.py`
+
+Selects ENCODE ATAC-seq samples from an [encode-metadata](../encode-metadata-smk) snapshot. It replaces the live ENCODE API pull.
+
+- Experiments: released, unperturbed *Homo sapiens* ATAC-seq.
+- Peak: the released GRCh38 `preferred_default` narrowPeak.
+- BigWig: the released GRCh38 fold-change bigWig from the experiment's `default_analysis` that covers the most replicates (the pooled track).
+- Filters: FRiP of the peak file `>= 0.2`. `--min-reads` (usable fragments) is off by default.
+- Fails if a chosen file is missing from the local ENCODE mirror.
+
+```sh
+S=~/Projects/encode-metadata-smk/results/2026-09-23/parquets
+python workflow/scripts/encode_atac_samples.py $S \
+    --output resources/encode-atac.2026-09-23.tsv \
+    --legacy-output resources/encode-atac.2026-09-23.legacy.txt
+```
+
+Outputs, both tracked in git:
+
+| File | Contents |
+|---|---|
+| `resources/encode-atac.2026-09-23.tsv` | sample sheet: `sample_id`, `narrowpeak`, `bigwig`, `biosample` |
+| `resources/encode-atac.2026-09-23.legacy.txt` | headerless experiment, peak, bigWig, biosample; the list the original pipeline reads |
+
+The 2026-09-23 snapshot gives 273 of 369 experiments. That's the same set and peak files as the May 2026 API pull.
+
 ## Sample lists
 
 `resources/CUSTOM_ATAC_List_{bw,narrowpeaks}_2026-08-25_0.2_25000000_orbonus_50per.txt` are copied from `/zata/zippy/campbellm/snakemake_atac_ccres/resources/` for `config-02_25m.yaml`. They are not tracked in git. They will be deprecated once test samples for pipeline development are chosen.
