@@ -32,18 +32,11 @@ rule anchor_regions:
 rule CUSTOM_Zscore_across_bw:
     input:
         regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
+        bigwig=lambda wc: CUSTOM_BIGWIGS[wc.sample],
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring/custom-{{sample}}.parquet",
     params:
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
-        bw=lambda wc: (
-            pd.read_csv(
-                    config["CUSTOM_data_bw_info"],
-                    sep="\t",
-                    header=None,
-                    usecols=[0, 1],
-            ).set_index(0).loc[wc.sample, 1]
-        ),
     log:
         f"{LOG_DIR}/bw_zscoring/custom-{{sample}}.log"
     shell:
@@ -56,15 +49,9 @@ rule CUSTOM_Zscore_across_bw:
         trap 'rm -rf "$workdir"' EXIT
 
         echo "Processing custom sample: {wildcards.sample}" > {log}
-        echo "BigWig: {params.bw}" >> {log}
-
-        if [[ ! -f "{params.bw}" ]]; then
-            echo "ERROR: Missing bigWig: {params.bw}" >> {log}
-            exit 1
-        fi
 
         {params.bigwigAverageOverBed} \
-            "{params.bw}" \
+            {input.bigwig:q} \
             {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
 
@@ -78,11 +65,10 @@ rule CUSTOM_Zscore_across_bw:
 rule ENCODE_Zscore_across_bw:
     input:
         regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
+        bigwig=f"{ENCODE_DATA_DIR}/{{experiment}}/{{file}}.bigWig",
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.parquet",
     params:
-        dataDir="/zata/data/zlab/projects/encode/data",
-        toolkit=config['TOOLKIT'],
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
     log:
         f"{LOG_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.log"
@@ -97,22 +83,8 @@ rule ENCODE_Zscore_across_bw:
 
         echo "Processing {wildcards.experiment} / {wildcards.file}" > {log}
 
-        bw="{params.dataDir}/{wildcards.experiment}/{wildcards.file}.bigWig"
-
-        if [[ ! -f "$bw" ]]; then
-            echo "BigWig not found locally. Downloading {wildcards.file}" >> {log}
-            python "{params.toolkit}/download-portal-file.py" \
-                "{wildcards.file}" bigWig "$workdir" >> {log} 2>&1
-            bw="$workdir/{wildcards.file}.bigWig"
-        fi
-
-        if [[ ! -f "$bw" ]]; then
-            echo "ERROR: Could not find bigWig: $bw" >> {log}
-            exit 1
-        fi
-
         {params.bigwigAverageOverBed} \
-            "$bw" \
+            {input.bigwig:q} \
             {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
 
@@ -125,11 +97,10 @@ rule ENCODE_Zscore_across_bw:
 rule ENCODE_Zscore_across_DNase:
     input:
         regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
+        bigwig=f"{ENCODE_DATA_DIR}/{{experiment}}/{{file}}.bigWig",
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.parquet",
     params:
-        dataDir="/zata/data/zlab/projects/encode/data",
-        toolkit=config['TOOLKIT'],
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
     log:
         f"{LOG_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.log"
@@ -144,22 +115,8 @@ rule ENCODE_Zscore_across_DNase:
 
         echo "Processing {wildcards.experiment} / {wildcards.file}" > {log}
 
-        bw="{params.dataDir}/{wildcards.experiment}/{wildcards.file}.bigWig"
-
-        if [[ ! -f "$bw" ]]; then
-            echo "BigWig not found locally. Downloading {wildcards.file}" >> {log}
-            python "{params.toolkit}/download-portal-file.py" \
-                "{wildcards.file}" bigWig "$workdir" >> {log} 2>&1
-            bw="$workdir/{wildcards.file}.bigWig"
-        fi
-
-        if [[ ! -f "$bw" ]]; then
-            echo "ERROR: Could not find bigWig: $bw" >> {log}
-            exit 1
-        fi
-
         {params.bigwigAverageOverBed} \
-            "$bw" \
+            {input.bigwig:q} \
             {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
 

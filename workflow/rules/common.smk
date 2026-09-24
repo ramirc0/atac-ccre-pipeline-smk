@@ -68,6 +68,19 @@ if CUSTOM_INCLUDED:
         .iter_rows()
     )
 
+# sample -> bigWig path.
+CUSTOM_BIGWIGS = {}
+if CUSTOM_INCLUDED:
+    CUSTOM_BIGWIGS = dict(
+        pl.read_csv(
+            config["CUSTOM_data_bw_info"], separator="\t", has_header=False, infer_schema_length=0
+        )
+        .select(pl.nth(0), pl.nth(1))
+        .iter_rows()
+    )
+
+ENCODE_DATA_DIR = "/zata/data/zlab/projects/encode/data"
+
 intermediate_DNase_files = []
 
 encode_dnase = pd.read_csv(
