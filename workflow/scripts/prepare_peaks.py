@@ -28,12 +28,13 @@ def build_parser():
     p = argparse.ArgumentParser(description="Standardize narrowPeak files.")
     p.add_argument("--peaks", nargs="+", required=True, help="narrowPeak files.")
     p.add_argument("--samples", nargs="+", required=True, help="Sample id per file.")
+    p.add_argument("--biosamples", nargs="+", help="Biosample per file (default: sample id).")
     p.add_argument("--target", default="ATAC", help="Target column value.")
     p.add_argument("-o", "--output", required=True, help="Peak BED to write.")
     return p
 
 
-def standardize(path, sample, target):
+def standardize(path, sample, biosample, target):
     """Read one narrowPeak file and return its standardized peaks."""
     width = pl.col("end") - pl.col("start")
     summit = pl.col("start") + pl.col("peak")
@@ -62,7 +63,7 @@ def standardize(path, sample, target):
             .alias("end"),
             pl.lit(sample).alias("exp"),
             pl.lit(target).alias("target"),
-            pl.lit(sample).alias("biosample"),
+            pl.lit(biosample).alias("biosample"),
             (pl.lit(f"{sample}-") + pl.col("row_nr").cast(pl.Utf8)).alias("unique_id"),
         )
         .drop("row_nr")
@@ -73,13 +74,14 @@ def standardize(path, sample, target):
 def main(argv=None):
     """Standardize every sample's peaks and write them in input order."""
     args = build_parser().parse_args(argv)
-    if len(args.peaks) != len(args.samples):
-        raise SystemExit("--peaks and --samples must have the same length.")
+    biosamples = args.biosamples or args.samples
+    if not len(args.peaks) == len(args.samples) == len(biosamples):
+        raise SystemExit("--peaks, --samples and --biosamples must have the same length.")
 
     with open(args.output, "w") as out:
-        for path, sample in zip(args.peaks, args.samples):
+        for path, sample, biosample in zip(args.peaks, args.samples, biosamples):
             print(f"{sample}: {path}")
-            standardize(path, sample, args.target).write_csv(
+            standardize(path, sample, biosample, args.target).write_csv(
                 out, separator="\t", include_header=False
             )
 

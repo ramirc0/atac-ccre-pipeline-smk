@@ -11,3 +11,4 @@ scratch/
 .worktrees/
 .conda/
 benchmarks/
+*_parity/

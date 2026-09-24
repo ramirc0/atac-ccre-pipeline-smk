@@ -83,6 +83,18 @@ if CUSTOM_INCLUDED:
     )
 
 ENCODE_DATA_DIR = "/zata/data/zlab/projects/encode/data"
+ENCODE_PEAK_DIR = "/data/projects/encode/data"
+
+# ENCODE ATAC list (experiment, peak, bigWig, biosample), in list order.
+ENCODE_ATAC = []
+if ENCODE_INCLUDED:
+    ENCODE_ATAC = list(
+        pl.read_csv(
+            config["encode_atac_list"], separator="\t", has_header=False, infer_schema_length=0
+        )
+        .select(pl.nth(0, 1, 3))
+        .iter_rows()
+    )
 
 intermediate_DNase_files = []
 
