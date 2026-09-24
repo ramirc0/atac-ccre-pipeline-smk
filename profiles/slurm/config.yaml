@@ -36,10 +36,10 @@ set-resources:              # from benchmarks/; ENCODE-scale peak sets need ~3x
     mem_mb: 4000 * attempt
   call_ccres:
     mem_mb: 4000 * attempt
-  fragment_call_peaks:
-    slurm_partition: 4hours
-    mem_mb: 32000 * attempt
-    runtime: 120m
+  fragment_call_peaks:        # ~1h45m, 11 GB for 319M fragments
+    slurm_partition: 12hours
+    mem_mb: 24000 * attempt
+    runtime: 360m
   fragment_bigwig:
     slurm_partition: 4hours
     mem_mb: 16000 * attempt
