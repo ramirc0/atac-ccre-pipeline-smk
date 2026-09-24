@@ -121,21 +121,3 @@ B=resources/CUSTOM_ATAC_List_bw_2026-08-25_0.2_25000000_orbonus_50per.txt
   awk -F'\t' 'BEGIN{OFS="\t"} NR==FNR{bw[$1]=$2; next} FNR>1{print $1, $2, bw[$1]}' $B $N
 } > config/samples-custom-2026-08-25.tsv
 ```
-
-## Parity with the original pipeline
-
-`parity/` checks this workflow against runs of the colleague's original code (tag `baseline`).
-
-- `parity/configs/{custom,encode,merged}.yaml`: the three source modes.
-- `parity/compare.py GOLDEN NEW -m parity/refactor.tsv --prefix CUSTOM`: file-by-file comparison.
-  BEDs must be byte-identical, z-scores numerically equal. `;`-joined set columns are compared as
-  sets, because the original joined them in hash order.
-- `parity/dryrun.sh`: normalized forced dry run, for diffing two versions' commands.
-
-Golden runs:
-
-| Mode | Directory |
-|---|---|
-| CUSTOM | `/zata/zippy/campbellm/snakemake_atac_ccres/BETA_islet_CUSTOM_ATAC_List_bw_2026-08-25/` |
-| ENCODE | `/zata/zippy/ramirezc/ccre-golden/encode/` (branch `golden-encode`) |
-| MERGED | `/zata/zippy/ramirezc/ccre-golden/merged/` (branch `golden-encode`) |
