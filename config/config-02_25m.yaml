@@ -26,7 +26,7 @@ work_dir: "."
 ouput_dir: "BETA_islet_CUSTOM_ATAC_List_bw_2026-08-25" 
 log_dir: "logs" 
 tmp_dir: "/tmp"
-TOOLKIT : "Toolkit"
+TOOLKIT: "workflow/scripts"
 
 
 plot_top_and_bottom_n: True

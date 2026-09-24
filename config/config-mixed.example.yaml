@@ -23,7 +23,7 @@ macs3: "macs3"
 bedGraphToBigWig: "bedGraphToBigWig"
 bigWigAverageOverBed: "/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed"
 
-TOOLKIT: "Toolkit"
+TOOLKIT: "workflow/scripts"
 ccre_path: "resources/GRCh38-cCREs.bed"
 rdhs_path: "resources/GRCh38-Anchors.bed"
 mappable: "resources/k100.Unique.Mappability.bed"

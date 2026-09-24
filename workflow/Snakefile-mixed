@@ -322,12 +322,12 @@ rule mixed_zscore_across_bw:
         """
 
 
-include: "workflow/ATAC_cluster_rPeaks.smk"
-include: "workflow/ATAC_filter_rPeaks_no_rdhs_mappable.smk"
-include: "workflow/ATAC_make_summary_and_accession.smk"
-include: "workflow/add_new_anchors.smk"
-include: "workflow/call_maxZ.smk"
-include: "workflow/call_ATAC_cCREs.smk"
+include: "rules/ATAC_cluster_rPeaks.smk"
+include: "rules/ATAC_filter_rPeaks_no_rdhs_mappable.smk"
+include: "rules/ATAC_make_summary_and_accession.smk"
+include: "rules/add_new_anchors.smk"
+include: "rules/call_maxZ.smk"
+include: "rules/call_ATAC_cCREs.smk"
 
 if config.get("include_dnase", True):
-    include: "workflow/ENCODE_Zscore_across_DNase.smk"
+    include: "rules/ENCODE_Zscore_across_DNase.smk"

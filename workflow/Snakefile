@@ -73,28 +73,28 @@ for _, row in encode_dnase.iterrows():
         f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{row['experiment']}_{row['file']}.txt"
     )
 
-include: "workflow/ENCODE_make_filtered_list.smk"
-include: "workflow/ENCODE_prepare_peaks.smk"
-include: "workflow/CUSTOM_prepare_peaks.smk"
-include: "workflow/merge_preped_peaks.smk"
+include: "rules/ENCODE_make_filtered_list.smk"
+include: "rules/ENCODE_prepare_peaks.smk"
+include: "rules/CUSTOM_prepare_peaks.smk"
+include: "rules/merge_preped_peaks.smk"
 
-include: "workflow/ATAC_cluster_rPeaks.smk"
-include: "workflow/ATAC_filter_rPeaks_no_rdhs_mappable.smk"
-include: "workflow/ATAC_make_summary_and_accession.smk"
-include: "workflow/add_new_anchors.smk"
+include: "rules/ATAC_cluster_rPeaks.smk"
+include: "rules/ATAC_filter_rPeaks_no_rdhs_mappable.smk"
+include: "rules/ATAC_make_summary_and_accession.smk"
+include: "rules/add_new_anchors.smk"
 
-include: "workflow/CUSTOM_Zscore_across_bw.smk"
-include: "workflow/ENCODE_Zscore_across_bw.smk"
-include: "workflow/ENCODE_Zscore_across_DNase.smk"
+include: "rules/CUSTOM_Zscore_across_bw.smk"
+include: "rules/ENCODE_Zscore_across_bw.smk"
+include: "rules/ENCODE_Zscore_across_DNase.smk"
 
-include: "workflow/call_maxZ.smk"
-
-
-include: "workflow/call_ATAC_cCREs.smk"
+include: "rules/call_maxZ.smk"
 
 
-include: "workflow/call_maxZ_ATAC_extended_data.smk"
-include: "workflow/plot_extended_data.smk"
+include: "rules/call_ATAC_cCREs.smk"
+
+
+include: "rules/call_maxZ_ATAC_extended_data.smk"
+include: "rules/plot_extended_data.smk"
 
 
 # plots=[]
