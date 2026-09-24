@@ -8,7 +8,15 @@ references:
   ccres: resources/GRCh38-cCREs.bed
   rdhs: resources/GRCh38-Anchors.bed
   blacklist: /data/zusers/ramirezc/static/ENCFF356LFX.bed
+  chrom_sizes: /zata/data/zlab/common/genome/hg38.minimal.chrom.sizes  # fragment rows only
 
 dnase:                       # null skips DNase max-Z
   list: resources/ENCODE-DNase-List.txt
   data_dir: /zata/data/zlab/projects/encode/data
+
+# Fragment rows only (samples with a `fragments` column).
+macs3:
+  genome_size: hs
+  qvalue: 0.01
+  max_count: all             # FRAG only: integer cap on the fragment count column
+  extra: []                  # additional callpeak flags, one list item each

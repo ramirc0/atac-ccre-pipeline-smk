@@ -1,33 +1,22 @@
-# Separate fragment + bulk entry point. The original config files are unchanged.
+samples: parity/mixed/samples.tsv
+outdir: results
+run_id: parity-mixed
+conda_env: workflow/envs/env.yaml
+genome: hg38                 # accession prefix: hg19, hg38 or mm10
 
-sample_manifest: "parity/mixed/inputs.tsv"
+references:
+  ccres: resources/GRCh38-cCREs.bed
+  rdhs: resources/GRCh38-Anchors.bed
+  blacklist: /data/zusers/ramirezc/static/ENCFF356LFX.bed
+  chrom_sizes: /zata/data/zlab/common/genome/hg38.minimal.chrom.sizes  # fragment rows only
 
-work_dir: "."
-output_dir: "MIXED_parity"
-log_dir: "logs-mixed"
-tmp_dir: "/tmp"
-prefix: "MIXED"
+dnase:                       # null skips DNase max-Z
+  list: resources/ENCODE-DNase-List.txt
+  data_dir: /zata/data/zlab/projects/encode/data
 
-genome: "hg38"
-macs3_genome_size: "hs"
-macs3_qvalue: 0.01
-# FRAG preserves the fragment count column. Set an integer to cap it, or "all".
-macs3_max_count: "all"
-macs3_extra: ""
-
-# Required for clipping and converting MACS3 bedGraph output to BigWig.
-chrom_sizes: "/zata/data/zlab/common/genome/hg38.minimal.chrom.sizes"
-
-# Executable names can be replaced with absolute paths or environment wrappers.
-macs3: "macs3"
-bedGraphToBigWig: "bedGraphToBigWig"
-bigWigAverageOverBed: "/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed"
-
-TOOLKIT: "workflow/scripts"
-ccre_path: "resources/GRCh38-cCREs.bed"
-rdhs_path: "resources/GRCh38-Anchors.bed"
-mappable: "resources/k100.Unique.Mappability.bed"
-
-# Preserve the DNase max-Z output produced by the original workflow.
-include_dnase: true
-encode_DNase_list: "resources/ENCODE-DNase-List.txt"
+# Fragment rows only (samples with a `fragments` column).
+macs3:
+  genome_size: hs
+  qvalue: 0.01
+  max_count: all             # FRAG only: integer cap on the fragment count column
+  extra: []                  # additional callpeak flags, one list item each

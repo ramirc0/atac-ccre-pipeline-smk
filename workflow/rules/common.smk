@@ -27,7 +27,8 @@ def _read_sheets(paths):
         if not Path(p).exists():
             raise WorkflowError(
                 f"Sample sheet not found: {p}\n"
-                "Columns: sample_id, narrowpeak, bigwig, [biosample]; "
+                "Columns: sample_id, narrowpeak, bigwig, [biosample, fragments, "
+                "fragment_format]; "
                 "see config/samples.example.tsv."
             )
     return pl.concat(
@@ -54,8 +55,22 @@ def _column(name):
 
 
 SAMPLES = _manifest["sample_id"].to_list()
-NARROWPEAK_OF = _column("narrowpeak")
-BIGWIG_OF = _column("bigwig")
+FRAGMENTS_OF = {s: f for s, f in _column("fragments").items() if f}
+FRAGMENT_FORMAT_OF = _column("fragment_format")
+
+# Fragment rows get their narrowPeak and bigWig from rules/fragments.smk.
+NARROWPEAK_OF = {
+    **_column("narrowpeak"),
+    **{s: f"{OUTDIR}/fragments/{s}/{s}_peaks.narrowPeak" for s in FRAGMENTS_OF},
+}
+BIGWIG_OF = {
+    **_column("bigwig"),
+    **{s: f"{OUTDIR}/fragments/{s}/{s}_FE.bw" for s in FRAGMENTS_OF},
+}
+_incomplete = [s for s in SAMPLES if not (NARROWPEAK_OF.get(s) and BIGWIG_OF.get(s))]
+if _incomplete:
+    raise WorkflowError(f"Samples need fragments, or narrowpeak and bigwig: {_incomplete}")
+
 _biosample = _column("biosample")
 BIOSAMPLE_OF = {s: _biosample.get(s) or s for s in SAMPLES}
 
@@ -73,6 +88,18 @@ if config.get("dnase"):
 
 # assay -> id -> bigWig, for the z-score rule.
 BIGWIGS = {"ATAC": BIGWIG_OF, "DNase": DNASE_BIGWIG_OF}
+
+
+def macs3_flags(sample):
+    """config['macs3'] + the sample's fragment format -> macs3 callpeak flags."""
+    m = config["macs3"]
+    fmt = (FRAGMENT_FORMAT_OF.get(sample) or "FRAG").upper()
+    if fmt not in ("FRAG", "BEDPE"):
+        raise WorkflowError(f"{sample}: fragment_format must be FRAG or BEDPE, not {fmt}")
+    flags = ["-f", fmt, "-g", str(m["genome_size"]), "-q", str(m["qvalue"])]
+    if fmt == "FRAG" and m["max_count"] != "all":
+        flags += ["--max-count", str(m["max_count"])]
+    return flags + list(m["extra"])
 
 
 wildcard_constraints:
