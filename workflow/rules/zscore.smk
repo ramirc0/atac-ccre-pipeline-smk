@@ -65,7 +65,6 @@ rule CUSTOM_Zscore_across_bw:
         fi
 
         {params.bigwigAverageOverBed} \
-            -bedOut="$workdir/out2.bed" \
             "{params.bw}" \
             {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
@@ -127,7 +126,6 @@ rule ENCODE_Zscore_across_bw:
         fi
 
         {params.bigwigAverageOverBed} \
-            -bedOut="$workdir/out2.bed" \
             "$bw" \
             {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
@@ -187,7 +185,6 @@ rule ENCODE_Zscore_across_DNase:
         fi
 
         {params.bigwigAverageOverBed} \
-            -bedOut="$workdir/out2.bed" \
             "$bw" \
             {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
