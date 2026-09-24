@@ -1,9 +1,37 @@
 # Per-bigWig z-scores over anchors.
 
 
+# Anchor regions scored by every bigWig: deduplicated, widened by `width`.
+rule anchor_regions:
+    input:
+        f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
+    output:
+        f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
+    params:
+        width=0,
+    log:
+        f"{LOG_DIR}/{PREFIX}_anchor_regions.log",
+    benchmark:
+        f"{RESULTS_DIR}/benchmarks/{PREFIX}_anchor_regions.tsv",
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        awk -v width={params.width:q} '
+        BEGIN {{ FS=OFS="\t" }}
+        {{
+            start = $2 - width
+            end   = $3 + width
+            if (start < 0) start = 0
+            print $1, start, end, $4
+        }}
+        ' {input:q} | sort -u > {output:q}
+        """
+
+
 rule CUSTOM_Zscore_across_bw:
     input:
-        anchors=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
+        regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring/custom-{{sample}}.txt",
     params:
@@ -17,7 +45,6 @@ rule CUSTOM_Zscore_across_bw:
                     usecols=[0, 1],
             ).set_index(0).loc[wc.sample, 1]
         ),
-        width=0,
     log:
         f"{LOG_DIR}/bw_zscoring/custom-{{sample}}.log"
     shell:
@@ -37,20 +64,10 @@ rule CUSTOM_Zscore_across_bw:
             exit 1
         fi
 
-        awk -v width="{params.width}" '
-        BEGIN {{ FS=OFS="\t" }}
-        {{
-            start = $2 - width
-            end   = $3 + width
-            if (start < 0) start = 0
-            print $1, start, end, $4
-        }}
-        ' {input.anchors} | sort -u > "$workdir/little.bed"
-
         {params.bigwigAverageOverBed} \
             -bedOut="$workdir/out2.bed" \
             "{params.bw}" \
-            "$workdir/little.bed" \
+            {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
 
         python "{params.zscoreScript}" "$workdir/out2" > "$workdir/anchor_signal.tsv"
@@ -74,12 +91,11 @@ rule CUSTOM_Zscore_across_bw:
 
 rule ENCODE_Zscore_across_bw:
     input:
-        anchors=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
+        regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.txt",
     params:
         dataDir="/zata/data/zlab/projects/encode/data",
-        width=0,
         toolkit=config['TOOLKIT'],
         zscoreScript=f"{TOOLKIT}/log-zscore-AF-MC.py",
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
@@ -95,16 +111,6 @@ rule ENCODE_Zscore_across_bw:
         trap 'rm -rf "$workdir"' EXIT
 
         echo "Processing {wildcards.experiment} / {wildcards.file}" > {log}
-
-        awk -v width="{params.width}" '
-        BEGIN {{ FS=OFS="\t" }}
-        {{
-            start = $2 - width
-            end   = $3 + width
-            if (start < 0) start = 0
-            print $1, start, end, $4
-        }}
-        ' {input.anchors} | sort -u > "$workdir/little.bed"
 
         bw="{params.dataDir}/{wildcards.experiment}/{wildcards.file}.bigWig"
 
@@ -123,7 +129,7 @@ rule ENCODE_Zscore_across_bw:
         {params.bigwigAverageOverBed} \
             -bedOut="$workdir/out2.bed" \
             "$bw" \
-            "$workdir/little.bed" \
+            {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
 
         python "{params.zscoreScript}" "$workdir/out2" > "$workdir/anchor_signal.tsv"
@@ -145,12 +151,11 @@ rule ENCODE_Zscore_across_bw:
 
 rule ENCODE_Zscore_across_DNase:
     input:
-        anchors=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.bed",
+        regions=f"{RESULTS_DIR}/{PREFIX}_{GENOME}-Anchors-ATAC.regions.bed",
     output:
         zscore=f"{RESULTS_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.txt",
     params:
         dataDir="/zata/data/zlab/projects/encode/data",
-        width=0,
         toolkit=config['TOOLKIT'],
         zscoreScript=f"{TOOLKIT}/log-zscore-AF-MC.py",
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
@@ -166,16 +171,6 @@ rule ENCODE_Zscore_across_DNase:
         trap 'rm -rf "$workdir"' EXIT
 
         echo "Processing {wildcards.experiment} / {wildcards.file}" > {log}
-
-        awk -v width="{params.width}" '
-        BEGIN {{ FS=OFS="\t" }}
-        {{
-            start = $2 - width
-            end   = $3 + width
-            if (start < 0) start = 0
-            print $1, start, end, $4
-        }}
-        ' {input.anchors} | sort -u > "$workdir/little.bed"
 
         bw="{params.dataDir}/{wildcards.experiment}/{wildcards.file}.bigWig"
 
@@ -194,7 +189,7 @@ rule ENCODE_Zscore_across_DNase:
         {params.bigwigAverageOverBed} \
             -bedOut="$workdir/out2.bed" \
             "$bw" \
-            "$workdir/little.bed" \
+            {input.regions:q} \
             "$workdir/out2" >> {log} 2>&1
 
         python "{params.zscoreScript}" "$workdir/out2" > "$workdir/anchor_signal.tsv"
