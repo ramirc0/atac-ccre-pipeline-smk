@@ -1,83 +1,49 @@
 executor: slurm
-jobs: 100
-latency-wait: 60
-rerun-incomplete: true
-printshellcmds: true
-keep-going: true
+software-deployment-method:
+  - conda
+conda-prefix: .conda
+
+jobs: 200
+max-jobs-per-second: 5
+
+slurm-efficiency-report: true
+slurm-efficiency-report-path: logs/efficiency
+slurm-efficiency-threshold: 0.8
 
 default-resources:
-  slurm_partition: "12hours"
-  mem_mb: 8000
-  runtime: 120
-  cpus_per_task: 1
+  slurm_partition: 30mins
+  runtime: 30m
+  mem_mb: 2000
+  # slurm_extra: "--exclude=node1,node2"   # e.g. nodes missing a shared mount
 
-set-resources:
-  ENCODE_prepare_peaks:
-    mem_mb: 32000
-    runtime: 10
-    slurm_partition: "30mins"
-    cpus_per_task: 4
-    
-  CUSTOM_prepare_peaks:
-    mem_mb: 32000
-    runtime: 30
-    cpus_per_task: 4
-    slurm_partition: "30mins"
-    
-  merge_preped_peaks:
-    mem_mb: 8000
-    runtime: 10
-    cpus_per_task: 2
-    slurm_partition: "30mins"
-    
-  ATAC_cluster_rPeaks:
-    mem_mb: 32000
-    runtime: 30
-    cpus_per_task: 8
-    slurm_partition: "30mins"
+set-resources:              # from benchmarks/; ENCODE-scale peak sets need ~3x
+  prepare_peaks:
+    mem_mb: 16000 * attempt
+  cluster_rpeaks:
+    mem_mb: 4000 * attempt
+  filter_rpeaks:
+    mem_mb: 48000 * attempt
+  zscore:
+    mem_mb: 4000 * attempt
+    runtime: 15m
+  max_z:
+    mem_mb: 4000 * attempt
+  call_ccres:
+    mem_mb: 4000 * attempt
+  fragment_call_peaks:
+    slurm_partition: 4hours
+    mem_mb: 32000 * attempt
+    runtime: 120m
+  fragment_bigwig:
+    slurm_partition: 4hours
+    mem_mb: 16000 * attempt
+    runtime: 60m
 
-  ATAC_filter_rPeaks:
-    mem_mb: 64000
-    runtime: 30
-    cpus_per_task: 4
-    slurm_partition: "30mins"    
-    
-  ENCODE_Zscore_across_bw:
-    mem_mb: 8000
-    runtime: 20
-    cpus_per_task: 2
-    slurm_partition: "30mins"
-    
-  CUSTOM_Zscore_across_bw:
-    mem_mb: 8000
-    runtime: 20
-    cpus_per_task: 2
-    slurm_partition: "30mins"
-    
-  call_maxZ_ATAC:
-    mem_mb: 64000
-    runtime: 60
-    cpus_per_task: 8
-    slurm_partition: "4hours"
-
-  call_maxZ_DNase:
-    mem_mb: 64000
-    runtime: 60
-    cpus_per_task: 8
-    slurm_partition: "4hours"
-
-  ENCODE_Zscore_across_DNase:
-    mem_mb: 8000
-    runtime: 20
-    cpus_per_task: 2
-    slurm_partition: "30mins"
-    
-
-  add_new_anchors:
-    mem_mb: 8000
-    runtime: 10
-    cpus_per_task: 2
-    slurm_partition: "30mins"
-    
-    
-    
+rerun-incomplete: true
+keep-going: true
+show-failed-logs: true
+benchmark-extended: true
+retries: 1
+slurm-requeue: false
+printshellcmds: true
+latency-wait: 60
