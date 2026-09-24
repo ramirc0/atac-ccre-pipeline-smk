@@ -39,26 +39,23 @@ rule CUSTOM_Zscore_across_bw:
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
     log:
         f"{LOG_DIR}/bw_zscoring/custom-{{sample}}.log"
+    benchmark:
+        f"{RESULTS_DIR}/benchmarks/bw_zscoring/custom-{{sample}}.tsv"
     shell:
         r"""
-        set -euo pipefail
+        exec &> >(tee {log:q})
 
-        mkdir -p "$(dirname {output.zscore})" "$(dirname {log})"
-
-        workdir=$(mktemp -d "{TMP_DIR}/custom_bw_zscore_{wildcards.sample}.XXXXXX")
+        workdir=$(mktemp -d)
         trap 'rm -rf "$workdir"' EXIT
-
-        echo "Processing custom sample: {wildcards.sample}" > {log}
 
         {params.bigwigAverageOverBed} \
             {input.bigwig:q} \
             {input.regions:q} \
-            "$workdir/out2" >> {log} 2>&1
+            "$workdir/signal.tab"
 
         python workflow/scripts/zscore.py \
-            --input "$workdir/out2" \
+            --input "$workdir/signal.tab" \
             --output {output.zscore:q}
-
         """
 
 
@@ -72,24 +69,22 @@ rule ENCODE_Zscore_across_bw:
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
     log:
         f"{LOG_DIR}/bw_zscoring/encode-{{experiment}}_{{file}}.log"
+    benchmark:
+        f"{RESULTS_DIR}/benchmarks/bw_zscoring/encode-{{experiment}}_{{file}}.tsv"
     shell:
         r"""
-        set -euo pipefail
+        exec &> >(tee {log:q})
 
-        mkdir -p "$(dirname {output.zscore})" "$(dirname {log})"
-
-        workdir=$(mktemp -d "{TMP_DIR}/bw_zscore_{wildcards.experiment}_{wildcards.file}.XXXXXX")
+        workdir=$(mktemp -d)
         trap 'rm -rf "$workdir"' EXIT
-
-        echo "Processing {wildcards.experiment} / {wildcards.file}" > {log}
 
         {params.bigwigAverageOverBed} \
             {input.bigwig:q} \
             {input.regions:q} \
-            "$workdir/out2" >> {log} 2>&1
+            "$workdir/signal.tab"
 
         python workflow/scripts/zscore.py \
-            --input "$workdir/out2" \
+            --input "$workdir/signal.tab" \
             --output {output.zscore:q}
         """
 
@@ -104,23 +99,21 @@ rule ENCODE_Zscore_across_DNase:
         bigwigAverageOverBed="/zata/data/zlab/common/tools/ucsc.v385/bigWigAverageOverBed",
     log:
         f"{LOG_DIR}/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.log"
+    benchmark:
+        f"{RESULTS_DIR}/benchmarks/bw_zscoring-DNAse/encode-{{experiment}}_{{file}}.tsv"
     shell:
         r"""
-        set -euo pipefail
+        exec &> >(tee {log:q})
 
-        mkdir -p "$(dirname {output.zscore})" "$(dirname {log})"
-
-        workdir=$(mktemp -d "{TMP_DIR}/bw_zscore_{wildcards.experiment}_{wildcards.file}.XXXXXX")
+        workdir=$(mktemp -d)
         trap 'rm -rf "$workdir"' EXIT
-
-        echo "Processing {wildcards.experiment} / {wildcards.file}" > {log}
 
         {params.bigwigAverageOverBed} \
             {input.bigwig:q} \
             {input.regions:q} \
-            "$workdir/out2" >> {log} 2>&1
+            "$workdir/signal.tab"
 
         python workflow/scripts/zscore.py \
-            --input "$workdir/out2" \
+            --input "$workdir/signal.tab" \
             --output {output.zscore:q}
         """
