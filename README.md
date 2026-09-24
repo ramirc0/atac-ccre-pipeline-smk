@@ -23,6 +23,11 @@ snakemake --profile profiles/local                 # local
 snakemake --profile profiles/slurm                 # SLURM
 ```
 
+`profiles/slurm` uses this cluster's partitions (`30mins`, `4hours`, `12hours`). Edit
+`slurm_partition` for another cluster.
+
+Config keys, input formats and output columns are in [`docs/inputs.md`](docs/inputs.md).
+
 Outputs land in `results/<run_id>/`. Logs and benchmarks mirror it under `logs/<run_id>/` and
 `benchmarks/<run_id>/`.
 
@@ -65,6 +70,9 @@ cp $D/hg38-cCREs-Unfiltered.bed resources/GRCh38-cCREs.bed
 cp $D/hg38-Anchors.bed resources/GRCh38-Anchors.bed
 ```
 
+`resources/ENCODE-DNase-List.txt` is tracked. It is `DNase-List.txt` from the same directory (MD5
+`2f7cfb42d12b5d6c1e3a8a26f315396d`).
+
 The blacklist (`ENCFF356LFX.bed`) and chrom sizes are read in place; see `references` in the
 config template.
 
@@ -81,8 +89,9 @@ Run once, outside the pipeline. They write sample sheets the pipeline reads.
 
 ### `workflow/scripts/encode_atac_samples.py`
 
-Selects ENCODE ATAC-seq samples from an [encode-metadata](../encode-metadata-smk) snapshot. It
-replaces the original pipeline's live ENCODE API pull.
+Selects ENCODE ATAC-seq samples from an encode-metadata snapshot
+(`/home/ramirezc/Projects/encode-metadata-smk`). It replaces the original pipeline's live ENCODE API
+pull.
 
 - Experiments: released, unperturbed *Homo sapiens* ATAC-seq.
 - Peak: the released GRCh38 `preferred_default` narrowPeak.
@@ -105,8 +114,7 @@ Outputs, both tracked in git:
 | `resources/encode-atac.2026-09-23.tsv` | sample sheet: `sample_id`, `narrowpeak`, `bigwig`, `biosample` |
 | `resources/encode-atac.2026-09-23.legacy.txt` | headerless experiment, peak, bigWig, biosample; the list the original pipeline reads |
 
-The 2026-09-23 snapshot gives 273 of 369 experiments. That's the same set and peak files as the
-May 2026 API pull.
+The 2026-09-23 snapshot gives 273 of 369 experiments.
 
 ### Custom sample sheet
 
