@@ -1,0 +1,273 @@
+ENCSR000RBT	ENCFF430IAA	ENCFF739XMW	Homo sapiens HG03571
+ENCSR011NJP	ENCFF824HVH	ENCFF636KMV	Homo sapiens GM18858
+ENCSR024WOD	ENCFF482YHK	ENCFF298GXE	Homo sapiens GM21390
+ENCSR025MEO	ENCFF429JRQ	ENCFF727GJN	Homo sapiens HG03354
+ENCSR032RGS	ENCFF899OMR	ENCFF872SDF	Homo sapiens A549
+ENCSR038WVV	ENCFF505XMS	ENCFF518WFH	Homo sapiens HG02973
+ENCSR040DJK	ENCFF425LSL	ENCFF490PBK	Homo sapiens psoas muscle tissue female adult (59 years)
+ENCSR040PBN	ENCFF359CMH	ENCFF427UQD	Homo sapiens HG03066
+ENCSR042AWH	ENCFF913MQB	ENCFF664EJT	Homo sapiens HepG2
+ENCSR044ATC	ENCFF063YVQ	ENCFF496GXT	Homo sapiens natural killer cell female adult (41 years)
+ENCSR053SGP	ENCFF343RCO	ENCFF288BEC	Homo sapiens heart right ventricle tissue male adult (54 years)
+ENCSR059IHA	ENCFF958KJD	ENCFF257LMZ	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 30 minutes
+ENCSR063UNG	ENCFF757TJE	ENCFF059MRU	Homo sapiens HG03196
+ENCSR065CER	ENCFF974XTQ	ENCFF450FBH	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR072UYN	ENCFF436AWP	ENCFF737OOY	Homo sapiens sciatic nerve tissue female child (16 years)
+ENCSR074WMH	ENCFF712BJW	ENCFF104OXF	Homo sapiens Right ventricle myocardium superior tissue male adult (60 years)
+ENCSR080SNF	ENCFF729MMJ	ENCFF047EBV	Homo sapiens RWPE2
+ENCSR084FHK	ENCFF376BWJ	ENCFF934MOB	Homo sapiens GM18505
+ENCSR092SRS	ENCFF570EVR	ENCFF438AFY	Homo sapiens activated T-cell male adult (42 years) treated with 50 U/mL Interleukin-2 for 4 hours, anti-CD3 and anti-CD28 coated beads for 4 hours
+ENCSR094QFZ	ENCFF267DDX	ENCFF881SZZ	Homo sapiens activated CD4-positive, CD25-positive, alpha-beta regulatory T cell male adult (38 years) treated with anti-CD3 and anti-CD28 coated beads for 24 hours, 50 U/mL Interleukin-2 for 24 hours
+ENCSR095QNB	ENCFF470YYO	ENCFF487LOB	Homo sapiens GM12878
+ENCSR096VEO	ENCFF208TTV	ENCFF293YLU	Homo sapiens HG03135
+ENCSR102RXG	ENCFF058UYY	ENCFF845DQD	Homo sapiens T-cell female adult (33 years)
+ENCSR105SCQ	ENCFF091ELX	ENCFF200SFT	Homo sapiens GM21360
+ENCSR113MBR	ENCFF010JOP	ENCFF469CYE	Homo sapiens adrenal gland tissue male adult (54 years)
+ENCSR115OIV	ENCFF123QHV	ENCFF141ATK	Homo sapiens activated T-helper 17 cell male adult (50 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR120MOY	ENCFF830CUE	ENCFF726GTH	Homo sapiens sciatic nerve tissue male adult (26 years)
+ENCSR122NDR	ENCFF338XWC	ENCFF621VGP	Homo sapiens GM21576
+ENCSR123WME	ENCFF304OUP	ENCFF485EKM	Homo sapiens HG02943
+ENCSR131CHJ	ENCFF827NNA	ENCFF583FYE	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 2 hours
+ENCSR131HOY	ENCFF497ACM	ENCFF632QIA	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR133CMC	ENCFF442JHH	ENCFF190EVO	Homo sapiens heart right ventricle tissue male adult (69 years)
+ENCSR133WJY	ENCFF985WPD	ENCFF225VDO	Homo sapiens left ventricle myocardium superior tissue male adult (60 years)
+ENCSR134OSR	ENCFF104JSS	ENCFF946NPR	Homo sapiens GM19438
+ENCSR144ZXR	ENCFF553NML	ENCFF880QAL	Homo sapiens HG02759
+ENCSR153IUB	ENCFF173XEU	ENCFF617ESX	Homo sapiens mucosa of urinary bladder tissue male adult (26 years)
+ENCSR154UWN	ENCFF616OVJ	ENCFF718EPV	Homo sapiens psoas muscle tissue female child (16 years)
+ENCSR157OSO	ENCFF535VTB	ENCFF460UKZ	Homo sapiens heart right ventricle tissue female adult (47 years)
+ENCSR159GFS	ENCFF364QVY	ENCFF426GUD	Homo sapiens CD4-positive, CD25-positive, alpha-beta regulatory T cell male adult (42 years)
+ENCSR163KRG	ENCFF187ZKG	ENCFF536RCF	Homo sapiens HG03469
+ENCSR165FYY	ENCFF662SIF	ENCFF544UFE	Homo sapiens central memory CD8-positive, alpha-beta T cell male adult (36 years)
+ENCSR174SUM	ENCFF049DNM	ENCFF343VRK	Homo sapiens activated naive CD4-positive, alpha-beta T cell male adult (48 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR177JWR	ENCFF626RXO	ENCFF905HWA	Homo sapiens right cardiac atrium tissue female adult (59 years)
+ENCSR180HEL	ENCFF872XXD	ENCFF809SRH	Homo sapiens HG02678
+ENCSR189VFC	ENCFF561VYC	ENCFF612JSH	Homo sapiens HG02588
+ENCSR200OML	ENCFF243NTP	ENCFF282RNO	Homo sapiens IMR-90 nuclear fraction and unspecified fraction
+ENCSR201FIW	ENCFF911HZG	ENCFF747TGQ	Homo sapiens thyroid gland tissue female adult (51 years)
+ENCSR204FCV	ENCFF388PAR	ENCFF270TJX	Homo sapiens dendritic cell treated with lipopolysaccharide
+ENCSR204SMO	ENCFF344CDB	ENCFF573VRY	Homo sapiens heart right ventricle tissue male adult (46 years)
+ENCSR208HAP	ENCFF663YRQ	ENCFF401VCL	Homo sapiens HG02981
+ENCSR208NBF	ENCFF492DSN	ENCFF620DOA	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 2 hours
+ENCSR212LAZ	ENCFF164WOV	ENCFF307QJX	Homo sapiens fallopian tube tissue female adult (59 years)
+ENCSR212LYK	ENCFF738ZVY	ENCFF490QPE	Homo sapiens heart right ventricle tissue female adult (46 years)
+ENCSR213YPO	ENCFF442AAP	ENCFF150IPQ	Homo sapiens right cardiac atrium tissue male adult (60 years)
+ENCSR214EIV	ENCFF715UOV	ENCFF524PBI	Homo sapiens GM21619
+ENCSR220ASC	ENCFF735UWS	ENCFF128MWE	Homo sapiens A549
+ENCSR227FVE	ENCFF497SGQ	ENCFF912UZC	Homo sapiens ovary tissue female adult (59 years)
+ENCSR231BZU	ENCFF568ADF	ENCFF023VMB	Homo sapiens GM19351
+ENCSR233HSC	ENCFF693CDG	ENCFF353OEE	Homo sapiens GM21723
+ENCSR238VHV	ENCFF677EWJ	ENCFF440RDV	Homo sapiens fallopian tube tissue female adult (46 years)
+ENCSR241OBO	ENCFF541GYF	ENCFF404IAG	Homo sapiens adrenal gland tissue female adult (59 years)
+ENCSR241VGH	ENCFF453GXR	ENCFF241EBE	Homo sapiens GM18502
+ENCSR249FXU	ENCFF935BZV	ENCFF519OXO	Homo sapiens HG03045
+ENCSR251POP	ENCFF678PAI	ENCFF863PLK	Homo sapiens pancreas tissue female adult (61 years)
+ENCSR253QLW	ENCFF313BZQ	ENCFF990WXU	Homo sapiens GM18511
+ENCSR258JCL	ENCFF080IAR	ENCFF703MFP	Homo sapiens gastrocnemius medialis tissue male adult (37 years)
+ENCSR258RSH	ENCFF788BUI	ENCFF677BPI	Homo sapiens T-cell male adult (38 years)
+ENCSR260LAN	ENCFF705AZV	ENCFF778DJR	Homo sapiens naive thymus-derived CD4-positive, alpha-beta T cell male adult (48 years)
+ENCSR261PWP	ENCFF456OPK	ENCFF546IOZ	Homo sapiens activated CD4-positive, CD25-positive, alpha-beta regulatory T cell male adult (42 years) treated with anti-CD3 and anti-CD28 coated beads for 24 hours, 50 U/mL Interleukin-2 for 24 hours
+ENCSR275LCF	ENCFF890KJS	ENCFF472UIU	Homo sapiens GM21786
+ENCSR278JWM	ENCFF861UUN	ENCFF890LTR	Homo sapiens HG03558
+ENCSR283LPH	ENCFF349KLY	ENCFF995WDO	Homo sapiens naive thymus-derived CD8-positive, alpha-beta T cell nuclear fraction male adult (30 years)
+ENCSR286STX	ENCFF135EYC	ENCFF169GLM	Homo sapiens heart left ventricle tissue male adult (66 years)
+ENCSR291GJU	ENCFF439EIO	ENCFF645OHB	Homo sapiens HepG2
+ENCSR299LSN	ENCFF867TMP	ENCFF364GFY	Homo sapiens T-cell male adult (42 years)
+ENCSR302PTB	ENCFF178DTJ	ENCFF216VWI	Homo sapiens stimulated activated memory B cell male adult (40 years) treated with 10 μg/mL anti-IgM for 72 hours, 1 μg/mL anti-CD40 for 72 hours, 100 ng/mL Interleukin-4 for 72 hours
+ENCSR303PWB	ENCFF068ISD	ENCFF477VDG	Homo sapiens esophagus mucosa tissue female adult (47 years)
+ENCSR305QTE	ENCFF040SJW	ENCFF194EMK	Homo sapiens natural killer cell male adult (47 years)
+ENCSR305XRF	ENCFF914TAP	ENCFF101BDO	Homo sapiens HG03175
+ENCSR308HPZ	ENCFF849FQV	ENCFF163JWV	Homo sapiens gastrocnemius medialis tissue male adult (54 years)
+ENCSR310RJN	ENCFF568NPG	ENCFF875SZE	Homo sapiens heart left ventricle tissue male adult (43 years)
+ENCSR310UDW	ENCFF241UNR	ENCFF618FTE	Homo sapiens left cardiac atrium tissue male adult (40 years)
+ENCSR315QWI	ENCFF529WCI	ENCFF261VHL	Homo sapiens GM21737
+ENCSR322SBN	ENCFF717APJ	ENCFF477DEN	Homo sapiens HG03457
+ENCSR326ESM	ENCFF354VIQ	ENCFF021KYU	Homo sapiens stimulated activated naive CD8-positive, alpha-beta T cell male adult (42 years) treated with anti-CD3 and anti-CD28 coated beads for 24 hours, 50 U/mL Interleukin-2 for 24 hours, 100 ng/mL Interleukin-15 for 24 hours
+ENCSR329XFZ	ENCFF350PMA	ENCFF369AAJ	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 30 minutes
+ENCSR330WUK	ENCFF851UZI	ENCFF172SJH	Homo sapiens left cardiac atrium tissue male adult (60 years)
+ENCSR335JVB	ENCFF546KKI	ENCFF840DXB	Homo sapiens GM19372
+ENCSR335LHS	ENCFF547LIL	ENCFF670PIL	Homo sapiens stimulated activated effector memory CD8-positive, alpha-beta T cell male adult (33 years) treated with 100 ng/mL Interleukin-12 subunit alpha for 72 hours, 100 ng/mL Interleukin-12 subunit beta for 72 hours, anti-CD3 and anti-CD28 coated beads for 72 hours
+ENCSR335XRZ	ENCFF211AMR	ENCFF471TZT	Homo sapiens stimulated activated effector memory CD8-positive, alpha-beta T cell male adult (36 years) treated with 100 ng/mL Interleukin-12 subunit alpha for 72 hours, 100 ng/mL Interleukin-12 subunit beta for 72 hours, anti-CD3 and anti-CD28 coated beads for 72 hours
+ENCSR337UIU	ENCFF880EHI	ENCFF868ZCL	Homo sapiens stomach tissue female adult (53 years)
+ENCSR345NVR	ENCFF178ZJR	ENCFF413WLZ	Homo sapiens HG03460
+ENCSR356KRQ	ENCFF551GBG	ENCFF653FDR	Homo sapiens foreskin keratinocyte male newborn (2-4 days)
+ENCSR357WQH	ENCFF761RSD	ENCFF879GGI	Homo sapiens GM18508
+ENCSR359HFH	ENCFF099GAL	ENCFF966MMP	Homo sapiens HG03095
+ENCSR368FYV	ENCFF594ZAI	ENCFF893KEJ	Homo sapiens HG02852
+ENCSR372IGW	ENCFF518QUX	ENCFF060JKX	Homo sapiens GM19395
+ENCSR373GMM	ENCFF751CLW	ENCFF466HAO	Homo sapiens natural killer cell male adult (33 years)
+ENCSR373NFA	ENCFF792YKT	ENCFF093FUQ	Homo sapiens activated naive CD4-positive, alpha-beta T cell male adult (50 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR374ZRW	ENCFF790ZOM	ENCFF275CPB	Homo sapiens heart right ventricle tissue female adult (56 years)
+ENCSR376YMU	ENCFF612NLR	ENCFF120TUR	Homo sapiens HG03439
+ENCSR379NMT	ENCFF587QZR	ENCFF934HGD	Homo sapiens stimulated activated naive B cell male adult (40 years) treated with 1 μg/mL anti-CD40 for 72 hours, 10 μg/mL anti-IgM for 72 hours, 100 ng/mL Interleukin-4 for 72 hours
+ENCSR381LJX	ENCFF299PGG	ENCFF690ERQ	Homo sapiens HG03039
+ENCSR382LBS	ENCFF060HHC	ENCFF573SLV	Homo sapiens NCI-H929
+ENCSR383RDZ	ENCFF683FRF	ENCFF580WZB	Homo sapiens GM19328
+ENCSR390SLL	ENCFF803AAK	ENCFF834ZKF	Homo sapiens left cardiac atrium tissue female adult (42 years)
+ENCSR392UJM	ENCFF985FDY	ENCFF187FSZ	Homo sapiens ovary tissue female adult (61 years)
+ENCSR392YGP	ENCFF541PYT	ENCFF428KAK	Homo sapiens effector memory CD8-positive, alpha-beta T cell male adult (33 years)
+ENCSR399OSE	ENCFF056KYH	ENCFF016KCE	Homo sapiens heart left ventricle tissue female adult (47 years)
+ENCSR400ISH	ENCFF781HFK	ENCFF008HZU	Homo sapiens HG02571
+ENCSR404LLJ	ENCFF563UYM	ENCFF033RPN	Homo sapiens transverse colon tissue female adult (53 years)
+ENCSR404OEO	ENCFF780FGU	ENCFF997MUT	Homo sapiens HG02763
+ENCSR409YCK	ENCFF589OTG	ENCFF575ZRJ	Homo sapiens GM19043
+ENCSR410DWV	ENCFF610SOB	ENCFF345PTN	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR411NFB	ENCFF845NWD	ENCFF728DLQ	Homo sapiens activated T-cell female adult (33 years) treated with 50 U/mL Interleukin-2 for 4 hours, anti-CD3 and anti-CD28 coated beads for 4 hours
+ENCSR419UYY	ENCFF915OAM	ENCFF475KJF	Homo sapiens GM19025
+ENCSR420RVW	ENCFF730TRQ	ENCFF684SCN	Homo sapiens HG02870
+ENCSR422RPD	ENCFF387RGN	ENCFF146GHP	Homo sapiens GM21717
+ENCSR422SUG	ENCFF821OEF	ENCFF782BVX	Homo sapiens MCF-7
+ENCSR424KQH	ENCFF718JVL	ENCFF616HTW	Homo sapiens GM21447
+ENCSR437OOJ	ENCFF320CXX	ENCFF355NHX	Homo sapiens heart right ventricle tissue female adult (59 years)
+ENCSR439TZT	ENCFF078RSS	ENCFF808EZU	Homo sapiens heart right ventricle tissue male adult (66 years)
+ENCSR442OAV	ENCFF481DKV	ENCFF549PEF	Homo sapiens GM18517
+ENCSR452COS	ENCFF685MCV	ENCFF567YWL	Homo sapiens naive thymus-derived CD4-positive, alpha-beta T cell male adult (50 years)
+ENCSR454UTH	ENCFF582GKW	ENCFF095KQF	Homo sapiens GM19452
+ENCSR459AYS	ENCFF640USO	ENCFF290XFJ	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 2 hours
+ENCSR459PVP	ENCFF951DOQ	ENCFF839JKY	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR470ZNM	ENCFF295IRG	ENCFF337DQV	Homo sapiens HG03060
+ENCSR474XFV	ENCFF682VUY	ENCFF974RPS	Homo sapiens thyroid gland tissue male adult (54 years)
+ENCSR476VJY	ENCFF035XXI	ENCFF308HXP	Homo sapiens CD8-positive, alpha-beta T cell male adult (21 years)
+ENCSR476WNA	ENCFF871DTB	ENCFF567XSR	Homo sapiens ovary tissue female adult (47 years)
+ENCSR477YSU	ENCFF026XCY	ENCFF610LQJ	Homo sapiens activated naive CD8-positive, alpha-beta T cell male adult (42 years) treated with anti-CD3 and anti-CD28 coated beads for 24 hours, 50 U/mL Interleukin-2 for 24 hours
+ENCSR483RKN	ENCFF558BLC	ENCFF754EAC	Homo sapiens K562
+ENCSR485TLP	ENCFF567ZCX	ENCFF378ZGI	Homo sapiens GM23338
+ENCSR487QSB	ENCFF903NSQ	ENCFF570XGF	Homo sapiens GM18907
+ENCSR487SOP	ENCFF378XZA	ENCFF321AMD	Homo sapiens HG03064
+ENCSR491VXJ	ENCFF191ZOC	ENCFF808LOI	Homo sapiens mucosa of descending colon tissue male adult (26 years)
+ENCSR492FJO	ENCFF094CWB	ENCFF829IFA	Homo sapiens GM18867
+ENCSR496PPU	ENCFF721WEZ	ENCFF663HOS	Homo sapiens mucosa of descending colon tissue female adult (61 years)
+ENCSR499ASS	ENCFF811MOZ	ENCFF124ZQJ	Homo sapiens PC-3
+ENCSR504OUW	ENCFF754GUE	ENCFF736UWT	Homo sapiens CD4-positive, CD25-positive, alpha-beta regulatory T cell male adult (38 years)
+ENCSR509JPT	ENCFF218UOX	ENCFF166IBK	Homo sapiens GM21367
+ENCSR512FHU	ENCFF283LXY	ENCFF816XRV	Homo sapiens GM19023
+ENCSR512YXO	ENCFF980BJM	ENCFF062JUV	Homo sapiens GM21381
+ENCSR516CPW	ENCFF318SNW	ENCFF831BRS	Homo sapiens right lobe of liver tissue female adult (47 years)
+ENCSR516YAD	ENCFF415HUA	ENCFF330ZVA	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR522FGI	ENCFF169LSG	ENCFF442VFE	Homo sapiens heart right ventricle tissue male adult (43 years)
+ENCSR524CPZ	ENCFF986ZDE	ENCFF234SOC	Homo sapiens HG02798
+ENCSR528YDD	ENCFF806ZOU	ENCFF077IHT	Homo sapiens HG03342
+ENCSR530XBF	ENCFF029YUG	ENCFF140GLW	Homo sapiens pancreas tissue female child (16 years)
+ENCSR541KFY	ENCFF321VDH	ENCFF056MYW	Homo sapiens WTC11
+ENCSR542RNG	ENCFF802GII	ENCFF413EZP	Homo sapiens adrenal gland tissue male adult (26 years)
+ENCSR544YXV	ENCFF769NLM	ENCFF682YDM	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 1 hour
+ENCSR545UJP	ENCFF706APW	ENCFF116IVX	Homo sapiens activated CD8-positive, alpha-beta T cell nuclear fraction male adult (21 years) treated with anti-CD3 and anti-CD28 coated beads for 7 days, 10 ng/mL Interleukin-2 for 5 days
+ENCSR548KIL	ENCFF141QUY	ENCFF083NYF	Homo sapiens adrenal gland tissue male adult (37 years)
+ENCSR551CSY	ENCFF168WTX	ENCFF650BOQ	Homo sapiens mesenteric fat pad tissue male adult (26 years)
+ENCSR552QUA	ENCFF680JZM	ENCFF322GCT	Homo sapiens posterior vena cava tissue female adult (47 years)
+ENCSR553LAZ	ENCFF994UIF	ENCFF593JPB	Homo sapiens adrenal gland tissue female child (16 years)
+ENCSR554WGQ	ENCFF817JLB	ENCFF785KEG	Homo sapiens HG03280
+ENCSR555ZDH	ENCFF899TQV	ENCFF891GWZ	Homo sapiens lower lobe of left lung tissue male adult (60 years)
+ENCSR558ZSN	ENCFF381CVI	ENCFF347FGY	Homo sapiens activated T-cell female adult (21 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR563ZNI	ENCFF012BKZ	ENCFF342SSO	Homo sapiens heart right ventricle tissue male adult (61 years)
+ENCSR580JBA	ENCFF755FSW	ENCFF304QRZ	Homo sapiens GM18868
+ENCSR587TRP	ENCFF716JUM	ENCFF855TQX	Homo sapiens SK-N-SH treated with 6 μM all-trans-retinoic acid for 48 hours
+ENCSR589ROM	ENCFF033XTY	ENCFF972MSC	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 4 hours
+ENCSR591PIX	ENCFF182SSP	ENCFF757YRZ	Homo sapiens Panc1
+ENCSR593YFB	ENCFF904QPU	ENCFF649ZGT	Homo sapiens heart left ventricle tissue female adult (42 years)
+ENCSR594TMY	ENCFF735PGH	ENCFF435ZPU	Homo sapiens HG03521
+ENCSR600ZHS	ENCFF009YES	ENCFF057BIJ	Homo sapiens left colon tissue female adult (46 years)
+ENCSR603LVR	ENCFF421XIL	ENCFF228BMJ	Homo sapiens B cell male adult (22 years)
+ENCSR604YEQ	ENCFF354WTG	ENCFF202SER	Homo sapiens HG02884
+ENCSR605EGR	ENCFF776QKF	ENCFF008XXR	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 30 minutes
+ENCSR607BTF	ENCFF415YNL	ENCFF646EEM	Homo sapiens right lobe of liver tissue male adult (45 years)
+ENCSR610AQP	ENCFF888IRH	ENCFF509NWL	Homo sapiens memory B cell male adult (40 years)
+ENCSR611BQR	ENCFF721ZMU	ENCFF121MUN	Homo sapiens T-helper 17 cell male adult (50 years)
+ENCSR614JAG	ENCFF555UEL	ENCFF483NBG	Homo sapiens naive thymus-derived CD8-positive, alpha-beta T cell male adult (36 years)
+ENCSR615YIL	ENCFF045HAH	ENCFF034VPU	Homo sapiens HG03139
+ENCSR621JYI	ENCFF061BAD	ENCFF850URQ	Homo sapiens HG02885
+ENCSR624CTU	ENCFF797OZK	ENCFF052HOE	Homo sapiens HG03520
+ENCSR624ODL	ENCFF188RKV	ENCFF556YQA	Homo sapiens left lobe of liver tissue female adult (61 years)
+ENCSR628PLS	ENCFF439KAX	ENCFF169IGM	Homo sapiens GM18861
+ENCSR630REB	ENCFF664YGN	ENCFF891TZE	Homo sapiens tibial artery tissue male adult (54 years)
+ENCSR634WYX	ENCFF305GXR	ENCFF043JFJ	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR635AIF	ENCFF883YXV	ENCFF014EAL	Homo sapiens GM19468
+ENCSR635CAC	ENCFF837IEL	ENCFF606TIH	Homo sapiens GM19467
+ENCSR637MUF	ENCFF840HAH	ENCFF201ZLC	Homo sapiens GM19035
+ENCSR637OPZ	ENCFF955PTL	ENCFF881NFV	Homo sapiens stimulated activated naive CD8-positive, alpha-beta T cell male adult (36 years) treated with 100 ng/mL Interleukin-15 for 72 hours, anti-CD3 and anti-CD28 coated beads for 72 hours
+ENCSR637XSC	ENCFF748UZH	ENCFF603BJO	Homo sapiens GM12878
+ENCSR641KNU	ENCFF312JVA	ENCFF738JSK	Homo sapiens GM21825
+ENCSR648JJT	ENCFF544EIO	ENCFF597FGW	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 30 minutes
+ENCSR651SOJ	ENCFF065JHK	ENCFF748LCE	Homo sapiens adrenal gland tissue female adult (47 years)
+ENCSR653VSR	ENCFF182JHG	ENCFF333YCC	Homo sapiens stimulated activated naive B cell female adult (39 years) treated with 1 μg/mL anti-CD40 for 72 hours, 10 μg/mL anti-IgM for 72 hours, 100 ng/mL Interleukin-4 for 72 hours
+ENCSR659SFK	ENCFF958SXF	ENCFF806WFB	Homo sapiens activated B cell male adult (22 years) treated with 0.5 μM CpG ODN for 24 hours
+ENCSR660WSB	ENCFF095ATB	ENCFF679DXT	Homo sapiens DND-41
+ENCSR670REK	ENCFF007FAW	ENCFF562MQW	Homo sapiens gastroesophageal sphincter tissue female adult (53 years)
+ENCSR679NRJ	ENCFF985WZA	ENCFF439WNC	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 1 hour
+ENCSR682ETE	ENCFF052DWZ	ENCFF314RIZ	Homo sapiens left lung tissue female child (16 years)
+ENCSR684KUG	ENCFF937JGB	ENCFF946GAJ	Homo sapiens GM18870
+ENCSR685OFR	ENCFF424JEX	ENCFF577KRZ	Homo sapiens naive B cell female adult (39 years)
+ENCSR685ZMP	ENCFF631JIS	ENCFF232QBB	Homo sapiens right lobe of liver tissue female adult (41 years)
+ENCSR695FLC	ENCFF580HLQ	ENCFF840RIZ	Homo sapiens mucosa of gallbladder tissue female child (16 years)
+ENCSR700HPA	ENCFF647UDQ	ENCFF227LPR	Homo sapiens GM18499
+ENCSR704VZY	ENCFF487GKW	ENCFF746MNC	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR705KEB	ENCFF305BGH	ENCFF594OAL	Homo sapiens pancreas tissue female adult (59 years)
+ENCSR706GDQ	ENCFF160DPC	ENCFF049TUN	Homo sapiens GM19455
+ENCSR709QRD	ENCFF010FOR	ENCFF729BQI	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR710SMN	ENCFF252GCN	ENCFF347YOH	Homo sapiens heart right ventricle tissue female adult (58 years)
+ENCSR712ZRY	ENCFF693ODH	ENCFF139KXZ	Homo sapiens GM19463
+ENCSR718HWW	ENCFF739WIV	ENCFF568OPL	Homo sapiens activated CD8-positive, alpha-beta T cell male adult (21 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours
+ENCSR731ODJ	ENCFF515EVC	ENCFF330FOE	Homo sapiens left cardiac atrium tissue female adult (58 years)
+ENCSR762YFD	ENCFF690BFN	ENCFF294PBK	Homo sapiens GM18520
+ENCSR765MXG	ENCFF379DHP	ENCFF799MDF	Homo sapiens body of pancreas tissue male adult (54 years)
+ENCSR774NXA	ENCFF252LJK	ENCFF962YQG	Homo sapiens psoas muscle tissue female adult (61 years)
+ENCSR775KMA	ENCFF089LSF	ENCFF938UXR	Homo sapiens activated T-cell male adult (38 years) treated with 50 U/mL Interleukin-2 for 4 hours, anti-CD3 and anti-CD28 coated beads for 4 hours
+ENCSR775SYU	ENCFF824VXG	ENCFF281ROQ	Homo sapiens uterus tissue female adult (59 years)
+ENCSR808HWS	ENCFF837LBW	ENCFF918VRX	Homo sapiens natural killer cell female adult (41 years) treated with 100 ng/mL Interleukin-18 for 72 hours, 100 ng/mL Interleukin-12 subunit beta for 72 hours, 100 ng/mL Interleukin-15 for 72 hours, 100 ng/mL Interleukin-12 subunit alpha for 72 hours
+ENCSR808ZMK	ENCFF480ITE	ENCFF512NCO	Homo sapiens pancreas tissue female adult (41 years)
+ENCSR812ZKP	ENCFF594FVI	ENCFF657SKW	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR821JHD	ENCFF724WEK	ENCFF095RCU	Homo sapiens HG02623
+ENCSR821QHC	ENCFF731ZCZ	ENCFF624OOL	Homo sapiens HG02642
+ENCSR824DUE	ENCFF781JGR	ENCFF171LKM	Homo sapiens HG03378
+ENCSR830ALP	ENCFF350JTS	ENCFF061KDF	Homo sapiens activated T-cell male adult (43 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 50 U/mL Interleukin-2 for 72 hours
+ENCSR833ACP	ENCFF304LHI	ENCFF986NOL	Homo sapiens HG03103
+ENCSR835WBW	ENCFF557QED	ENCFF245DIM	Homo sapiens HG03565
+ENCSR836FIL	ENCFF854ULK	ENCFF241ZLC	Homo sapiens right lobe of liver tissue male adult (40 years)
+ENCSR839IAD	ENCFF259FJX	ENCFF169PJA	Homo sapiens GM19397
+ENCSR839UOB	ENCFF831FGS	ENCFF275WVZ	Homo sapiens HG03432
+ENCSR841LHT	ENCFF246KRE	ENCFF681VRR	Homo sapiens CD4-positive, alpha-beta T cell male adult (20 years)
+ENCSR846VLJ	ENCFF452WBJ	ENCFF784HME	Homo sapiens sigmoid colon tissue female adult (53 years)
+ENCSR846VPV	ENCFF085ASE	ENCFF840TYL	Homo sapiens heart left ventricle tissue female adult (66 years)
+ENCSR848TMJ	ENCFF067XXJ	ENCFF117WEV	Homo sapiens heart left ventricle tissue male adult (69 years)
+ENCSR854TTM	ENCFF986KHO	ENCFF971FBW	Homo sapiens natural killer cell male adult (47 years) treated with 100 ng/mL Interleukin-12 subunit alpha for 72 hours, 100 ng/mL Interleukin-15 for 72 hours, 100 ng/mL Interleukin-12 subunit beta for 72 hours, 100 ng/mL Interleukin-18 for 72 hours
+ENCSR855BMI	ENCFF119EAP	ENCFF684ZDU	Homo sapiens Right ventricle myocardium inferior tissue male adult (60 years)
+ENCSR858GTE	ENCFF474JMH	ENCFF556WEK	Homo sapiens HG03442
+ENCSR859USB	ENCFF055NNT	ENCFF920FUW	Homo sapiens K562
+ENCSR863TVR	ENCFF754SOL	ENCFF964ISD	Homo sapiens stimulated activated naive CD8-positive, alpha-beta T cell male adult (33 years) treated with anti-CD3 and anti-CD28 coated beads for 72 hours, 100 ng/mL Interleukin-15 for 72 hours
+ENCSR864ADD	ENCFF590JRI	ENCFF854MVA	Homo sapiens adrenal gland tissue female adult (41 years)
+ENCSR868FGK	ENCFF333TAT	ENCFF102ARJ	Homo sapiens K562
+ENCSR872WGW	ENCFF296ZZB	ENCFF259PSA	Homo sapiens HCT116
+ENCSR886VCC	ENCFF834CDO	ENCFF542SXR	Homo sapiens psoas muscle tissue female adult (47 years)
+ENCSR890DWH	ENCFF615ZFR	ENCFF458WHN	Homo sapiens psoas muscle tissue female adult (41 years)
+ENCSR899YEP	ENCFF308AVB	ENCFF676UJV	Homo sapiens heart left ventricle tissue male adult (61 years)
+ENCSR901IEQ	ENCFF362ACP	ENCFF292DTL	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 4 hours
+ENCSR902CFR	ENCFF637TQK	ENCFF372XDM	Homo sapiens GM21423
+ENCSR903WVU	ENCFF839DEM	ENCFF527HBZ	Homo sapiens naive B cell male adult (40 years)
+ENCSR904UKR	ENCFF515SJI	ENCFF646ZGY	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 6 hours
+ENCSR905PWV	ENCFF095HRI	ENCFF171ZOI	Homo sapiens HG02610
+ENCSR913OWV	ENCFF201ZDJ	ENCFF347SHR	Homo sapiens from a donor with amyotrophic lateral sclerosis; motor neuron
+ENCSR915MTG	ENCFF980APH	ENCFF566VPO	Homo sapiens activated CD8-positive, alpha-beta memory T cell nuclear fraction male adult (30 years) treated with anti-CD3 and anti-CD28 coated beads for 7 days, 10 ng/mL Interleukin-2 for 5 days
+ENCSR917WJS	ENCFF983UBQ	ENCFF980AMP	Homo sapiens GM18909
+ENCSR918TVE	ENCFF707EUL	ENCFF323APR	Homo sapiens pancreas tissue female adult (47 years)
+ENCSR920FQJ	ENCFF388ZHA	ENCFF221CEP	Homo sapiens HG02938
+ENCSR923VTG	ENCFF189LZA	ENCFF538SJJ	Homo sapiens lower lobe of right lung tissue male adult (60 years)
+ENCSR924SDV	ENCFF717TCQ	ENCFF178BCK	Homo sapiens GM18498
+ENCSR925LGW	ENCFF947DKR	ENCFF870BZD	Homo sapiens heart left ventricle tissue female adult (59 years)
+ENCSR926GDT	ENCFF729DET	ENCFF943JEC	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 4 hours
+ENCSR926TFY	ENCFF368UYH	ENCFF958OAB	Homo sapiens dendritic cell treated with 100 ng/mL lipopolysaccharide for 4 hours
+ENCSR934AWQ	ENCFF628SES	ENCFF146GWV	Homo sapiens T-cell male adult (38 years)
+ENCSR940YDN	ENCFF143WNQ	ENCFF766IFY	Homo sapiens HG03159
+ENCSR946MAI	ENCFF199BCX	ENCFF456PFX	Homo sapiens left ventricle myocardium inferior tissue male adult (60 years)
+ENCSR948MQC	ENCFF901RIY	ENCFF634JAM	Homo sapiens lower lobe of right lung tissue female adult (65 years)
+ENCSR952SPO	ENCFF385DEZ	ENCFF469MOB	Homo sapiens right lobe of liver tissue female child (16 years)
+ENCSR954BDA	ENCFF425ZPR	ENCFF607UBE	Homo sapiens GM21529
+ENCSR956DNB	ENCFF842UZU	ENCFF798GCW	Homo sapiens K562
+ENCSR960KGO	ENCFF610VJM	ENCFF186BYJ	Homo sapiens GM21515
+ENCSR962ITF	ENCFF876EEH	ENCFF942LRJ	Homo sapiens HG03108
+ENCSR970UNF	ENCFF081FUV	ENCFF641HAD	Homo sapiens colonic mucosa tissue female adult (41 years)
+ENCSR977LVI	ENCFF273DGN	ENCFF814ZWG	Homo sapiens T-cell female adult (21 years)
+ENCSR983HXF	ENCFF792EFB	ENCFF133HQE	Homo sapiens activated naive CD8-positive, alpha-beta T cell nuclear fraction male adult (30 years) treated with anti-CD3 and anti-CD28 coated beads for 7 days, 10 ng/mL Interleukin-2 for 5 days
+ENCSR990NNX	ENCFF906HOT	ENCFF138FYP	Homo sapiens upper lobe of right lung tissue male adult (60 years)
+ENCSR991PBP	ENCFF418SHH	ENCFF858UDC	Homo sapiens activated CD4-positive, alpha-beta T cell male adult (20 years) treated with anti-CD3 and anti-CD28 coated beads for 36 hours
+ENCSR993XED	ENCFF025DBX	ENCFF396WBB	Homo sapiens activated T-cell male adult (38 years) treated with 50 U/mL Interleukin-2 for 4 hours, anti-CD3 and anti-CD28 coated beads for 4 hours
+ENCSR996ZCR	ENCFF380AEO	ENCFF830ZZA	Homo sapiens ovary tissue female adult (46 years)
