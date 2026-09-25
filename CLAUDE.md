@@ -35,6 +35,9 @@ Data flow (see `docs/pipeline-dag.png`):
    (wildcards `assay`, `id`). This is the wide fan-out (~1700 jobs for ENCODE + custom).
 4. `ccres.smk`: per-assay max-Z; an ATAC anchor with ATAC max-Z > 1.64 becomes an `ATAC-cCRE`.
    DNase max-Z is computed but `call_ccres` does not use it (original design, under review).
+5. `qc.smk`: `ccre_support` tabulates the new anchors; `qc_plots` draws from that table in its
+   own env (`envs/qc.yaml`). Plots follow `workflow/scripts/_style.py`: call `apply_style()`
+   before importing pyplot, save with `save_figure()`, no per-script rcParams.
 
 `workflow/rules/common.smk` is the only place config and sample sheets are read. It builds the
 lookup dicts every rule uses (`NARROWPEAK_OF`, `BIGWIG_OF`, `BIGWIGS[assay][id]`,

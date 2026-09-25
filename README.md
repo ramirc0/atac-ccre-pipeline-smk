@@ -37,6 +37,8 @@ Outputs land in `results/<run_id>/`. Logs and benchmarks mirror it under `logs/<
 | `ATAC-maxZ.txt` | per-anchor max z-score over the sample bigWigs |
 | `DNase-maxZ.txt` | per-anchor max z-score over the ENCODE DNase bigWigs; skipped if `dnase: null` |
 | `cCREs.bed` | registry cCREs plus ATAC cCREs, with accessions |
+| `qc/qc.pdf` | QC plots; each page also as SVG and PNG in `qc/figures/` |
+| `qc/ccre-support.tsv` | per new ATAC anchor: max z-scores, supporting samples and experiments, nearest registry anchors |
 
 Intermediates sit under `peaks/`, `rpeaks/`, `zscore/` and `fragments/`.
 

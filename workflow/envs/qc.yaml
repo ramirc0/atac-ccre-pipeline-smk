@@ -1,0 +1,9 @@
+name: atac-ccre-pipeline-qc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - polars=1.44
+  - numpy=2
+  - matplotlib-base>=3.10
+  - seaborn-base>=0.13

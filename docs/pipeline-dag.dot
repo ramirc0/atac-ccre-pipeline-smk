@@ -38,6 +38,7 @@ digraph pipeline {
     anchors    [label="anchors\nV4 anchors + new ATAC anchors"];
     maxz       [label="zscore, max_z\n(z-score of log10 signal)\nacross ATAC samples and DNase experiments"];
     call       [label="call_ccres\nnew ATAC anchors with ATAC max-Z > 1.64\nbecome ATAC cCREs,\nadded to the V4 Registry"];
+    qc         [label="ccre_support, qc_plots\nper-anchor support table,\nQC figures"];
 
     // Final outputs
     subgraph outputs {
@@ -46,6 +47,7 @@ digraph pipeline {
         out_amax    [label=<<b>ATAC-maxZ.txt</b><br/><font point-size="10">ATAC max-Z per anchor</font>>];
         out_dmax    [label=<<b>DNase-maxZ.txt</b><br/><font point-size="10">DNase max-Z per anchor</font>>];
         out_ccres   [label=<<b>cCREs.bed</b><br/><font point-size="10">V4 Registry cCREs + ATAC cCREs</font>>];
+        out_qc      [label=<<b>qc/</b><br/><font point-size="10">qc.pdf, figures, ccre-support.tsv</font>>];
         { rank=same; out_anchors; out_amax; out_dmax; out_ccres; }
     }
 
@@ -68,6 +70,9 @@ digraph pipeline {
     maxz -> call [label=" ATAC max-Z", fontsize=9];
     ccres -> call;
     call -> out_ccres;
+    call -> qc;
+    maxz -> qc;
+    qc -> out_qc;
 
     { rank=same; custom_bw; dnase; }
 }
