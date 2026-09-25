@@ -21,6 +21,7 @@ THRESHOLD = 1.64
 ZERO_Z = -10.0  # zscore.py's value for anchors with no signal
 TOP_SAMPLES = 40
 WINDOW = 10_000
+ZOOM = 1_000
 
 
 def build_parser():
@@ -131,23 +132,29 @@ def support_page(support):
 
 
 def nearest_registry(support):
-    """Distance from each ATAC cCRE midpoint to the nearest registry anchor midpoint."""
+    """Distance from each ATAC cCRE midpoint to the nearest registry anchor midpoint.
+
+    The inset zooms into the center. Lines mark half the minimum (75 bp) and
+    maximum (175 bp) peak width that prepare_peaks.py re-centers peaks to.
+    """
     ccres = support.filter("is_ccre")
     left = -ccres["left_registry_bp"].drop_nulls().to_numpy()
     right = ccres["right_registry_bp"].drop_nulls().to_numpy()
-    bins = np.arange(-WINDOW, WINDOW + 100, 100)
     fig, ax = plt.subplots(figsize=(8, 3.5))
-    ax.hist(left[left >= -WINDOW], bins=bins, alpha=0.7, label="Left")
-    ax.hist(right[right <= WINDOW], bins=bins, alpha=0.7, label="Right")
-    for x in (-175, 175):
-        ax.axvline(x, color="black", linestyle=":", linewidth=0.6)
-    for x in (-75, 75):
-        ax.axvline(x, color="black", linestyle="--", linewidth=0.6)
+    inset = ax.inset_axes([0.64, 0.4, 0.34, 0.55])
+    for a, window, step in [(ax, WINDOW, 100), (inset, ZOOM, 25)]:
+        bins = np.arange(-window, window + step, step)
+        a.hist(left[left >= -window], bins=bins, alpha=0.7, label="Left")
+        a.hist(right[right <= window], bins=bins, alpha=0.7, label="Right")
+        for x in (-175, 175):
+            a.axvline(x, color="black", linestyle=":", linewidth=0.6, label="±175 bp" if x > 0 else None)
+        for x in (-75, 75):
+            a.axvline(x, color="black", linestyle="--", linewidth=0.6, label="±75 bp" if x > 0 else None)
+        despine(a)
     ax.set_xlabel("Distance to nearest registry anchor (bp)")
     ax.set_ylabel("ATAC cCREs")
     ax.set_title("Nearest registry anchor around ATAC cCREs")
-    ax.legend(frameon=False)
-    despine(ax)
+    ax.legend(frameon=False, loc="upper left")
     return fig
 
 
