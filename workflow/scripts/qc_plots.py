@@ -9,12 +9,11 @@ from pathlib import Path
 
 import numpy as np
 import polars as pl
-from _style import apply_style, save_figure
+from _style import apply_style, despine, save_figure
 
 apply_style()
 
 import matplotlib.pyplot as plt  # noqa: E402
-import seaborn as sns  # noqa: E402
 from matplotlib.backends.backend_pdf import PdfPages  # noqa: E402
 from matplotlib.patches import Patch  # noqa: E402
 
@@ -44,18 +43,6 @@ def count_lines(path):
         return sum(chunk.count(b"\n") for chunk in iter(lambda: f.read(1 << 24), b""))
 
 
-def bar_axes(ax):
-    """Skill style for categorical bars: left spine only, offset and trimmed."""
-    sns.despine(ax=ax, top=True, right=True, bottom=True, offset={"left": 10}, trim=True)
-    ax.tick_params(axis="x", length=0)
-
-
-def scatter_axes(ax):
-    """Skill style for scatter plots: inward ticks."""
-    sns.despine(ax=ax, top=True, right=True)
-    ax.tick_params(direction="in", top=False, right=False)
-
-
 def funnel(args, support):
     """Regions left after each filtering step, from pooled peaks to ATAC cCREs."""
     steps = {
@@ -72,7 +59,7 @@ def funnel(args, support):
     ax.set_yscale("log")
     ax.set_ylabel("Regions")
     ax.set_title("Filtering funnel")
-    bar_axes(ax)
+    despine(ax, categorical_x=True)
     return fig
 
 
@@ -90,6 +77,7 @@ def atac_max_z(args, support):
     ax.set_ylabel("Density")
     ax.set_title("ATAC max z-score by anchor origin")
     ax.legend(frameon=False)
+    despine(ax)
     return fig
 
 
@@ -110,7 +98,7 @@ def atac_vs_dnase(support):
     ax.set_xlabel("ATAC max z-score")
     ax.set_ylabel("DNase max z-score")
     ax.set_title(f"New anchors; {(~shown).sum():,} with no DNase signal not shown")
-    scatter_axes(ax)
+    despine(ax)
     return fig
 
 
@@ -121,13 +109,13 @@ def support_page(support):
     experiments = support["peak_experiments"].to_numpy()
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(11, 3.5))
 
-    bins = np.arange(0, np.percentile(passing, 99) + 2) - 0.5
+    bins = np.arange(0, np.percentile(passing, 99) + 2)
     ax1.hist([passing[ccre], passing[~ccre]], bins=bins, stacked=True, label=["ATAC cCRE", "Not called"])
     ax1.set_xlabel(f"Samples with z ≥ {THRESHOLD}")
     ax1.set_ylabel("New anchors")
     ax1.legend(frameon=False)
 
-    bins = np.arange(experiments.min(), np.percentile(experiments, 99) + 2) - 0.5
+    bins = np.arange(experiments.min(), np.percentile(experiments, 99) + 2)
     ax2.hist([experiments[ccre], experiments[~ccre]], bins=bins, stacked=True)
     ax2.set_xlabel("Experiments supporting the rPeak")
     ax2.set_ylabel("New anchors")
@@ -136,7 +124,8 @@ def support_page(support):
     fig.colorbar(hb, ax=ax3, label="Anchors")
     ax3.set_xlabel("Experiments supporting the rPeak")
     ax3.set_ylabel(f"Samples with z ≥ {THRESHOLD}")
-    scatter_axes(ax3)
+    for ax in (ax1, ax2, ax3):
+        despine(ax)
     fig.suptitle("Support per new anchor (histograms clipped at the 99th percentile)")
     return fig
 
@@ -158,6 +147,7 @@ def nearest_registry(support):
     ax.set_ylabel("ATAC cCREs")
     ax.set_title("Nearest registry anchor around ATAC cCREs")
     ax.legend(frameon=False)
+    despine(ax)
     return fig
 
 
@@ -177,7 +167,7 @@ def sample_contribution(support):
     ax.set_ylabel("ATAC cCREs")
     ax.set_title(f"rPeak source, top {len(top)} of {counts.height} samples")
     ax.legend(handles=[Patch(color="C0", label="ENCODE"), Patch(color="C1", label="Custom")], frameon=False)
-    bar_axes(ax)
+    despine(ax, categorical_x=True)
     return fig
 
 

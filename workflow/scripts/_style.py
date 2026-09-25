@@ -27,6 +27,35 @@ def apply_style():
     mpl.rcParams["figure.constrained_layout.use"] = True
     mpl.rcParams["axes.spines.top"] = False
     mpl.rcParams["axes.spines.right"] = False
+    mpl.rcParams["xtick.direction"] = "in"
+    mpl.rcParams["ytick.direction"] = "in"
+
+
+def despine(ax, categorical_x=False):
+    """Offset left and bottom spines by 10 pt and trim them to the end ticks.
+
+    Each continuous axis is fitted to its data without margins, then widened
+    to the nearest ticks enclosing the data, so the trimmed spine never ends
+    short of the data. A categorical x axis has no spine or tick marks; its
+    labels carry the categories.
+    """
+    import seaborn as sns
+
+    ax.margins(0)
+    ax.autoscale_view()
+    axes = [(ax.yaxis, ax.get_ylim, ax.set_ylim)]
+    if not categorical_x:
+        axes.append((ax.xaxis, ax.get_xlim, ax.set_xlim))
+    for axis, get_lim, set_lim in axes:
+        lo, hi = sorted(get_lim())
+        ticks = axis.get_major_locator().tick_values(lo, hi)
+        lo = max((t for t in ticks if t <= lo), default=lo)
+        hi = min((t for t in ticks if t >= hi), default=hi)
+        axis.set_ticks([t for t in ticks if lo <= t <= hi])
+        set_lim(lo, hi)
+    sns.despine(ax=ax, bottom=categorical_x, offset=10, trim=True)
+    if categorical_x:
+        ax.tick_params(axis="x", length=0)
 
 
 def save_figure(fig, path, **kwargs):
