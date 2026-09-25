@@ -59,7 +59,7 @@ rule qc_plots:
         pdf=f"{OUTDIR}/qc/qc.pdf",
         figures=expand(f"{OUTDIR}/qc/figures/{{page}}.{{ext}}", page=QC_PAGES, ext=["svg", "png"]),
     params:
-        figures=f"{OUTDIR}/qc/figures",
+        figures=lambda w, output: str(Path(output.figures[0]).parent),
     log:
         f"{LOGDIR}/qc_plots.txt",
     benchmark:
