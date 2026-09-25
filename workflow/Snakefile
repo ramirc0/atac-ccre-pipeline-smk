@@ -11,5 +11,5 @@ rule all:
         f"{OUTDIR}/Anchors-ATAC.bed",
         f"{OUTDIR}/ATAC-maxZ.txt",
         f"{OUTDIR}/cCREs.bed",
-        f"{OUTDIR}/qc/ccre-support.tsv",
+        f"{OUTDIR}/qc/qc.pdf",
         [f"{OUTDIR}/DNase-maxZ.txt"] if DNASE_BIGWIG_OF else [],
