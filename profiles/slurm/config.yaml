@@ -24,11 +24,11 @@ set-threads:                # also caps polars: rules export POLARS_MAX_THREADS=
 
 set-resources:              # from benchmarks/; ENCODE-scale peak sets need ~3x
   prepare_peaks:
-    mem_mb: 16000 * attempt
+    mem_mb: 20000 * attempt
   cluster_rpeaks:
     mem_mb: 4000 * attempt
   filter_rpeaks:
-    mem_mb: 48000 * attempt
+    mem_mb: 64000 * attempt
   zscore:
     mem_mb: 4000 * attempt
     runtime: 15m

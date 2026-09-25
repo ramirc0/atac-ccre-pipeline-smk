@@ -22,8 +22,8 @@ set-threads:                # also caps polars: rules export POLARS_MAX_THREADS=
   call_ccres: 4
 
 set-resources:              # from benchmarks/; ENCODE-scale peak sets need ~3x
-  prepare_peaks: {mem_mb: 16000}
-  filter_rpeaks: {mem_mb: 48000}
+  prepare_peaks: {mem_mb: 20000}
+  filter_rpeaks: {mem_mb: 64000}
   zscore: {mem_mb: 4000}
   call_ccres: {mem_mb: 4000}
   fragment_call_peaks: {mem_mb: 32000}
