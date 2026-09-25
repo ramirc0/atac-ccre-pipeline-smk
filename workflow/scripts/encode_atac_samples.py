@@ -1,6 +1,7 @@
 """Select ENCODE ATAC-seq experiments from an encode-metadata snapshot.
 
-Experiments: released, unperturbed Homo sapiens ATAC-seq. Per experiment:
+Experiments: released, unperturbed (unless --include-perturbed) Homo sapiens
+ATAC-seq. Per experiment:
   peak    the released GRCh38 preferred-default narrowPeak
   bigWig  the released GRCh38 fold-change bigWig from the experiment's default
           analysis that covers the most biological replicates (the pooled track)
@@ -30,12 +31,13 @@ def build_parser():
     p.add_argument("--legacy-output", help="Headerless list for the original pipeline.")
     p.add_argument("--min-frip", type=float, default=0.2, help="Minimum FRiP of the peak file.")
     p.add_argument("--min-reads", type=float, default=None, help="Minimum usable fragments.")
+    p.add_argument("--include-perturbed", action="store_true", help="Keep perturbed experiments.")
     p.add_argument("--peak-dir", default=PEAK_DIR, help="Local ENCODE peak mirror.")
     p.add_argument("--bigwig-dir", default=BIGWIG_DIR, help="Local ENCODE bigWig mirror.")
     return p
 
 
-def select(snapshot, min_frip, min_reads):
+def select(snapshot, min_frip, min_reads, include_perturbed=False):
     """One row per experiment: experiment, peak, bigwig, biosample, frip, reads."""
     experiments = pl.read_parquet(
         snapshot / "experiment.parquet",
@@ -45,7 +47,7 @@ def select(snapshot, min_frip, min_reads):
         (pl.col("assay_title") == "ATAC-seq")
         & (pl.col("status") == "released")
         & (pl.col("organism") == "Homo sapiens")
-        & ~pl.col("perturbed")
+        & (pl.lit(include_perturbed) | ~pl.col("perturbed"))
     )
     files = (
         pl.read_parquet(
@@ -121,7 +123,7 @@ def select(snapshot, min_frip, min_reads):
 def main(argv=None):
     """Select experiments, check local files, and write the sheet(s)."""
     args = build_parser().parse_args(argv)
-    rows = select(args.snapshot, args.min_frip, args.min_reads).with_columns(
+    rows = select(args.snapshot, args.min_frip, args.min_reads, args.include_perturbed).with_columns(
         narrowpeak=pl.format("{}/{}/{}.bed.gz", pl.lit(args.peak_dir), "experiment", "peak"),
         bigwig_path=pl.format("{}/{}/{}.bigWig", pl.lit(args.bigwig_dir), "experiment", "bigwig"),
     )
