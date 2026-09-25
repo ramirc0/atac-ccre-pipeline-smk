@@ -38,3 +38,5 @@ All outputs are in `results/<run_id>/`:
 - `Anchors-ATAC.bed`: rDHS anchors plus new ATAC anchors (`EH38A…`).
 - `ATAC-maxZ.txt`, `DNase-maxZ.txt`: the maximum signal z-score of each anchor across all samples.
 - `cCREs.bed`: existing Registry cCREs plus new `ATAC-cCRE` elements. A new ATAC anchor becomes a cCRE when its ATAC max-Z is above 1.64.
+- `qc/ccre-support.tsv`: one row per new ATAC anchor. Columns: coordinates, `is_ccre`, ATAC and DNase max-Z, `samples_passing` (ATAC samples with z >= 1.64), `peak_experiments`, `rpeak_sample`, and the midpoint distance to the nearest registry anchor on each side.
+- `qc/qc.pdf`: filtering funnel, max-Z distributions, ATAC vs DNase max-Z, support, nearest registry anchor, per-sample contribution.
