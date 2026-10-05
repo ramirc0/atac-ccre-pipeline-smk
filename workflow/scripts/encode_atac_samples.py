@@ -25,15 +25,27 @@ BIGWIG_DIR = "/zata/data/zlab/projects/encode/data"
 
 def build_parser():
     """Return the argument parser for encode_atac_samples.py."""
-    p = argparse.ArgumentParser(description="ENCODE ATAC samples from a metadata snapshot.")
-    p.add_argument("snapshot", type=Path, help="Snapshot parquets dir (results/<run_id>/parquets).")
+    p = argparse.ArgumentParser(
+        description="ENCODE ATAC samples from a metadata snapshot."
+    )
+    p.add_argument(
+        "snapshot", type=Path, help="Snapshot parquets dir (results/<run_id>/parquets)."
+    )
     p.add_argument("-o", "--output", required=True, help="Sample sheet TSV to write.")
     p.add_argument("--legacy-output", help="Headerless list for the original pipeline.")
-    p.add_argument("--min-frip", type=float, default=0.2, help="Minimum FRiP of the peak file.")
-    p.add_argument("--min-reads", type=float, default=None, help="Minimum usable fragments.")
-    p.add_argument("--include-perturbed", action="store_true", help="Keep perturbed experiments.")
+    p.add_argument(
+        "--min-frip", type=float, default=0.2, help="Minimum FRiP of the peak file."
+    )
+    p.add_argument(
+        "--min-reads", type=float, default=None, help="Minimum usable fragments."
+    )
+    p.add_argument(
+        "--include-perturbed", action="store_true", help="Keep perturbed experiments."
+    )
     p.add_argument("--peak-dir", default=PEAK_DIR, help="Local ENCODE peak mirror.")
-    p.add_argument("--bigwig-dir", default=BIGWIG_DIR, help="Local ENCODE bigWig mirror.")
+    p.add_argument(
+        "--bigwig-dir", default=BIGWIG_DIR, help="Local ENCODE bigWig mirror."
+    )
     return p
 
 
@@ -41,8 +53,15 @@ def select(snapshot, min_frip, min_reads, include_perturbed=False):
     """One row per experiment: experiment, peak, bigwig, biosample, frip, reads."""
     experiments = pl.read_parquet(
         snapshot / "experiment.parquet",
-        columns=["accession", "assay_title", "status", "organism", "perturbed",
-                 "biosample_summary", "default_analysis"],
+        columns=[
+            "accession",
+            "assay_title",
+            "status",
+            "organism",
+            "perturbed",
+            "biosample_summary",
+            "default_analysis",
+        ],
     ).filter(
         (pl.col("assay_title") == "ATAC-seq")
         & (pl.col("status") == "released")
@@ -52,19 +71,36 @@ def select(snapshot, min_frip, min_reads, include_perturbed=False):
     files = (
         pl.read_parquet(
             snapshot / "file.parquet",
-            columns=["id", "accession", "dataset", "file_type", "output_type", "status",
-                     "genome_assembly", "preferred_default", "biological_replicates", "analyses"],
+            columns=[
+                "id",
+                "accession",
+                "dataset",
+                "file_type",
+                "output_type",
+                "status",
+                "genome_assembly",
+                "preferred_default",
+                "biological_replicates",
+                "analyses",
+            ],
         )
-        .filter((pl.col("status") == "released") & (pl.col("genome_assembly") == "GRCh38"))
-        .with_columns(experiment=pl.col("dataset").str.extract(r"^/experiments/(\w+)/$"))
+        .filter(
+            (pl.col("status") == "released") & (pl.col("genome_assembly") == "GRCh38")
+        )
+        .with_columns(
+            experiment=pl.col("dataset").str.extract(r"^/experiments/(\w+)/$")
+        )
         .join(
-            experiments.select(experiment="accession", default_analysis="default_analysis"),
+            experiments.select(
+                experiment="accession", default_analysis="default_analysis"
+            ),
             on="experiment",
         )
     )
 
     peaks = files.filter(
-        (pl.col("file_type") == "bed narrowPeak") & pl.col("preferred_default").fill_null(False)
+        (pl.col("file_type") == "bed narrowPeak")
+        & pl.col("preferred_default").fill_null(False)
     ).select("experiment", peak="accession", peak_id="id")
 
     bigwigs = (
@@ -79,11 +115,13 @@ def select(snapshot, min_frip, min_reads, include_perturbed=False):
         .select("experiment", bigwig="accession")
     )
 
-    frip = pl.read_parquet(
-        snapshot / "atac_peak_enrichment_quality_metric.parquet",
-        columns=["files", "frip_score_of_peaks", "status"],
-    ).filter(pl.col("status") == "released").select(
-        peak_id="files", frip="frip_score_of_peaks"
+    frip = (
+        pl.read_parquet(
+            snapshot / "atac_peak_enrichment_quality_metric.parquet",
+            columns=["files", "frip_score_of_peaks", "status"],
+        )
+        .filter(pl.col("status") == "released")
+        .select(peak_id="files", frip="frip_score_of_peaks")
     )
 
     reads = (
@@ -110,30 +148,48 @@ def select(snapshot, min_frip, min_reads, include_perturbed=False):
         .drop("peak_id")
         .sort("experiment")
     )
-    incomplete = out.filter(pl.any_horizontal(pl.col("peak", "bigwig", "frip").is_null()))
+    incomplete = out.filter(
+        pl.any_horizontal(pl.col("peak", "bigwig", "frip").is_null())
+    )
     if incomplete.height:
         raise SystemExit(f"Experiments missing a peak, bigWig or FRiP:\n{incomplete}")
     keep = pl.col("frip") >= min_frip
     if min_reads is not None:
         keep &= pl.col("reads") >= min_reads
-    print(f"{experiments.height} experiments; {out.filter(keep).height} pass filters", file=sys.stderr)
+    print(
+        f"{experiments.height} experiments; {out.filter(keep).height} pass filters",
+        file=sys.stderr,
+    )
     return out.filter(keep)
 
 
 def main(argv=None):
     """Select experiments, check local files, and write the sheet(s)."""
     args = build_parser().parse_args(argv)
-    rows = select(args.snapshot, args.min_frip, args.min_reads, args.include_perturbed).with_columns(
-        narrowpeak=pl.format("{}/{}/{}.bed.gz", pl.lit(args.peak_dir), "experiment", "peak"),
-        bigwig_path=pl.format("{}/{}/{}.bigWig", pl.lit(args.bigwig_dir), "experiment", "bigwig"),
+    rows = select(
+        args.snapshot, args.min_frip, args.min_reads, args.include_perturbed
+    ).with_columns(
+        narrowpeak=pl.format(
+            "{}/{}/{}.bed.gz", pl.lit(args.peak_dir), "experiment", "peak"
+        ),
+        bigwig_path=pl.format(
+            "{}/{}/{}.bigWig", pl.lit(args.bigwig_dir), "experiment", "bigwig"
+        ),
     )
 
-    missing = [p for p in [*rows["narrowpeak"], *rows["bigwig_path"]] if not Path(p).exists()]
+    missing = [
+        p for p in [*rows["narrowpeak"], *rows["bigwig_path"]] if not Path(p).exists()
+    ]
     if missing:
-        raise SystemExit(f"{len(missing)} files missing locally:\n" + "\n".join(missing))
+        raise SystemExit(
+            f"{len(missing)} files missing locally:\n" + "\n".join(missing)
+        )
 
     rows.select(
-        sample_id="experiment", narrowpeak="narrowpeak", bigwig="bigwig_path", biosample="biosample"
+        sample_id="experiment",
+        narrowpeak="narrowpeak",
+        bigwig="bigwig_path",
+        biosample="biosample",
     ).write_csv(args.output, separator="\t")
     if args.legacy_output:
         rows.select("experiment", "peak", "bigwig", "biosample").write_csv(

@@ -3,7 +3,7 @@
 from pathlib import Path
 
 import matplotlib as mpl
-import matplotlib.style  # noqa: F401  (registers mpl.style)
+import matplotlib.style  # registers mpl.style
 
 FONT_STACK = [
     "Anthropic Sans Text",

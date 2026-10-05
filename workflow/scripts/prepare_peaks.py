@@ -28,7 +28,9 @@ def build_parser():
     p = argparse.ArgumentParser(description="Standardize narrowPeak files.")
     p.add_argument("--peaks", nargs="+", required=True, help="narrowPeak files.")
     p.add_argument("--samples", nargs="+", required=True, help="Sample id per file.")
-    p.add_argument("--biosamples", nargs="+", help="Biosample per file (default: sample id).")
+    p.add_argument(
+        "--biosamples", nargs="+", help="Biosample per file (default: sample id)."
+    )
     p.add_argument("--target", default="ATAC", help="Target column value.")
     p.add_argument("-o", "--output", required=True, help="Peak BED to write.")
     return p
@@ -77,7 +79,9 @@ def main(argv=None):
     args = build_parser().parse_args(argv)
     biosamples = args.biosamples or args.samples
     if not len(args.peaks) == len(args.samples) == len(biosamples):
-        raise SystemExit("--peaks, --samples and --biosamples must have the same length.")
+        raise SystemExit(
+            "--peaks, --samples and --biosamples must have the same length."
+        )
 
     with open(args.output, "w") as out:
         for path, sample, biosample in zip(args.peaks, args.samples, biosamples):

@@ -14,7 +14,9 @@ import polars as pl
 def build_parser():
     """Return the argument parser for pick_best_peak.py."""
     p = argparse.ArgumentParser(description="Strongest peak id per merged cluster.")
-    p.add_argument("merged", help="bedtools merge output with collapsed ids and signals.")
+    p.add_argument(
+        "merged", help="bedtools merge output with collapsed ids and signals."
+    )
     return p
 
 
@@ -31,7 +33,9 @@ def main(argv=None):
     best = clusters.select(
         pl.col("ids")
         .str.split(",")
-        .list.get(pl.col("signals").str.split(",").cast(pl.List(pl.Float64)).list.arg_max())
+        .list.get(
+            pl.col("signals").str.split(",").cast(pl.List(pl.Float64)).list.arg_max()
+        )
     )
     best.write_csv(sys.stdout, include_header=False)
 

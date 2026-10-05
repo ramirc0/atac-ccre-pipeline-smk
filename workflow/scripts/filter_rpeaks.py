@@ -12,14 +12,24 @@ import sys
 import polars as pl
 
 # 0-based columns of the intersection.
-COLUMNS = {0: "chrom", 1: "start", 2: "end", 13: "id", 24: "exp", 25: "target", 26: "biosample"}
+COLUMNS = {
+    0: "chrom",
+    1: "start",
+    2: "end",
+    13: "id",
+    24: "exp",
+    25: "target",
+    26: "biosample",
+}
 
 
 def build_parser():
     """Return the argument parser for filter_rpeaks.py."""
     p = argparse.ArgumentParser(description="Filter rPeaks by supporting experiments.")
     p.add_argument("intersection", help="bedtools intersect -wo of rPeaks and summits.")
-    p.add_argument("--min-experiments", type=int, default=5, help="Minimum experiments.")
+    p.add_argument(
+        "--min-experiments", type=int, default=5, help="Minimum experiments."
+    )
     return p
 
 
@@ -51,7 +61,9 @@ def main(argv=None):
         )
         .filter(pl.col("n") >= args.min_experiments)
         .select("chrom", "start", "end", "id", "target", "biosample", "exp", "n")
-        .write_csv(sys.stdout, separator="\t", include_header=False, quote_style="never")
+        .write_csv(
+            sys.stdout, separator="\t", include_header=False, quote_style="never"
+        )
     )
 
 

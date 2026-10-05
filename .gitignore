@@ -18,3 +18,4 @@ config/*.tsv
 !config/samples.example.tsv
 config/config.yaml
 _archive/
+.ruff_cache/

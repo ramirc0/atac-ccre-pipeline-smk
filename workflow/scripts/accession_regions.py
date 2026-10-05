@@ -10,7 +10,14 @@ import sys
 import polars as pl
 
 GENOME_IDS = {"hg19": "EH37", "hg38": "EH38", "mm10": "EM10"}
-MODE_IDS = {"rDHS": "D", "cCRE": "E", "TF": "F", "MultiMap": "M", "ATAC": "A", "BETA": "B"}
+MODE_IDS = {
+    "rDHS": "D",
+    "cCRE": "E",
+    "TF": "F",
+    "MultiMap": "M",
+    "ATAC": "A",
+    "BETA": "B",
+}
 
 
 def build_parser():
@@ -27,7 +34,11 @@ def main(argv=None):
     args = build_parser().parse_args(argv)
     prefix = GENOME_IDS[args.genome] + MODE_IDS[args.mode]
     regions = pl.read_csv(
-        args.regions, separator="\t", has_header=False, infer_schema_length=0, quote_char=None
+        args.regions,
+        separator="\t",
+        has_header=False,
+        infer_schema_length=0,
+        quote_char=None,
     )
     regions.with_columns(
         accession=pl.lit(prefix)

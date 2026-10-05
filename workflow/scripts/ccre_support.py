@@ -20,23 +20,33 @@ BED = ["chrom", "start", "end", "anchor"]
 def build_parser():
     """Return the argument parser for ccre_support.py."""
     p = argparse.ArgumentParser(description="Support table for the new ATAC anchors.")
-    p.add_argument("--anchors", required=True, help="Anchors BED: chrom, start, end, anchor.")
-    p.add_argument("--summary", required=True, help="ATAC-Summary.txt from accession_rpeaks.")
+    p.add_argument(
+        "--anchors", required=True, help="Anchors BED: chrom, start, end, anchor."
+    )
+    p.add_argument(
+        "--summary", required=True, help="ATAC-Summary.txt from accession_rpeaks."
+    )
     p.add_argument("--ccres", required=True, help="cCREs.bed from call_ccres.")
     p.add_argument("--atac-max-z", required=True, help="ATAC anchor/max_zscore TSV.")
-    p.add_argument("--dnase-max-z", nargs="*", default=[], help="DNase anchor/max_zscore TSV.")
-    p.add_argument("--zscores", nargs="+", required=True, help="ATAC zscore.py parquet files.")
+    p.add_argument(
+        "--dnase-max-z", nargs="*", default=[], help="DNase anchor/max_zscore TSV."
+    )
+    p.add_argument(
+        "--zscores", nargs="+", required=True, help="ATAC zscore.py parquet files."
+    )
     p.add_argument("--genome", required=True, choices=GENOME_IDS, help="Genome build.")
-    p.add_argument("--threshold", type=float, default=1.64, help="Per-sample z-score cutoff.")
+    p.add_argument(
+        "--threshold", type=float, default=1.64, help="Per-sample z-score cutoff."
+    )
     p.add_argument("-o", "--output", required=True, help="Support TSV to write.")
     return p
 
 
 def read_max_z(path, name):
     """Read an anchor/max_zscore TSV, renaming the score to `name`."""
-    return pl.read_csv(path, separator="\t", schema_overrides={"anchor": pl.Utf8}).rename(
-        {"max_zscore": name}
-    )
+    return pl.read_csv(
+        path, separator="\t", schema_overrides={"anchor": pl.Utf8}
+    ).rename({"max_zscore": name})
 
 
 def count_passing(paths, prefix, threshold):
@@ -55,7 +65,11 @@ def count_passing(paths, prefix, threshold):
 def nearest_registry(anchors, is_new):
     """Midpoint distance from each new anchor to the nearest registry anchor per side."""
     mid = ((pl.col("start") + pl.col("end")) // 2).alias("mid")
-    registry = anchors.filter(~is_new).select("chrom", mid.alias("registry_mid")).sort("registry_mid")
+    registry = (
+        anchors.filter(~is_new)
+        .select("chrom", mid.alias("registry_mid"))
+        .sort("registry_mid")
+    )
     new = anchors.filter(is_new).select("anchor", "chrom", mid).sort("mid")
 
     def side(strategy):
@@ -68,8 +82,12 @@ def nearest_registry(anchors, is_new):
             check_sortedness=False,
         )
 
-    left = side("backward").select("anchor", left_registry_bp=pl.col("mid") - pl.col("registry_mid"))
-    right = side("forward").select("anchor", right_registry_bp=pl.col("registry_mid") - pl.col("mid"))
+    left = side("backward").select(
+        "anchor", left_registry_bp=pl.col("mid") - pl.col("registry_mid")
+    )
+    right = side("forward").select(
+        "anchor", right_registry_bp=pl.col("registry_mid") - pl.col("mid")
+    )
     return left.join(right, on="anchor")
 
 
@@ -104,7 +122,9 @@ def main(argv=None):
     for path in args.dnase_max_z:
         table = table.join(read_max_z(path, "dnase_max_z"), on="anchor", how="left")
     table = (
-        table.join(count_passing(args.zscores, prefix, args.threshold), on="anchor", how="left")
+        table.join(
+            count_passing(args.zscores, prefix, args.threshold), on="anchor", how="left"
+        )
         .join(summary, on="anchor", how="left")
         .join(nearest_registry(anchors, is_new), on="anchor", how="left")
     )

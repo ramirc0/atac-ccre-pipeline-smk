@@ -18,7 +18,9 @@ ZERO_Z = -10.0
 def build_parser():
     """Return the argument parser for zscore.py."""
     p = argparse.ArgumentParser(description="Z-score log10 bigWig signal per anchor.")
-    p.add_argument("-i", "--input", required=True, help="bigWigAverageOverBed tab output.")
+    p.add_argument(
+        "-i", "--input", required=True, help="bigWigAverageOverBed tab output."
+    )
     p.add_argument("-o", "--output", required=True, help="Z-score parquet to write.")
     return p
 
@@ -26,7 +28,7 @@ def build_parser():
 def zscores(signal, nonzero):
     """Z-score of log10(signal) over `nonzero` anchors; ZERO_Z elsewhere."""
     # math.log(x, 10), not np.log10: matches the original values bit for bit.
-    log_signal = np.fromiter((math.log(x, 10) for x in signal[nonzero]), float)
+    log_signal = np.fromiter((math.log(x, 10) for x in signal[nonzero]), float)  # noqa: FURB163
     z = np.full(len(signal), ZERO_Z)
     z[nonzero] = (log_signal - np.mean(log_signal)) / np.std(log_signal)
     return z
@@ -41,14 +43,24 @@ def main(argv=None):
         has_header=False,
         columns=[0, 2, 4],
         new_columns=["anchor", "covered", "mean0"],
-        schema_overrides={"anchor": pl.Utf8, "covered": pl.Float64, "mean0": pl.Float64},
+        schema_overrides={
+            "anchor": pl.Utf8,
+            "covered": pl.Float64,
+            "mean0": pl.Float64,
+        },
     )
     signal = df["mean0"].to_numpy()
     nonzero = (signal != 0) & (df["covered"].to_numpy() != 0)
     z = zscores(signal, nonzero)
 
     (
-        pl.DataFrame({"anchor": df["anchor"], "zscore": z, "signal": np.where(nonzero, signal, 0.0)})
+        pl.DataFrame(
+            {
+                "anchor": df["anchor"],
+                "zscore": z,
+                "signal": np.where(nonzero, signal, 0.0),
+            }
+        )
         .with_columns(rank=pl.col("zscore").rank("min", descending=True))
         .sort("anchor")
         .write_parquet(args.output)

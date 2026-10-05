@@ -18,11 +18,15 @@ def build_parser():
     """Return the argument parser for call_ccres.py."""
     p = argparse.ArgumentParser(description="Call ATAC cCREs and assign accessions.")
     p.add_argument("--max-z", required=True, help="ATAC anchor/max_zscore TSV.")
-    p.add_argument("--anchors", required=True, help="Anchors BED: chrom, start, end, anchor.")
+    p.add_argument(
+        "--anchors", required=True, help="Anchors BED: chrom, start, end, anchor."
+    )
     p.add_argument("--ccres", required=True, help="Registry cCRE BED (6 columns).")
     p.add_argument("--genome", required=True, choices=GENOME_IDS, help="Genome build.")
     p.add_argument("--threshold", type=float, default=1.64, help="Max z-score cutoff.")
-    p.add_argument("-o", "--output", required=True, help="cCRE BED with header to write.")
+    p.add_argument(
+        "-o", "--output", required=True, help="cCRE BED with header to write."
+    )
     return p
 
 

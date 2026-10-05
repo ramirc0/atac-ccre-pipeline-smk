@@ -13,9 +13,9 @@ from _style import apply_style, despine, save_figure
 
 apply_style()
 
-import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.backends.backend_pdf import PdfPages  # noqa: E402
-from matplotlib.patches import Patch  # noqa: E402
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.patches import Patch
 
 THRESHOLD = 1.64
 ZERO_Z = -10.0  # zscore.py's value for anchors with no signal
@@ -26,14 +26,18 @@ ZOOM = 1_000
 
 def build_parser():
     """Return the argument parser for qc_plots.py."""
-    p = argparse.ArgumentParser(description="QC figures for the new ATAC anchors and cCREs.")
+    p = argparse.ArgumentParser(
+        description="QC figures for the new ATAC anchors and cCREs."
+    )
     p.add_argument("--support", required=True, help="ccre_support.py table.")
     p.add_argument("--atac-max-z", required=True, help="ATAC anchor/max_zscore TSV.")
     p.add_argument("--peaks", required=True, help="Pooled peaks BED.")
     p.add_argument("--rpeaks", required=True, help="rPeaks BED.")
     p.add_argument("--filtered", required=True, help="rPeaks with enough experiments.")
     p.add_argument("--no-rdhs", required=True, help="Filtered rPeaks off the rDHSs.")
-    p.add_argument("--figures", required=True, help="Directory for the per-page SVG and PNG.")
+    p.add_argument(
+        "--figures", required=True, help="Directory for the per-page SVG and PNG."
+    )
     p.add_argument("-o", "--output", required=True, help="Multi-page PDF to write.")
     return p
 
@@ -66,13 +70,27 @@ def funnel(args, support):
 
 def atac_max_z(args, support):
     """ATAC max z-score of registry and new anchors."""
-    max_z = pl.read_csv(args.atac_max_z, separator="\t", schema_overrides={"anchor": pl.Utf8})
+    max_z = pl.read_csv(
+        args.atac_max_z, separator="\t", schema_overrides={"anchor": pl.Utf8}
+    )
     is_new = max_z["anchor"].is_in(support["anchor"].implode()).to_numpy()
     z = max_z["max_zscore"].to_numpy()
     bins = np.linspace(np.nanmin(z[z > ZERO_Z]), np.nanmax(z), 100)
     fig, ax = plt.subplots(figsize=(5, 3.5))
-    ax.hist(z[~is_new], bins=bins, density=True, histtype="step", label=f"Registry ({(~is_new).sum():,})")
-    ax.hist(z[is_new], bins=bins, density=True, histtype="step", label=f"New ATAC ({is_new.sum():,})")
+    ax.hist(
+        z[~is_new],
+        bins=bins,
+        density=True,
+        histtype="step",
+        label=f"Registry ({(~is_new).sum():,})",
+    )
+    ax.hist(
+        z[is_new],
+        bins=bins,
+        density=True,
+        histtype="step",
+        label=f"New ATAC ({is_new.sum():,})",
+    )
     ax.axvline(THRESHOLD, color="black", linestyle="--", linewidth=0.8)
     ax.set_xlabel("ATAC max z-score")
     ax.set_ylabel("Density")
@@ -88,14 +106,27 @@ def atac_vs_dnase(support):
     dnase = support["dnase_max_z"].to_numpy()
     shown = dnase > ZERO_Z
     fig, ax = plt.subplots(figsize=(5, 4))
-    hb = ax.hexbin(atac[shown], dnase[shown], gridsize=60, bins="log", mincnt=1, cmap="viridis")
+    hb = ax.hexbin(
+        atac[shown], dnase[shown], gridsize=60, bins="log", mincnt=1, cmap="viridis"
+    )
     fig.colorbar(hb, ax=ax, label="Anchors")
     ax.axvline(THRESHOLD, color="black", linestyle="--", linewidth=0.8)
     ax.axhline(THRESHOLD, color="black", linestyle="--", linewidth=0.8)
-    for x_high, y_high, x, y in [(0, 1, 0.02, 0.98), (1, 1, 0.98, 0.98), (0, 0, 0.02, 0.02), (1, 0, 0.98, 0.02)]:
+    for x_high, y_high, x, y in [
+        (0, 1, 0.02, 0.98),
+        (1, 1, 0.98, 0.98),
+        (0, 0, 0.02, 0.02),
+        (1, 0, 0.98, 0.02),
+    ]:
         n = ((atac > THRESHOLD) == x_high) & ((dnase > THRESHOLD) == y_high)
-        ax.text(x, y, f"{n.sum():,}", transform=ax.transAxes, ha="right" if x_high else "left",
-                va="top" if y_high else "bottom")
+        ax.text(
+            x,
+            y,
+            f"{n.sum():,}",
+            transform=ax.transAxes,
+            ha="right" if x_high else "left",
+            va="top" if y_high else "bottom",
+        )
     ax.set_xlabel("ATAC max z-score")
     ax.set_ylabel("DNase max z-score")
     ax.set_title(f"New anchors; {(~shown).sum():,} with no DNase signal not shown")
@@ -111,7 +142,12 @@ def support_page(support):
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(11, 3.5))
 
     bins = np.arange(0, np.percentile(passing, 99) + 2)
-    ax1.hist([passing[ccre], passing[~ccre]], bins=bins, stacked=True, label=["ATAC cCRE", "Not called"])
+    ax1.hist(
+        [passing[ccre], passing[~ccre]],
+        bins=bins,
+        stacked=True,
+        label=["ATAC cCRE", "Not called"],
+    )
     ax1.set_xlabel(f"Samples with z ≥ {THRESHOLD}")
     ax1.set_ylabel("New anchors")
     ax1.legend(frameon=False)
@@ -121,7 +157,9 @@ def support_page(support):
     ax2.set_xlabel("Experiments supporting the rPeak")
     ax2.set_ylabel("New anchors")
 
-    hb = ax3.hexbin(experiments, passing, gridsize=50, bins="log", mincnt=1, cmap="viridis")
+    hb = ax3.hexbin(
+        experiments, passing, gridsize=50, bins="log", mincnt=1, cmap="viridis"
+    )
     fig.colorbar(hb, ax=ax3, label="Anchors")
     ax3.set_xlabel("Experiments supporting the rPeak")
     ax3.set_ylabel(f"Samples with z ≥ {THRESHOLD}")
@@ -147,9 +185,21 @@ def nearest_registry(support):
         a.hist(left[left >= -window], bins=bins, alpha=0.7, label="Left")
         a.hist(right[right <= window], bins=bins, alpha=0.7, label="Right")
         for x in (-175, 175):
-            a.axvline(x, color="black", linestyle=":", linewidth=0.6, label="±175 bp" if x > 0 else None)
+            a.axvline(
+                x,
+                color="black",
+                linestyle=":",
+                linewidth=0.6,
+                label="±175 bp" if x > 0 else None,
+            )
         for x in (-75, 75):
-            a.axvline(x, color="black", linestyle="--", linewidth=0.6, label="±75 bp" if x > 0 else None)
+            a.axvline(
+                x,
+                color="black",
+                linestyle="--",
+                linewidth=0.6,
+                label="±75 bp" if x > 0 else None,
+            )
         despine(a)
     ax.set_xlabel("Distance to nearest registry anchor (bp)")
     ax.set_ylabel("ATAC cCREs")
@@ -173,7 +223,10 @@ def sample_contribution(support):
     ax.tick_params(axis="x", labelrotation=90)
     ax.set_ylabel("ATAC cCREs")
     ax.set_title(f"rPeak source, top {len(top)} of {counts.height} samples")
-    ax.legend(handles=[Patch(color="C0", label="ENCODE"), Patch(color="C1", label="Custom")], frameon=False)
+    ax.legend(
+        handles=[Patch(color="C0", label="ENCODE"), Patch(color="C1", label="Custom")],
+        frameon=False,
+    )
     despine(ax, categorical_x=True)
     return fig
 
