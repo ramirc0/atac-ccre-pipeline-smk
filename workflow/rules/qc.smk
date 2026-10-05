@@ -17,8 +17,8 @@ rule ccre_support:
         f"{LOGDIR}/ccre_support.txt",
     benchmark:
         f"{BENCHDIR}/ccre_support.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -64,8 +64,8 @@ rule qc_plots:
         f"{LOGDIR}/qc_plots.txt",
     benchmark:
         f"{BENCHDIR}/qc_plots.tsv"
-    conda:
-        "../envs/qc.yaml"
+    software:
+        QC_ENV
     shell:
         r"""
         exec &> >(tee {log:q})

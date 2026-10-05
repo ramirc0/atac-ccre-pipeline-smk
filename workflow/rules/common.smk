@@ -16,8 +16,9 @@ BENCHDIR = f"benchmarks/{RUN_ID}"
 GENOME = config["genome"]
 REFS = config["references"]
 
-# Absolute so conda: resolves the same from any rule file.
-CONDA_ENV = str((Path(workflow.basedir).parent / config["conda_env"]).resolve())
+# The workspace path is relative to the rule file. Every rule file sits in rules/.
+SOFTWARE_ENV = pixi(workspace="../envs", env=config["pixi_env"], locked=True)
+QC_ENV = pixi(workspace="../envs", env="qc", locked=True)
 
 
 def _read_sheets(paths):

@@ -14,8 +14,8 @@ rule prepare_peaks:
         f"{LOGDIR}/prepare_peaks.txt",
     benchmark:
         f"{BENCHDIR}/prepare_peaks.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -42,8 +42,8 @@ rule cluster_rpeaks:
         f"{LOGDIR}/cluster_rpeaks.txt",
     benchmark:
         f"{BENCHDIR}/cluster_rpeaks.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -113,8 +113,8 @@ rule filter_rpeaks:
         f"{LOGDIR}/filter_rpeaks.txt",
     benchmark:
         f"{BENCHDIR}/filter_rpeaks.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -158,8 +158,8 @@ rule accession_rpeaks:
         f"{LOGDIR}/accession_rpeaks.txt",
     benchmark:
         f"{BENCHDIR}/accession_rpeaks.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -186,8 +186,8 @@ rule anchors:
         f"{LOGDIR}/anchors.txt",
     benchmark:
         f"{BENCHDIR}/anchors.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})

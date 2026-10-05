@@ -13,8 +13,8 @@ rule anchor_regions:
         f"{LOGDIR}/anchor_regions.txt",
     benchmark:
         f"{BENCHDIR}/anchor_regions.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -42,8 +42,8 @@ rule zscore:
         f"{LOGDIR}/zscore/{{assay}}/{{id}}.txt",
     benchmark:
         f"{BENCHDIR}/zscore/{{assay}}/{{id}}.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})

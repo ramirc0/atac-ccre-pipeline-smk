@@ -1,0 +1,23 @@
+[workspace]
+name = "atac-ccre-pipeline-smk-envs"
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "3.12.*"
+polars = "1.44.*"
+numpy = "2.*"
+bedtools = "2.31.1.*"
+ucsc-bigwigaverageoverbed = "482.*"
+ucsc-bedgraphtobigwig = "482.*"
+macs3 = "3.0.4.*"
+
+[feature.qc.dependencies]
+python = "3.12.*"
+polars = "1.44.*"
+numpy = "2.*"
+matplotlib-base = ">=3.10"
+seaborn-base = ">=0.13"
+
+[environments]
+qc = { features = ["qc"], no-default-feature = true }

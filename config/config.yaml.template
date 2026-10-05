@@ -1,7 +1,7 @@
 samples: config/samples.tsv  # one sheet or a list of sheets; rows are concatenated
 outdir: results
 run_id: default              # outputs go under results/<run_id>/; override per run
-conda_env: workflow/envs/env.yaml
+pixi_env: default
 genome: hg38                 # accession prefix: hg19, hg38 or mm10
 
 references:

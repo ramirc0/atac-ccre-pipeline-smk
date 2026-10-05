@@ -16,8 +16,8 @@ rule fragment_call_peaks:
         f"{LOGDIR}/fragment_call_peaks/{{sample}}.txt",
     benchmark:
         f"{BENCHDIR}/fragment_call_peaks/{{sample}}.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -43,8 +43,8 @@ rule fragment_bigwig:
         f"{LOGDIR}/fragment_bigwig/{{sample}}.txt",
     benchmark:
         f"{BENCHDIR}/fragment_bigwig/{{sample}}.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})

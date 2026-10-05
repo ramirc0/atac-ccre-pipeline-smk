@@ -10,8 +10,8 @@ rule max_z:
         f"{LOGDIR}/max_z/{{assay}}.txt",
     benchmark:
         f"{BENCHDIR}/max_z/{{assay}}.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -36,8 +36,8 @@ rule call_ccres:
         f"{LOGDIR}/call_ccres.txt",
     benchmark:
         f"{BENCHDIR}/call_ccres.tsv"
-    conda:
-        CONDA_ENV
+    software:
+        SOFTWARE_ENV
     shell:
         r"""
         exec &> >(tee {log:q})
