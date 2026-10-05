@@ -10,18 +10,22 @@ The layout and rule conventions follow `~/Projects/snakemake-template`.
 
 ## Run
 
-`environment.yaml` has the Snakemake driver. Rules get their tools from `workflow/envs/env.yaml`
-through `--use-conda`, which the profiles set.
+The root `pixi.toml` is the launcher: Snakemake main, the pixi software-deployment plugin and the
+SLURM executor plugins. Rules get their tools from the pixi workspace in `workflow/envs/`. Its
+`default` env serves every rule but `qc_plots`, which uses `qc`. pixi must be on `PATH`. Jobs
+install the env on first use.
 
 ```sh
-mamba env create -f environment.yaml
-mamba activate atac-ccre-pipeline
+pixi shell                                         # launcher env
 cp config/config.yaml.template config/config.yaml  # then edit
 cp config/samples.example.tsv config/samples.tsv   # then edit
 snakemake -n -p --profile profiles/local           # dry run
 snakemake --profile profiles/local                 # local
 snakemake --profile profiles/slurm                 # SLURM
 ```
+
+Add a rule dependency with `pixi add <pkg>` in `workflow/envs/`. After a hand edit, run `pixi lock`
+there (rules use `locked=True`). `pixi run lint` runs ruff and `numpydoc lint` on the scripts.
 
 `profiles/slurm` uses this cluster's partitions (`30mins`, `4hours`, `12hours`). Edit
 `slurm_partition` for another cluster.

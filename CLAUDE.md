@@ -8,14 +8,16 @@ keys and output formats.
 
 ## Commands
 
-The driver env is `/zata/zippy/ramirezc/Miniforge3/envs/snakemake` (Snakemake 9, polars). Rule tools
-come from `workflow/envs/env.yaml`, which the profiles build into `.conda/`.
+The launcher is the root pixi workspace (Snakemake main, pixi and SLURM plugins). Rule tools come
+from the pixi workspace in `workflow/envs/` (`default` env, `qc` for `qc_plots`). Run the commands
+below inside `pixi shell`.
 
 ```sh
 snakemake -n -p --profile profiles/local        # dry run
 snakemake --profile profiles/slurm              # full run on SLURM
 snakemake --profile profiles/local results/<run_id>/ATAC.bed   # one target
-snakemake --lint                                # style check; passes today
+snakemake --lint                                # flags every rule for lacking conda next to pixi
+pixi run lint                                   # ruff check, ruff format --check, numpydoc lint
 ```
 
 `config/config.yaml` and `config/*.tsv` are gitignored. There are no unit tests. Changes are
@@ -36,7 +38,7 @@ Data flow (see `docs/pipeline-dag.png`):
 4. `ccres.smk`: per-assay max-Z; an ATAC anchor with ATAC max-Z > 1.64 becomes an `ATAC-cCRE`.
    DNase max-Z is computed but `call_ccres` does not use it (original design, under review).
 5. `qc.smk`: `ccre_support` tabulates the new anchors; `qc_plots` draws from that table in its
-   own env (`envs/qc.yaml`). Plots follow `workflow/scripts/_style.py`: call `apply_style()`
+   own pixi env (`qc`). Plots follow `workflow/scripts/_style.py`: call `apply_style()`
    before importing pyplot, save with `save_figure()`, no per-script rcParams.
 
 `workflow/rules/common.smk` is the only place config and sample sheets are read. It builds the
@@ -48,7 +50,10 @@ lookup dicts every rule uses (`NARROWPEAK_OF`, `BIGWIG_OF`, `BIGWIGS[assay][id]`
 
 - Layout and rule style follow `~/Projects/snakemake-template` (Nextstrain style guide): no `run:`
   blocks, logic in `workflow/scripts/` argparse scripts with `build_parser()`, every rule has
-  `log:`, `benchmark:` and `conda: CONDA_ENV`, shell interpolations quoted with `:q`.
+  `log:`, `benchmark:` and `software: SOFTWARE_ENV` (`QC_ENV` for plots), shell interpolations
+  quoted with `:q`.
+- Script docstrings follow numpydoc and pass `pixi run lint`. The linters skip `.smk` files, so keep
+  the `common.smk` helpers in the same style by hand.
 - Every Python rule exports `POLARS_MAX_THREADS={threads}`; profiles set threads via `set-threads`.
 - Polars only for tabular work. Use polars-bio for interval ops; do not add bioframe or pandas.
 - Outputs, logs and benchmarks are grouped by `run_id` (`results/<run_id>/`, `logs/<run_id>/`,
@@ -57,4 +62,5 @@ lookup dicts every rule uses (`NARROWPEAK_OF`, `BIGWIG_OF`, `BIGWIGS[assay][id]`
   `workflow/scripts/encode_atac_samples.py`, never a live API pull.
 - Scripts reproduce the original pipeline's numbers exactly (e.g. `zscore.py` uses `math.log`, not
   `np.log10`). Keep behavior changes separate from refactors, one logical change per commit.
-- Editing `workflow/envs/env.yaml` changes its hash and marks existing results as outdated.
+- Editing `workflow/envs/pixi.toml` or `pixi.lock` changes the env hash and marks existing results
+  as outdated. So does moving the workdir, because the hash includes the workspace's absolute path.
