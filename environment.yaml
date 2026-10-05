@@ -1,9 +1,0 @@
-name: atac-ccre-pipeline
-channels:
-  - conda-forge
-  - bioconda
-dependencies:
-  - python=3.12
-  - snakemake=9
-  - snakemake-executor-plugin-slurm
-  - polars=1.44
