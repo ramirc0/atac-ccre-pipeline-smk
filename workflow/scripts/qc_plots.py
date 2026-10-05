@@ -7,16 +7,15 @@ PDF. Page 3 (ATAC vs DNase) is drawn only when the support table has DNase.
 import argparse
 from pathlib import Path
 
-import numpy as np
-import polars as pl
-from _style import apply_style, despine, save_figure
-
-apply_style()
-
 import matplotlib.pyplot as plt
+import numpy as np
+import poikilos as pk
+import polars as pl
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.patches import Patch
 
+THEME = "plain"
+INK = pk.PALETTES[THEME].foreground
 THRESHOLD = 1.64
 ZERO_Z = -10.0  # zscore.py's value for anchors with no signal
 TOP_SAMPLES = 40
@@ -95,7 +94,7 @@ def funnel(args, support):
     ax.set_yscale("log")
     ax.set_ylabel("Regions")
     ax.set_title("Filtering funnel")
-    despine(ax, categorical_x=True)
+    pk.despine(ax, categorical_x=True)
     return fig
 
 
@@ -135,12 +134,12 @@ def atac_max_z(args, support):
         histtype="step",
         label=f"New ATAC ({is_new.sum():,})",
     )
-    ax.axvline(THRESHOLD, color="black", linestyle="--", linewidth=0.8)
+    ax.axvline(THRESHOLD, color=INK, linestyle="--", linewidth=0.8)
     ax.set_xlabel("ATAC max z-score")
     ax.set_ylabel("Density")
     ax.set_title("ATAC max z-score by anchor origin")
-    ax.legend(frameon=False)
-    despine(ax)
+    ax.legend()
+    pk.despine(ax)
     return fig
 
 
@@ -165,8 +164,8 @@ def atac_vs_dnase(support):
         atac[shown], dnase[shown], gridsize=60, bins="log", mincnt=1, cmap="viridis"
     )
     fig.colorbar(hb, ax=ax, label="Anchors")
-    ax.axvline(THRESHOLD, color="black", linestyle="--", linewidth=0.8)
-    ax.axhline(THRESHOLD, color="black", linestyle="--", linewidth=0.8)
+    ax.axvline(THRESHOLD, color=INK, linestyle="--", linewidth=0.8)
+    ax.axhline(THRESHOLD, color=INK, linestyle="--", linewidth=0.8)
     for x_high, y_high, x, y in [
         (0, 1, 0.02, 0.98),
         (1, 1, 0.98, 0.98),
@@ -185,7 +184,7 @@ def atac_vs_dnase(support):
     ax.set_xlabel("ATAC max z-score")
     ax.set_ylabel("DNase max z-score")
     ax.set_title(f"New anchors; {(~shown).sum():,} with no DNase signal not shown")
-    despine(ax)
+    pk.despine(ax)
     return fig
 
 
@@ -216,7 +215,7 @@ def support_page(support):
     )
     ax1.set_xlabel(f"Samples with z ≥ {THRESHOLD}")
     ax1.set_ylabel("New anchors")
-    ax1.legend(frameon=False)
+    ax1.legend()
 
     bins = np.arange(experiments.min(), np.percentile(experiments, 99) + 2)
     ax2.hist([experiments[ccre], experiments[~ccre]], bins=bins, stacked=True)
@@ -230,7 +229,7 @@ def support_page(support):
     ax3.set_xlabel("Experiments supporting the rPeak")
     ax3.set_ylabel(f"Samples with z ≥ {THRESHOLD}")
     for ax in (ax1, ax2, ax3):
-        despine(ax)
+        pk.despine(ax)
     fig.suptitle("Support per new anchor (histograms clipped at the 99th percentile)")
     return fig
 
@@ -264,7 +263,7 @@ def nearest_registry(support):
         for x in (-175, 175):
             a.axvline(
                 x,
-                color="black",
+                color=INK,
                 linestyle=":",
                 linewidth=0.6,
                 label="±175 bp" if x > 0 else None,
@@ -272,16 +271,16 @@ def nearest_registry(support):
         for x in (-75, 75):
             a.axvline(
                 x,
-                color="black",
+                color=INK,
                 linestyle="--",
                 linewidth=0.6,
                 label="±75 bp" if x > 0 else None,
             )
-        despine(a)
+        pk.despine(a)
     ax.set_xlabel("Distance to nearest registry anchor (bp)")
     ax.set_ylabel("ATAC cCREs")
     ax.set_title("Nearest registry anchor around ATAC cCREs")
-    ax.legend(frameon=False, loc="upper left")
+    ax.legend(loc="upper left")
     return fig
 
 
@@ -312,10 +311,9 @@ def sample_contribution(support):
     ax.set_ylabel("ATAC cCREs")
     ax.set_title(f"rPeak source, top {len(top)} of {counts.height} samples")
     ax.legend(
-        handles=[Patch(color="C0", label="ENCODE"), Patch(color="C1", label="Custom")],
-        frameon=False,
+        handles=[Patch(color="C0", label="ENCODE"), Patch(color="C1", label="Custom")]
     )
-    despine(ax, categorical_x=True)
+    pk.despine(ax, categorical_x=True)
     return fig
 
 
@@ -341,10 +339,11 @@ def main(argv=None):
     if "dnase_max_z" not in support.columns:
         del pages["3-atac-vs-dnase"]
 
+    pk.use(THEME, rc={"legend.frameon": False})
     with PdfPages(args.output) as pdf:
         for name, draw in pages.items():
             fig = draw()
-            save_figure(fig, Path(args.figures) / name)
+            pk.save_figure(fig, Path(args.figures) / name)
             pdf.savefig(fig)
             plt.close(fig)
 

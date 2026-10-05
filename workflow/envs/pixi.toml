@@ -16,8 +16,14 @@ macs3 = "3.0.4.*"
 python = "3.12.*"
 polars = "1.44.*"
 numpy = "2.*"
-matplotlib-base = ">=3.10"
-seaborn-base = ">=0.13"
+matplotlib-base = ">=3.11"
+
+[feature.qc.pypi-dependencies]
+poikilos = { git = "https://github.com/ramirc0/poikilos" }
+
+# Rule jobs only save figures. Without this, a job that inherits DISPLAY picks a GUI backend.
+[feature.qc.activation.env]
+MPLBACKEND = "Agg"
 
 [environments]
 qc = { features = ["qc"], no-default-feature = true }
