@@ -38,6 +38,13 @@ def despine(ax, categorical_x=False):
     to the nearest ticks enclosing the data, so the trimmed spine never ends
     short of the data. A categorical x axis has no spine or tick marks; its
     labels carry the categories.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Axes to despine, after everything is drawn on it.
+    categorical_x : bool, default False
+        Treat the x axis as categorical.
     """
     import seaborn as sns
 
@@ -61,8 +68,19 @@ def despine(ax, categorical_x=False):
 def save_figure(fig, path, **kwargs):
     """Write `fig` to `path` as both SVG and PNG.
 
-    `path` MUST NOT carry a suffix; one is added per format. Returns the
-    list of paths written.
+    Parameters
+    ----------
+    fig : matplotlib.figure.Figure
+        Figure to save.
+    path : str or pathlib.Path
+        Output path. It MUST NOT carry a suffix. One is added per format.
+    **kwargs
+        Passed to `Figure.savefig`.
+
+    Returns
+    -------
+    list of pathlib.Path
+        Paths written.
     """
     stem = Path(path).with_suffix("")
     stem.parent.mkdir(parents=True, exist_ok=True)

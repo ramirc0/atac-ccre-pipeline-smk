@@ -18,7 +18,13 @@ BED = ["chrom", "start", "end", "anchor"]
 
 
 def build_parser():
-    """Return the argument parser for ccre_support.py."""
+    """Build the ccre_support.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the ccre_support.py flags.
+    """
     p = argparse.ArgumentParser(description="Support table for the new ATAC anchors.")
     p.add_argument(
         "--anchors", required=True, help="Anchors BED: chrom, start, end, anchor."
@@ -43,14 +49,47 @@ def build_parser():
 
 
 def read_max_z(path, name):
-    """Read an anchor/max_zscore TSV, renaming the score to `name`."""
+    """Read an anchor/max_zscore TSV, renaming the score to `name`.
+
+    Parameters
+    ----------
+    path : str
+        TSV with `anchor` and `max_zscore` columns.
+    name : str
+        New name of the score column.
+
+    Returns
+    -------
+    polars.DataFrame
+        Columns `anchor` and `name`.
+    """
     return pl.read_csv(
         path, separator="\t", schema_overrides={"anchor": pl.Utf8}
     ).rename({"max_zscore": name})
 
 
 def count_passing(paths, prefix, threshold):
-    """Per new anchor, the number of files whose z-score is >= threshold."""
+    """Count the files in which each new anchor reaches `threshold`.
+
+    Parameters
+    ----------
+    paths : list of str
+        Parquet files from zscore.py. All list the same anchors in the same order.
+    prefix : str
+        Accession prefix of the new anchors, e.g. `EH38A`.
+    threshold : float
+        Minimum z-score.
+
+    Returns
+    -------
+    polars.DataFrame
+        Columns `anchor` and `samples_passing`, one row per new anchor.
+
+    Raises
+    ------
+    ValueError
+        If a file lists its anchors in another order.
+    """
     anchor = pl.read_parquet(paths[0], columns=["anchor"])["anchor"]
     is_new = anchor.str.starts_with(prefix).to_numpy()
     counts = np.zeros(is_new.sum(), dtype=np.int32)
@@ -63,7 +102,22 @@ def count_passing(paths, prefix, threshold):
 
 
 def nearest_registry(anchors, is_new):
-    """Midpoint distance from each new anchor to the nearest registry anchor per side."""
+    """Find the nearest registry anchor on each side of every new anchor.
+
+    Parameters
+    ----------
+    anchors : polars.DataFrame
+        Anchors BED with `chrom`, `start`, `end` and `anchor`.
+    is_new : polars.Expr
+        True for the new anchors.
+
+    Returns
+    -------
+    polars.DataFrame
+        Columns `anchor`, `left_registry_bp` and `right_registry_bp`: midpoint
+        distances in bp. Null when the chromosome has no registry anchor on
+        that side.
+    """
     mid = ((pl.col("start") + pl.col("end")) // 2).alias("mid")
     registry = (
         anchors.filter(~is_new)
@@ -73,6 +127,18 @@ def nearest_registry(anchors, is_new):
     new = anchors.filter(is_new).select("anchor", "chrom", mid).sort("mid")
 
     def side(strategy):
+        """Join each new anchor to its nearest registry anchor in one direction.
+
+        Parameters
+        ----------
+        strategy : {"backward", "forward"}
+            `join_asof` strategy. Backward finds the left neighbor.
+
+        Returns
+        -------
+        polars.DataFrame
+            New anchors with the `registry_mid` of their neighbor.
+        """
         return new.join_asof(
             registry,
             left_on="mid",
@@ -92,7 +158,13 @@ def nearest_registry(anchors, is_new):
 
 
 def main(argv=None):
-    """Join every per-anchor measure onto the new anchors and write the table."""
+    """Join every per-anchor measure onto the new anchors and write the table.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     prefix = GENOME_IDS[args.genome] + MODE_IDS["ATAC"]
 

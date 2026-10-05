@@ -22,7 +22,24 @@ QC_ENV = pixi(workspace="../envs", env="qc", locked=True)
 
 
 def _read_sheets(paths):
-    """Concatenate one or more sample sheets; all cells read as strings."""
+    """Concatenate one or more sample sheets.
+
+    Parameters
+    ----------
+    paths : str or list of str
+        Sample sheet TSVs.
+
+    Returns
+    -------
+    polars.DataFrame
+        Rows of every sheet, all cells as strings. A column missing from a
+        sheet is null in its rows.
+
+    Raises
+    ------
+    WorkflowError
+        If a sheet does not exist.
+    """
     paths = [paths] if isinstance(paths, str) else paths
     for p in paths:
         if not Path(p).exists():
@@ -46,7 +63,19 @@ if _manifest["sample_id"].is_duplicated().any():
 
 
 def _column(name):
-    """sample_id -> value for `name`, empty string treated as None."""
+    """Map each sample to its value in sheet column `name`.
+
+    Parameters
+    ----------
+    name : str
+        Sample sheet column.
+
+    Returns
+    -------
+    dict of str to str or None
+        Value per `sample_id`, with empty cells as None. Empty when the sheet
+        has no such column.
+    """
     if name not in _manifest.columns:
         return {}
     return {
@@ -92,7 +121,24 @@ BIGWIGS = {"ATAC": BIGWIG_OF, "DNase": DNASE_BIGWIG_OF}
 
 
 def macs3_flags(sample):
-    """config['macs3'] + the sample's fragment format -> macs3 callpeak flags."""
+    """Return the macs3 callpeak flag tokens of a fragment sample.
+
+    Parameters
+    ----------
+    sample : str
+        Sample ID with a `fragments` column.
+
+    Returns
+    -------
+    list of str
+        Flags from `config["macs3"]` and the sample's fragment format.
+        Interpolate them with `:q`.
+
+    Raises
+    ------
+    WorkflowError
+        If the fragment format is not FRAG or BEDPE.
+    """
     m = config["macs3"]
     fmt = (FRAGMENT_FORMAT_OF.get(sample) or "FRAG").upper()
     if fmt not in ("FRAG", "BEDPE"):

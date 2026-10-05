@@ -24,7 +24,13 @@ BIGWIG_DIR = "/zata/data/zlab/projects/encode/data"
 
 
 def build_parser():
-    """Return the argument parser for encode_atac_samples.py."""
+    """Build the encode_atac_samples.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the encode_atac_samples.py flags.
+    """
     p = argparse.ArgumentParser(
         description="ENCODE ATAC samples from a metadata snapshot."
     )
@@ -50,7 +56,31 @@ def build_parser():
 
 
 def select(snapshot, min_frip, min_reads, include_perturbed=False):
-    """One row per experiment: experiment, peak, bigwig, biosample, frip, reads."""
+    """Select one peak and one bigWig per ENCODE ATAC-seq experiment.
+
+    Parameters
+    ----------
+    snapshot : pathlib.Path
+        Directory of the snapshot parquets.
+    min_frip : float
+        Minimum FRiP of the peak file.
+    min_reads : float or None
+        Minimum usable fragments. None skips this filter.
+    include_perturbed : bool, default False
+        Keep perturbed experiments.
+
+    Returns
+    -------
+    polars.DataFrame
+        Experiments that pass the filters. Columns: `experiment`, `biosample`,
+        `peak`, `bigwig`, `frip` and `reads`.
+
+    Raises
+    ------
+    SystemExit
+        If an experiment has several default peaks, or lacks a peak, bigWig or
+        FRiP.
+    """
     experiments = pl.read_parquet(
         snapshot / "experiment.parquet",
         columns=[
@@ -164,7 +194,13 @@ def select(snapshot, min_frip, min_reads, include_perturbed=False):
 
 
 def main(argv=None):
-    """Select experiments, check local files, and write the sheet(s)."""
+    """Select experiments, check local files, and write the sheet(s).
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     rows = select(
         args.snapshot, args.min_frip, args.min_reads, args.include_perturbed

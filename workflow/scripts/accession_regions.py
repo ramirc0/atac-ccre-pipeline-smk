@@ -21,7 +21,13 @@ MODE_IDS = {
 
 
 def build_parser():
-    """Return the argument parser for accession_regions.py."""
+    """Build the accession_regions.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the accession_regions.py flags.
+    """
     p = argparse.ArgumentParser(description="Append accessions to regions.")
     p.add_argument("regions", help="Headerless TSV of regions.")
     p.add_argument("--genome", required=True, choices=GENOME_IDS, help="Genome build.")
@@ -30,7 +36,13 @@ def build_parser():
 
 
 def main(argv=None):
-    """Print each region with its accession as a last column."""
+    """Print each region with its accession as a last column.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     prefix = GENOME_IDS[args.genome] + MODE_IDS[args.mode]
     regions = pl.read_csv(

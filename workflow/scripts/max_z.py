@@ -11,7 +11,13 @@ import polars as pl
 
 
 def build_parser():
-    """Return the argument parser for max_z.py."""
+    """Build the max_z.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the max_z.py flags.
+    """
     p = argparse.ArgumentParser(description="Per-anchor max z-score across files.")
     p.add_argument(
         "-i", "--inputs", nargs="+", required=True, help="zscore.py parquet files."
@@ -23,12 +29,29 @@ def build_parser():
 
 
 def read_zscores(path):
-    """Read the anchor and zscore columns of a zscore.py parquet file."""
+    """Read the anchor and zscore columns of a zscore.py parquet file.
+
+    Parameters
+    ----------
+    path : str
+        Parquet file from zscore.py.
+
+    Returns
+    -------
+    polars.DataFrame
+        Columns `anchor` and `zscore`.
+    """
     return pl.read_parquet(path, columns=["anchor", "zscore"])
 
 
 def main(argv=None):
-    """Fold every file into a running max and write it."""
+    """Fold every file into a running max and write it.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
 
     first = read_zscores(args.inputs[0])

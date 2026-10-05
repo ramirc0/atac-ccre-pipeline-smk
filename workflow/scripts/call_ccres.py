@@ -15,7 +15,13 @@ COORDS = ["chrom", "start", "end"]
 
 
 def build_parser():
-    """Return the argument parser for call_ccres.py."""
+    """Build the call_ccres.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the call_ccres.py flags.
+    """
     p = argparse.ArgumentParser(description="Call ATAC cCREs and assign accessions.")
     p.add_argument("--max-z", required=True, help="ATAC anchor/max_zscore TSV.")
     p.add_argument(
@@ -31,7 +37,21 @@ def build_parser():
 
 
 def read_bed(path, names):
-    """Read the first len(names) columns of a headerless BED."""
+    """Read the first columns of a headerless BED.
+
+    Parameters
+    ----------
+    path : str
+        BED file.
+    names : list of str
+        Names of the leading columns. `chrom`, `start` and `end` are read as
+        string, integer and integer.
+
+    Returns
+    -------
+    polars.DataFrame
+        One column per name.
+    """
     return pl.read_csv(
         path,
         separator="\t",
@@ -43,7 +63,13 @@ def read_bed(path, names):
 
 
 def main(argv=None):
-    """Select ATAC cCREs, merge with the registry, assign accessions, write sorted."""
+    """Call the ATAC cCREs and write them with the registry cCREs.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     new_prefix = GENOME_IDS[args.genome] + MODE_ID
 

@@ -12,7 +12,13 @@ import polars as pl
 
 
 def build_parser():
-    """Return the argument parser for pick_best_peak.py."""
+    """Build the pick_best_peak.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the pick_best_peak.py flags.
+    """
     p = argparse.ArgumentParser(description="Strongest peak id per merged cluster.")
     p.add_argument(
         "merged", help="bedtools merge output with collapsed ids and signals."
@@ -21,7 +27,13 @@ def build_parser():
 
 
 def main(argv=None):
-    """Print the best peak id of every cluster."""
+    """Print the best peak id of every cluster.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     clusters = pl.read_csv(
         args.merged,

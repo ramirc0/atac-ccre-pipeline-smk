@@ -24,7 +24,13 @@ COLUMNS = {
 
 
 def build_parser():
-    """Return the argument parser for filter_rpeaks.py."""
+    """Build the filter_rpeaks.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the filter_rpeaks.py flags.
+    """
     p = argparse.ArgumentParser(description="Filter rPeaks by supporting experiments.")
     p.add_argument("intersection", help="bedtools intersect -wo of rPeaks and summits.")
     p.add_argument(
@@ -34,12 +40,29 @@ def build_parser():
 
 
 def joined(col):
-    """Sorted, deduplicated items of a column, ';'-joined."""
+    """Join the sorted unique values of a column with ';'.
+
+    Parameters
+    ----------
+    col : str
+        Column name.
+
+    Returns
+    -------
+    polars.Expr
+        Aggregation expression.
+    """
     return pl.col(col).unique().sort().str.join(";")
 
 
 def main(argv=None):
-    """Aggregate summits per rPeak and print the supported ones."""
+    """Aggregate summits per rPeak and print the supported ones.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     overlaps = pl.read_csv(
         args.intersection,

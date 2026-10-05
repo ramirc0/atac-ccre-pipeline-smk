@@ -16,7 +16,13 @@ ZERO_Z = -10.0
 
 
 def build_parser():
-    """Return the argument parser for zscore.py."""
+    """Build the zscore.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the zscore.py flags.
+    """
     p = argparse.ArgumentParser(description="Z-score log10 bigWig signal per anchor.")
     p.add_argument(
         "-i", "--input", required=True, help="bigWigAverageOverBed tab output."
@@ -26,7 +32,20 @@ def build_parser():
 
 
 def zscores(signal, nonzero):
-    """Z-score of log10(signal) over `nonzero` anchors; ZERO_Z elsewhere."""
+    """Z-score log10(signal) over the `nonzero` anchors.
+
+    Parameters
+    ----------
+    signal : numpy.ndarray
+        Mean signal per anchor.
+    nonzero : numpy.ndarray of bool
+        Anchors with non-zero signal and coverage.
+
+    Returns
+    -------
+    numpy.ndarray
+        Z-score per anchor. ZERO_Z where `nonzero` is False.
+    """
     # math.log(x, 10), not np.log10: matches the original values bit for bit.
     log_signal = np.fromiter((math.log(x, 10) for x in signal[nonzero]), float)  # noqa: FURB163
     z = np.full(len(signal), ZERO_Z)
@@ -35,7 +54,13 @@ def zscores(signal, nonzero):
 
 
 def main(argv=None):
-    """Score one bigWig's anchor signal and write it sorted by anchor."""
+    """Score one bigWig's anchor signal and write it sorted by anchor.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     df = pl.read_csv(
         args.input,

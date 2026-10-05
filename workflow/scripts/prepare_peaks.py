@@ -24,7 +24,13 @@ SCHEMA = {
 
 
 def build_parser():
-    """Return the argument parser for prepare_peaks.py."""
+    """Build the prepare_peaks.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the prepare_peaks.py flags.
+    """
     p = argparse.ArgumentParser(description="Standardize narrowPeak files.")
     p.add_argument("--peaks", nargs="+", required=True, help="narrowPeak files.")
     p.add_argument("--samples", nargs="+", required=True, help="Sample id per file.")
@@ -37,7 +43,25 @@ def build_parser():
 
 
 def standardize(path, sample, biosample, target):
-    """Read one narrowPeak file and return its standardized peaks."""
+    """Read one narrowPeak file and return its standardized peaks.
+
+    Parameters
+    ----------
+    path : str
+        NarrowPeak file.
+    sample : str
+        Sample ID. Fills `exp` and prefixes `unique_id`.
+    biosample : str
+        Value of the `biosample` column.
+    target : str
+        Value of the `target` column.
+
+    Returns
+    -------
+    polars.DataFrame
+        The 10 narrowPeak columns, then `exp`, `target`, `biosample` and
+        `unique_id`.
+    """
     width = pl.col("end") - pl.col("start")
     summit = pl.col("start") + pl.col("peak")
     return (
@@ -75,7 +99,13 @@ def standardize(path, sample, biosample, target):
 
 
 def main(argv=None):
-    """Standardize every sample's peaks and write them in input order."""
+    """Standardize every sample's peaks and write them in input order.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     biosamples = args.biosamples or args.samples
     if not len(args.peaks) == len(args.samples) == len(biosamples):

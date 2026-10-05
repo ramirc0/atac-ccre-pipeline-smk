@@ -25,7 +25,13 @@ ZOOM = 1_000
 
 
 def build_parser():
-    """Return the argument parser for qc_plots.py."""
+    """Build the qc_plots.py command-line parser.
+
+    Returns
+    -------
+    argparse.ArgumentParser
+        Parser for the qc_plots.py flags.
+    """
     p = argparse.ArgumentParser(
         description="QC figures for the new ATAC anchors and cCREs."
     )
@@ -43,13 +49,38 @@ def build_parser():
 
 
 def count_lines(path):
-    """Number of lines in a file."""
+    """Count the lines in a file.
+
+    Parameters
+    ----------
+    path : str
+        File to count.
+
+    Returns
+    -------
+    int
+        Number of newline characters.
+    """
     with open(path, "rb") as f:
         return sum(chunk.count(b"\n") for chunk in iter(lambda: f.read(1 << 24), b""))
 
 
 def funnel(args, support):
-    """Regions left after each filtering step, from pooled peaks to ATAC cCREs."""
+    """Plot the regions left after each filtering step.
+
+    Parameters
+    ----------
+    args : argparse.Namespace
+        Parsed flags. Reads the `peaks`, `rpeaks`, `filtered` and `no_rdhs`
+        paths.
+    support : polars.DataFrame
+        Support table from ccre_support.py.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Bar chart from pooled peaks to ATAC cCREs.
+    """
     steps = {
         "Peaks": count_lines(args.peaks),
         "rPeaks": count_lines(args.rpeaks),
@@ -69,7 +100,20 @@ def funnel(args, support):
 
 
 def atac_max_z(args, support):
-    """ATAC max z-score of registry and new anchors."""
+    """Plot the ATAC max z-score of registry and new anchors.
+
+    Parameters
+    ----------
+    args : argparse.Namespace
+        Parsed flags. Reads the `atac_max_z` path.
+    support : polars.DataFrame
+        Support table from ccre_support.py.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        One step histogram per anchor origin.
+    """
     max_z = pl.read_csv(
         args.atac_max_z, separator="\t", schema_overrides={"anchor": pl.Utf8}
     )
@@ -101,7 +145,18 @@ def atac_max_z(args, support):
 
 
 def atac_vs_dnase(support):
-    """ATAC vs DNase max z-score of the new anchors, with quadrant counts."""
+    """Plot ATAC against DNase max z-score of the new anchors.
+
+    Parameters
+    ----------
+    support : polars.DataFrame
+        Support table from ccre_support.py with a `dnase_max_z` column.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Hexbin with the anchor count of each threshold quadrant.
+    """
     atac = support["atac_max_z"].to_numpy()
     dnase = support["dnase_max_z"].to_numpy()
     shown = dnase > ZERO_Z
@@ -135,7 +190,18 @@ def atac_vs_dnase(support):
 
 
 def support_page(support):
-    """Per-sample z-score support and peak support of the new anchors."""
+    """Plot the per-sample z-score support and peak support of the new anchors.
+
+    Parameters
+    ----------
+    support : polars.DataFrame
+        Support table from ccre_support.py.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Three panels: passing samples, supporting experiments, and both.
+    """
     ccre = support["is_ccre"].to_numpy()
     passing = support["samples_passing"].to_numpy()
     experiments = support["peak_experiments"].to_numpy()
@@ -170,10 +236,21 @@ def support_page(support):
 
 
 def nearest_registry(support):
-    """Distance from each ATAC cCRE midpoint to the nearest registry anchor midpoint.
+    """Plot the distance from each ATAC cCRE to the nearest registry anchors.
 
-    The inset zooms into the center. Lines mark half the minimum (75 bp) and
-    maximum (175 bp) peak width that prepare_peaks.py re-centers peaks to.
+    Distances run between midpoints. The inset zooms into the center. Lines
+    mark half the minimum (75 bp) and maximum (175 bp) peak width that
+    prepare_peaks.py re-centers peaks to.
+
+    Parameters
+    ----------
+    support : polars.DataFrame
+        Support table from ccre_support.py.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Left and right distance histograms with a zoomed inset.
     """
     ccres = support.filter("is_ccre")
     left = -ccres["left_registry_bp"].drop_nulls().to_numpy()
@@ -209,7 +286,18 @@ def nearest_registry(support):
 
 
 def sample_contribution(support):
-    """ATAC cCREs whose rPeak came from each sample, top samples only."""
+    """Plot the ATAC cCREs whose rPeak came from each of the top samples.
+
+    Parameters
+    ----------
+    support : polars.DataFrame
+        Support table from ccre_support.py.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Bar chart colored by ENCODE or custom origin.
+    """
     counts = (
         support.filter("is_ccre")
         .group_by("rpeak_sample")
@@ -232,7 +320,13 @@ def sample_contribution(support):
 
 
 def main(argv=None):
-    """Draw every page, save each as SVG and PNG, and collect them into one PDF."""
+    """Draw every page, save each as SVG and PNG, and collect them into one PDF.
+
+    Parameters
+    ----------
+    argv : list of str, optional
+        Command-line arguments. Defaults to `sys.argv[1:]`.
+    """
     args = build_parser().parse_args(argv)
     support = pl.read_csv(args.support, separator="\t")
 
