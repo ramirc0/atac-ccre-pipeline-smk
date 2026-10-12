@@ -7,7 +7,7 @@ genome: hg38                 # accession prefix: hg19, hg38 or mm10
 references:
   ccres: resources/GRCh38-cCREs.bed
   rdhs: resources/GRCh38-Anchors.bed
-  blacklist: /data/zusers/ramirezc/static/ENCFF356LFX.bed
+  blacklist: /data/zusers/ramirezc/static/hg38/blacklist/ENCFF356LFX.bed
   chrom_sizes: /zata/data/zlab/common/genome/hg38.minimal.chrom.sizes  # fragment rows only
 
 dnase:                       # null skips DNase max-Z
