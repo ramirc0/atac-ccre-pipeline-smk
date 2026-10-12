@@ -17,7 +17,7 @@ The custom and ENCODE sheets come from the preflight steps in the README.
 |---|---|---|
 | `references.rdhs` | `resources/GRCh38-Anchors.bed` | Existing rDHS anchors. New ATAC rPeaks that overlap them are dropped. The rest are added to them. |
 | `references.ccres` | `resources/GRCh38-cCREs.bed` | Existing Registry cCREs. Carried into the output with their accessions unchanged. |
-| `references.blacklist` | `/data/zusers/ramirezc/static/ENCFF356LFX.bed` | ENCODE hg38 blacklist. Used by `filter_rpeaks`. |
+| `references.blacklist` | `/data/zusers/ramirezc/static/hg38/blacklist/ENCFF356LFX.bed` | ENCODE hg38 blacklist. Used by `filter_rpeaks`. |
 | `references.chrom_sizes` | `/zata/data/zlab/common/genome/hg38.minimal.chrom.sizes` | Fragment rows only. Clips the MACS3 fold-enrichment bedGraph. |
 
 Sources and checksums are in the README.
