@@ -65,3 +65,5 @@ lookup dicts every rule uses (`NARROWPEAK_OF`, `BIGWIG_OF`, `BIGWIGS[assay][id]`
   `np.log10`). Keep behavior changes separate from refactors, one logical change per commit.
 - Editing `workflow/envs/pixi.toml` or `pixi.lock` changes the env hash and marks existing results
   as outdated. So does moving the workdir, because the hash includes the workspace's absolute path.
+- The `onstart` hook installs every rule env before any job, because SLURM jobs race to install it.
+  A new rule workspace MUST be added to the hook.

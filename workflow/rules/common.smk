@@ -21,6 +21,12 @@ SOFTWARE_ENV = pixi(workspace="../envs", env=config["pixi_env"], locked=True)
 QC_ENV = pixi(workspace="../envs", env="qc", locked=True)
 
 
+# The pixi plugin installs the env inside each job. Parallel SLURM jobs then race
+# on a fresh or relocked env, so install it once before any job starts.
+onstart:
+    shell("pixi install --manifest-path {workflow.basedir:q}/envs/pixi.toml --all --locked")
+
+
 def _read_sheets(paths):
     """Concatenate one or more sample sheets.
 

@@ -12,8 +12,9 @@ The layout and rule conventions follow `~/Projects/snakemake-template`.
 
 The root `pixi.toml` is the launcher: Snakemake main, the pixi software-deployment plugin and the
 SLURM executor plugins. Rules get their tools from the pixi workspace in `workflow/envs/`. Its
-`default` env serves every rule but `qc_plots`, which uses `qc`. pixi must be on `PATH`. Jobs
-install the env on first use.
+`default` env serves every rule but `qc_plots`, which uses `qc`. pixi must be on `PATH`. An
+`onstart` hook installs both envs before the first job. Parallel SLURM jobs would otherwise race to
+install them.
 
 ```sh
 pixi shell                                         # launcher env
