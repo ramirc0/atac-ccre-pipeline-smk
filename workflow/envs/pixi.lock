@@ -169,7 +169,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/python_abi-3.12-9_cp312.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhe01879c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2026c-h151e31d_0.conda
-      - pypi: git+https://github.com/ramirc0/poikilos#81cd1cb24b293722a9735377de00e9235f09270d
+      - pypi: git+https://github.com/ramirc0/poikilos#46753b17d79f4f292a6606a4ace9aecfd023343f
 packages:
 - conda: https://conda.anaconda.org/bioconda/linux-64/bedtools-2.31.1-h13024bc_3.tar.bz2
   sha256: d8b7aef31be37da761a87e1263ea00d62b67134b546f018067786aa6d3dccfac
@@ -1835,7 +1835,7 @@ packages:
   run_exports: {}
   size: 118849
   timestamp: 1784250406640
-- pypi: git+https://github.com/ramirc0/poikilos#81cd1cb24b293722a9735377de00e9235f09270d
+- pypi: git+https://github.com/ramirc0/poikilos#46753b17d79f4f292a6606a4ace9aecfd023343f
   name: poikilos
   version: 0.1.0
   requires_dist:
